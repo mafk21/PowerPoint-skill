@@ -251,17 +251,23 @@ def s_title(slide, t, d, idx, total, brand):
 def s_agenda(slide, t, d, idx, total, brand):
     headline(slide, t, d.get("title", "What we'll cover"))
     items = d.get("items", [])[:6]
+    active = int(d.get("active", 0))  # reuse as progress tracker in later sections
     y = 2.0
     for i, item in enumerate(items):
-        # Navigation dots share !! names -> they "expand" out of the orb system.
+        on = (i == active)
+        done = (i < active)
+        # Navigation dots share !! names -> they "expand" out of the orb system,
+        # and re-using this slide with a new `active` walks the highlight (Morph).
         add_shape(slide, MSO_SHAPE.OVAL, 0.67, y + 0.06, 0.52, 0.52,
-                  fill=t["accent"] if i == 0 else t["card"],
-                  line=None if i == 0 else t["accent"], name=f"!!nav-dot-{i}")
-        add_text(slide, 0.67, y + 0.13, 0.52, 0.4, str(i + 1), size=15,
-                 color=t["bg"] if (i == 0 and t["dark"]) else t["ink"],
-                 bold=True, font=HEADING_FONT, align=PP_ALIGN.CENTER)
-        add_text(slide, 1.45, y, 9.5, 0.62, item, size=19, color=t["ink"],
-                 bold=(i == 0), font=HEADING_FONT)
+                  fill=t["accent"] if (on or done) else t["card"],
+                  line=None if (on or done) else t["accent"], name=f"!!nav-dot-{i}")
+        add_text(slide, 0.67, y + 0.13, 0.52, 0.4, "\u2713" if done else str(i + 1),
+                 size=15, bold=True, font=HEADING_FONT, align=PP_ALIGN.CENTER,
+                 color=(t["bg"] if ((on or done) and t["dark"]) else
+                        ("FFFFFF" if (on or done) else t["ink"])))
+        add_text(slide, 1.45, y, 9.5, 0.62, item, size=19,
+                 color=t["ink"] if on else t["muted"],
+                 bold=on, font=HEADING_FONT)
         y += 0.78
 
 
@@ -507,17 +513,79 @@ def s_closing(slide, t, d, idx, total, brand):
                  color=t["muted"], line_spacing=1.3)
 
 
+def s_stat_strip(slide, t, d, idx, total, brand):
+    # Executive summary strip: 3-4 mini hero stats (QBR openers, proof walls).
+    headline(slide, t, d.get("title", "The quarter in numbers"))
+    stats = d.get("stats", [])[:4]
+    n = max(len(stats), 1)
+    cw = (12.0 - (n - 1) * 0.35) / n
+    for i, s in enumerate(stats):
+        cx = 0.67 + i * (cw + 0.35)
+        add_shape(slide, MSO_SHAPE.ROUNDED_RECTANGLE, cx, 2.25, cw, 3.3,
+                  fill=t["card"], adj=0.07, name=f"!!stat-{i}")
+        add_text(slide, cx + 0.3, 2.6, cw - 0.6, 1.1, s.get("value", "\u2014"),
+                 size=42, color=t["accent"], bold=True, font=HEADING_FONT)
+        add_text(slide, cx + 0.3, 3.85, cw - 0.6, 0.7, s.get("label", ""),
+                 size=15.5, color=t["ink"], bold=True, font=HEADING_FONT,
+                 line_spacing=1.15)
+        add_text(slide, cx + 0.3, 4.55, cw - 0.6, 0.85, s.get("context", ""),
+                 size=12.5, color=t["muted"], line_spacing=1.25)
+
+
+def s_before_after(slide, t, d, idx, total, brand):
+    # Transformation slide (service pages, redesigns, what-is -> what-could-be).
+    headline(slide, t, d.get("title", "From typical to transformed"))
+    panels = [(d.get("before", {}), False, 0.67, "\u2715 "),
+              (d.get("after", {}), True, 7.17, "\u2713 ")]
+    for panel, hero, cx, mark in panels:
+        add_shape(slide, MSO_SHAPE.ROUNDED_RECTANGLE, cx, 2.05, 5.5, 4.5,
+                  fill=t["accent"] if hero else t["card"], adj=0.06,
+                  name="!!ba-after" if hero else "!!ba-before")
+        base = (t["bg"] if t["dark"] else "FFFFFF") if hero else t["ink"]
+        sub = base if hero else t["muted"]
+        add_text(slide, cx + 0.35, 2.32, 4.8, 0.55,
+                 panel.get("head", "After" if hero else "Before"),
+                 size=19, color=base, bold=True, font=HEADING_FONT)
+        paras = [[(mark, {"bold": True, "color": base}), (r, {"color": sub})]
+                 for r in panel.get("rows", [])[:6]]
+        add_text(slide, cx + 0.35, 3.0, 4.85, 3.3, paras, size=14,
+                 line_spacing=1.3, space_after=Pt(8))
+    add_shape(slide, MSO_SHAPE.RIGHT_ARROW, 6.36, 3.95, 0.62, 0.7,
+              fill=t["accent"], name="!!ba-arrow", adj=0.55)
+
+
+def s_logo_wall(slide, t, d, idx, total, brand):
+    # Social proof wall: client/partner wordmarks in a calm grid.
+    headline(slide, t, d.get("title", "Trusted by teams like yours"))
+    names = d.get("names", [])[:8]
+    cols, cw, ch, gx, gy = 4, 2.86, 1.7, 0.19, 0.25
+    for i, nm in enumerate(names):
+        cx = 0.67 + (i % cols) * (cw + gx)
+        cy = 2.2 + (i // cols) * (ch + gy)
+        add_shape(slide, MSO_SHAPE.ROUNDED_RECTANGLE, cx, cy, cw, ch,
+                  fill=t["card"], adj=0.10, name=f"!!logo-{i}")
+        add_text(slide, cx + 0.2, cy + 0.62, cw - 0.4, 0.5, nm, size=18,
+                 color=t["ink"], bold=True, font=HEADING_FONT,
+                 align=PP_ALIGN.CENTER)
+    if d.get("caption"):
+        add_text(slide, 0.67, 6.15, 12.0, 0.5, d["caption"], size=14,
+                 color=t["muted"], align=PP_ALIGN.CENTER)
+
+
 BUILDERS = {
     "title": s_title, "agenda": s_agenda, "section": s_section,
     "content": s_content, "icon_grid": s_icon_grid, "process": s_process,
     "timeline": s_process, "comparison": s_comparison, "chart": s_chart,
     "hero_stat": s_hero_stat, "market": s_market, "tam_sam_som": s_market,
     "team": s_team, "quote": s_quote, "closing": s_closing,
+    "stat_strip": s_stat_strip, "before_after": s_before_after,
+    "logo_wall": s_logo_wall,
 }
 
 # Which slides get the standard headline chrome vs. a bespoke layout
 CHROME_KICKER = {"agenda", "content", "icon_grid", "process", "timeline",
-                 "comparison", "chart", "market", "tam_sam_som", "team"}
+                 "comparison", "chart", "market", "tam_sam_som", "team",
+                 "stat_strip", "before_after", "logo_wall"}
 
 
 def build(spec, out_path):

@@ -12,7 +12,9 @@ researched from **[PlacePlate](https://www.instagram.com/placeplate12345/)**
 
 Since Instagram blocks scraping, the research reconstructed the full picture
 from their cross-posted TikTok reels, YouTube previews, 47-product web catalog
-and 11 published guides (method & every link: `reference/08-source-research.md`):
+and 11 published guides (method & every link: `reference/08-source-research.md`) —
+then expanded to **40+ peer creators, the peer-reviewed research base, the
+classic storytelling frameworks, and the full tool ecosystem**:
 
 | File | What you'll get |
 |---|---|
@@ -25,6 +27,13 @@ and 11 published guides (method & every link: `reference/08-source-research.md`)
 | [`reference/06-qa-checklist-and-mistakes.md`](reference/06-qa-checklist-and-mistakes.md) | The 7 fatal mistakes + pre-flight QA gate |
 | [`reference/07-template-catalog.md`](reference/07-template-catalog.md) | All 47 PlacePlate products, prices & links + service tiers |
 | [`reference/08-source-research.md`](reference/08-source-research.md) | Creator profile, every URL, reel formula, honesty notes |
+| [`reference/09-creator-atlas.md`](reference/09-creator-atlas.md) | 🗺️ 40+ creators like PlacePlate (Jacob 5M, Luis Urrutia 4M, One Skill…) & what to steal |
+| [`reference/10-research-foundations.md`](reference/10-research-foundations.md) | 🔬 The science: Mayer, Cognitive Load, assertion–evidence studies, debunked myths |
+| [`reference/11-advanced-powerpoint-techniques.md`](reference/11-advanced-powerpoint-techniques.md) | 🚀 3D morph, one-canvas pans, Zoom hubs, triggers, kiosk, parallax, logo reveals |
+| [`reference/12-storytelling-and-persuasion.md`](reference/12-storytelling-and-persuasion.md) | 📖 Duarte sparkline/STAR, Minto pyramid + SCQA, Knaflic, Presentation Zen |
+| [`reference/13-resources-tools-and-assets.md`](reference/13-resources-tools-and-assets.md) | 🧰 Add-ins, AI-tool reality check, marketplaces, assets, reel/carousel specs |
+| [`reference/14-arabic-and-rtl-decks.md`](reference/14-arabic-and-rtl-decks.md) | 🌙 Arabic & RTL decks: mirroring, Cairo/Tajawal, BiDi, bilingual patterns |
+| [`reference/15-prompt-playbook.md`](reference/15-prompt-playbook.md) | 💬 12 copy-paste AI prompts, incl. one that emits generator-ready JSON |
 
 ## Try it in 30 seconds
 
@@ -41,7 +50,7 @@ Verified at the XML level: every slide from #2 carries
 `!!` names across slides so they glide instead of fading.
 
 To make your own deck: copy `generator/deck-spec.example.json`, swap in your
-content (13 slide types, 8 themes — see [`generator/README.md`](generator/README.md)),
+content (16 slide types, 8 themes — see [`generator/README.md`](generator/README.md)),
 rerun. Or just ask an AI agent working in this repo — `AGENTS.md` points it at
 the skill automatically.
 

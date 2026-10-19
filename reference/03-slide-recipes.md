@@ -29,6 +29,9 @@ y≈2.0–6.6, footer furniture y≈7.0.
 - **Morph:** dots individually `!!`-named (`!!nav-dot-0…`) so they can expand from
   the orb; on later section dividers, highlight the current dot (progress feel).
 - **Limits:** ≤ 6 items; each ≤ 6 words.
+- **Progress variant:** pass `active: n` to reuse this slide mid-deck as a
+  section tracker — completed dots flip to ✓, current dot is accent-filled,
+  upcoming items mute. The highlight *walks* across via Morph.
 
 ### R3 · Section divider — `type: "section"`
 - **Purpose:** chapter break; reset attention. Often paired with a hero stat.
@@ -135,6 +138,25 @@ y≈2.0–6.6, footer furniture y≈7.0.
 - **"Parking lot" slide:** one blank-ish slide titled "Questions" to log
   off-scope questions live without derailing timing.
 
+### R14 · Stat strip — `type: "stat_strip"`
+- **Purpose:** executive-summary opener / proof wall (QBRs, "year in numbers").
+- **Anatomy:** headline; row of 3–4 cards (y2.25, h3.3), each: value 42 pt
+  accent, label 15.5 pt bold, one context line muted. Hero-stat logic ×4.
+- **Limits:** ≤4 stats; every value needs its label+comparison to mean anything.
+
+### R15 · Before / After — `type: "before_after"`
+- **Purpose:** transformations — redesigns, migrations, Duarte's what-is →
+  what-could-be in one slide (PlacePlate's service page literally uses this).
+- **Anatomy:** left neutral panel with ✕ rows; right **accent-filled** panel
+  with ✓ rows; motif arrow between (`!!ba-arrow` travels well).
+- **Limits:** ≤6 rows/side, rows parallel so contrast is apples-to-apples.
+
+### R16 · Logo / proof wall — `type: "logo_wall"`
+- **Purpose:** social proof — clients, partners, press, certifications.
+- **Anatomy:** headline; 4×2 grid of calm cards (wordmark text, or swap in
+  real logo images in PowerPoint); optional caption strip beneath.
+- **Limits:** ≤8 marks; equal visual weight; permission for real logos.
+
 ## Recipe → generator map
 
 | Recipe | spec `type` | Key fields |
@@ -152,6 +174,9 @@ y≈2.0–6.6, footer furniture y≈7.0.
 | R11 Team | `team` | title, people[{name,role,bio}≤4] |
 | R12 Quote | `quote` | quote, attribution |
 | R13 Closing | `closing` | title, ask, contact |
+| R14 Stat strip | `stat_strip` | title, stats[{value,label,context}≤4] |
+| R15 Before/After | `before_after` | title, before{head,rows}, after{head,rows} |
+| R16 Logo wall | `logo_wall` | title, names[≤8], caption |
 
 Every recipe also accepts `kicker` (small section label), `notes` (speaker
 notes), `morph_ms` and `morph_type` (`byObject`/`byWord`/`byChar`) overrides.

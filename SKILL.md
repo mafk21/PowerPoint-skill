@@ -30,8 +30,16 @@ Reference map (open on demand — don't guess what you can look up):
 | `reference/06-qa-checklist-and-mistakes.md` | 7 fatal mistakes + pre-flight gate | before delivering |
 | `reference/07-template-catalog.md` | all 47 PlacePlate SKUs, prices, links, service tiers | recommending/buying originals |
 | `reference/08-source-research.md` | who PlacePlate is, every link, reel formula, method notes | citing sources, making reels |
+| `reference/09-creator-atlas.md` | 40+ creators/agencies (Jacob 5M, Luis Urrutia 4M, One Skill…), what to steal from each | "make it like X", new techniques |
+| `reference/10-research-foundations.md` | Mayer, Cognitive Load, assertion–evidence studies, memory effects, debunked myths | defending design choices with science |
+| `reference/11-advanced-powerpoint-techniques.md` | 3D morph, one-canvas pans, Zoom hubs, triggers, kiosk, parallax, logo reveals | leveling up beyond basic Morph |
+| `reference/12-storytelling-and-persuasion.md` | Duarte sparkline/STAR, Minto pyramid+SCQA, Knaflic, Garr Reynolds — when to use which | structuring persuasive decks |
+| `reference/13-resources-tools-and-assets.md` | add-ins (BrightSlide/think-cell), AI tools reality check, marketplaces, assets, social specs | tooling, buying, exporting to social |
+| `reference/14-arabic-and-rtl-decks.md` | Arabic RTL: mirroring, fonts (Cairo/Tajawal), BiDi, bilingual patterns | Arabic / Saudi / bilingual decks |
+| `reference/15-prompt-playbook.md` | 12 copy-paste LLM prompts incl. JSON-spec generator chain | working faster with AI |
 
-Generator: `generator/generate_pptx.py` (JSON spec → real Morph-enabled .pptx).
+Generator: `generator/generate_pptx.py` (JSON spec → real Morph-enabled .pptx;
+16 slide builders, 8 themes). Prompt chain for content: `reference/15-prompt-playbook.md`.
 Example spec: `generator/deck-spec.example.json` → `examples/placeplate-style-demo.pptx`.
 
 ---
@@ -83,11 +91,13 @@ read them back — they must narrate the whole argument. Front-load proof
 (strong traction moves to slide 3–4). Park excess in appendix/backup slides.
 
 ### Step 4 — Compose slides from recipes
-Compose only from the 13 recipes in `03-slide-recipes.md` (R1 title, R2 agenda,
-R3 section, R4 content split, R5 icon grid, R6 process/timeline, R7 comparison,
-R8 chart+insight, R9 hero stat, R10 TAM/SAM/SOM, R11 team, R12 quote,
-R13 closing/ask). Enforce each recipe's content limits ruthlessly — cut words,
-don't shrink fonts.
+Compose only from the 16 recipes in `03-slide-recipes.md` (R1 title, R2 agenda
+±progress variant, R3 section, R4 content split, R5 icon grid, R6 process/
+timeline, R7 comparison, R8 chart+insight, R9 hero stat, R10 TAM/SAM/SOM,
+R11 team, R12 quote, R13 closing/ask, R14 stat strip, R15 before/after,
+R16 logo wall). Enforce each recipe's content limits ruthlessly — cut words,
+don't shrink fonts. For narrative shape beyond section order (contrast
+rhythm, answer-first pyramids), apply `12-storytelling-and-persuasion.md`.
 
 ### Step 5 — Build the .pptx
 Preferred path: **write a JSON spec and run the generator**:

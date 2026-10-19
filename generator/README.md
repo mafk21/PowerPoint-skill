@@ -38,7 +38,7 @@ content limits in `../reference/03-slide-recipes.md`:
 | `type` | Fields |
 |---|---|
 | `title` | `title` (`\n` for line break), `subtitle`, `meta` |
-| `agenda` | `title`, `items[]` ≤6 |
+| `agenda` | `title`, `items[]` ≤6, `active` (progress-tracker index, default 0) |
 | `section` | `number`, `title`, `subtitle` |
 | `content` | `title`, `bullets[]` ≤4 of `{head, body}`, `visual_big` + `visual_caption` **or** `image` (path) |
 | `icon_grid` | `title`, `items[]` ≤6 of `{glyph, head, body}` (glyph = 1–2 chars/emoji shown in the chip) |
@@ -50,6 +50,9 @@ content limits in `../reference/03-slide-recipes.md`:
 | `team` | `title`, `people[]` ≤4 of `{name, role, bio}` (initials avatar) |
 | `quote` | `quote`, `attribution` |
 | `closing` | `title`, `ask`, `contact` |
+| `stat_strip` | `title`, `stats[]` ≤4 of `{value, label, context}` |
+| `before_after` | `title`, `before{head, rows[]}`, `after{head, rows[]}` (✓/✕ added automatically) |
+| `logo_wall` | `title`, `names[]` ≤8, optional `caption` |
 
 ## What's baked in automatically
 
