@@ -53,7 +53,7 @@ Reconstructions in the spirit of the named SKUs (see honesty note in
 | Theme | Mode | bg | card | ink | accent | Best for |
 |---|---|---|---|---|---|---|
 | `teal-orbit` (PP-23) | dark | `04333F` | `0B4A5A` | `F2FBFA` | `14C8B4` | startup pitch |
-| `aqua-neumorphic` (PP-20) | light | `E9F5F5` | `FFFFFF` | `0E3737` | `0AA9A0` | thesis defense |
+| `aqua-neumorphic` (PP-20) | light | `E9F5F5` | `FFFFFF` | `0E3737` | `099B92` | thesis defense |
 | `royal-blue` (PP-43) | light | `FFFFFF` | `EEF3FB` | `10295E` | `1D4ED8` | formal academic/corporate |
 | `obsidian-star` (PP-49) | dark | `0B0B10` | `17171F` | `F5F2EA` | `D4A537` gold | premium pitch/keynote |
 | `steel-blue` (PP-46, free) | dark | `0F2233` | `17344D` | `F2F7FC` | `4FA3E3` | SaaS/investor |

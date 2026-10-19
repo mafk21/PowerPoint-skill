@@ -112,6 +112,18 @@ Beyond the generator and the QA gate, the repo ships a small toolchain in
 | `coach.py` | Speaker Coach: per-slide talk time from notes (~130 wpm), READING-RISK (script copies slide, word-overlap), THIN SCRIPT and NO SCRIPT flags, target-runtime trims, `--write-md` rehearsal cue cards |
 | `wizard.py` | Creator Mode: goal + topic + claim → DB structure (recipe sequence → slide types) + DB-recommended theme + starter copy with coaching notes → built deck → QA verdict. Flags or `--interactive` |
 | `social.py` (+ `generator/portrait.py`) | Social Factory: any landscape spec → **Reel 9:16** (7.5×13.33", safe-band layouts, progress bar, advTm pacing ≈ notes or 4s) + **Carousel 4:5** (progress dots) + `caption.txt` + VO `shotlist.md`. Portrait types: hook, bigstat, tips, bars, steps, quote, compare, cta. Social copy is word-capped (~80 chars/card); full script stays in notes. Example pack: `examples/social/` |
+| `diff.py` | Deck diff: slide/text/notes/palette/font/Morph-map changelog between two .pptx versions (exit 1 when different) |
+| `db_lint.py` | Data-layer linter: JSON sanity, theme WCAG floors, stale-DB detection, builder↔docs drift. Run after any data edit |
+| `hijri.py` | Gregorian → tabular Hijri converter (same math as the generator's `{hijri}` token) |
+
+**Hardening:** `tests/test_all.py` (18 stdlib-unittest tests: Morph/timing
+XML, RTL, bilingual guards, Hijri epoch-exactness, contrast floors, DB
+census, QA both ways, portrait formats) + GitHub Actions CI
+(`.github/workflows/ci.yml`: tests + lint + QA gate on every example deck,
+Python 3.11/3.12). Data rot is managed via `database/WATCHLIST.md` — the
+quarterly refresh protocol for creator counts, the PlacePlate catalog, and
+AI-tool rankings. The linter already earned its keep: it caught two
+hand-tuned themes whose muted role sat at 4.1:1 (repaired in-place).
 
 All theme tools write `database/data/themes.json`; the generator merges it
 over its built-ins, and `database/build_db.py` folds the same palettes into

@@ -63,8 +63,8 @@ THEMES = {
         bg="04333F", card="0B4A5A", ink="F2FBFA", muted="A9CCC9",
         accent="14C8B4", accent2="7FE7D2", graybar="5E7A80", dark=True),
     "aqua-neumorphic": dict(     # PP-20 style -- thesis/academic, soft light
-        bg="E9F5F5", card="FFFFFF", ink="0E3737", muted="5F7B7B",
-        accent="0AA9A0", accent2="3EC6BE", graybar="B9CFCE", dark=False),
+        bg="E9F5F5", card="FFFFFF", ink="0E3737", muted="587272",
+        accent="099B92", accent2="3EC6BE", graybar="B9CFCE", dark=False),
     "royal-blue": dict(          # PP-43 style -- formal academic/corporate
         bg="FFFFFF", card="EEF3FB", ink="10295E", muted="5B6B8C",
         accent="1D4ED8", accent2="7FA6F2", graybar="C3CEDF", dark=False),
@@ -81,7 +81,7 @@ THEMES = {
         bg="06231A", card="0B3527", ink="ECFCF5", muted="A7CDBE",
         accent="10B981", accent2="6EE7B7", graybar="4E7265", dark=True),
     "lilac-soft": dict(          # PP-44 style -- soft creative light
-        bg="F6F2FC", card="FFFFFF", ink="35245E", muted="7A6FA0",
+        bg="F6F2FC", card="FFFFFF", ink="35245E", muted="71669A",
         accent="8B5CF6", accent2="C4B5FD", graybar="CFC6E8", dark=False),
 }
 

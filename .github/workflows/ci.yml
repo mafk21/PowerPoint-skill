@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Byte-compile every Python file
+        run: python -m compileall -q generator tools database tests
+
+      - name: Test suite
+        run: python -m unittest discover -s tests -v
+
+      - name: Database lint (themes, contrast floors, doc drift)
+        run: python tools/db_lint.py
+
+      - name: QA gate — all example decks must stay GREEN
+        run: |
+          for f in examples/*.pptx examples/social/*.pptx; do
+            echo "== $f"
+            python tools/qa_deck.py "$f" | tail -1
+            python tools/qa_deck.py "$f" >/dev/null
+          done
