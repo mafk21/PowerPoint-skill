@@ -41,6 +41,8 @@ TOOLS = [
     ("decompile.py", "Deck Decompiler — old .pptx → spec → regenerated"),
     ("merge.py", "Slide-library merge across decks (charts survive)"),
     ("imgkit.py", "Photo treatment to the theme (duotone/tint/crop/shade)"),
+    ("datafeed.py", "CSV → refreshed chart data (monthly-deck autopilot)"),
+    ("handout.py", "Printable leave-behind handout (script + contents)"),
     ("site.py", "This site"),
 ]
 

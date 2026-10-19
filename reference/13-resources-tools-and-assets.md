@@ -118,6 +118,8 @@ Beyond the generator and the QA gate, the repo ships a small toolchain in
 | `decompile.py` | Deck Decompiler: any .pptx → spec.json (chrome-furniture filtering, brand recovery, geometry-paired stat strips, chart data, picture extraction, anatomy-guessed theme) → regenerate + diff to measure fidelity |
 | `merge.py` | Slide-library merge: cherry-pick slides across decks with full OPC relationship surgery (native charts + embedded workbooks survive), optional Morph re-stamp |
 | `imgkit.py` | Photo treatment to the theme: duotone (ink→accent), accent tint, ratio crops (16:9/9:16/4:5/1:1), bottom shade for text — feeds the `image_full` / portrait `photo` builders |
+| `datafeed.py` | CSV DataFeed: tag chart slides with `csv`/`csv_label`/`csv_values` once — refresh numbers (currency-aware parsing) and rebuild monthly; highlight follows the max |
+| `handout.py` | Leave-behind generator: deck → printable HTML (contents + running clock, on-slide text vs full script) — the document twin Duarte wants you to send instead of the deck |
 
 **Hardening:** `tests/test_all.py` (18 stdlib-unittest tests: Morph/timing
 XML, RTL, bilingual guards, Hijri epoch-exactness, contrast floors, DB

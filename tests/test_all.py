@@ -354,5 +354,36 @@ class MediaInteraction(unittest.TestCase):
         self.assertIn("[01 ·", vo)
 
 
+class ShipShare(unittest.TestCase):
+    def test_datafeed(self):
+        csv_path = os.path.join(TMP, "d.csv")
+        open(csv_path, "w").write(
+            'Month,Revenue\nJan,"$1,200"\nFeb,"$2,400"\nMar,"$1,800"\n')
+        spec = {"theme": "teal-orbit", "slides": [
+            {"type": "chart", "title": "Revenue by month", "csv": csv_path,
+             "csv_label": "Month", "csv_values": ["Revenue"]}]}
+        sp = os.path.join(TMP, "feed.spec.json")
+        json.dump(spec, open(sp, "w"))
+        feed = load_tool("datafeed")
+        self.assertEqual(feed.main(["datafeed", sp]), 0)
+        out = json.load(open(sp, encoding="utf-8"))
+        sd = out["slides"][0]
+        self.assertEqual(sd["categories"], ["Jan", "Feb", "Mar"])
+        self.assertEqual(sd["values"], [1200.0, 2400.0, 1800.0])
+        self.assertEqual(sd["highlight"], 1)  # follows the maximum
+
+    def test_handout(self):
+        ho = load_tool("handout")
+        out = os.path.join(TMP, "ho.html")
+        rc = ho.main(["handout",
+                      os.path.join(ROOT, "examples",
+                                   "qbr-business-demo.pptx"),
+                      "--out", out])
+        self.assertEqual(rc, 0)
+        doc = open(out, encoding="utf-8").read()
+        self.assertIn("<section>", doc)
+        self.assertIn("Contents", doc)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
