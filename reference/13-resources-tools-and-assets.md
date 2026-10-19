@@ -107,6 +107,9 @@ Beyond the generator and the QA gate, the repo ships a small toolchain in
 | `palette_lab.py` | One seed hex → full 7-role theme via color harmonies, auto-repaired to WCAG floors (ink 10:1, muted 4.5:1, accent 3:1); `--pack` installs 8 curated themes |
 | `brandkit.py` | Logo/image → theme: median-cut palette, vivid-pixel recovery (antialias washout fix), BrandKit scoring favors highlight-usable saturated colors; `--also-dark` emits a dark sibling |
 | `anatomy.py` | Any .pptx → report: canvas, Morph map, palette by painted area, text colors by char count, fonts, per-slide census — plus a guessed theme pinned to the deck's real bg/card (`--write NAME` saves it) |
+| `draft.py` | Raw notes → spec (+ deck): headings, bullets, label:value data, numbered steps, quotes, stat lines, closing asks are auto-classified into slide types; original prose is preserved as speaker notes |
+| `coach.py` | Speaker Coach: per-slide talk time from notes (~130 wpm), READING-RISK (script copies slide, word-overlap), THIN SCRIPT and NO SCRIPT flags, target-runtime trims, `--write-md` rehearsal cue cards |
+| `wizard.py` | Creator Mode: goal + topic + claim → DB structure (recipe sequence → slide types) + DB-recommended theme + starter copy with coaching notes → built deck → QA verdict. Flags or `--interactive` |
 
 All theme tools write `database/data/themes.json`; the generator merges it
 over its built-ins, and `database/build_db.py` folds the same palettes into

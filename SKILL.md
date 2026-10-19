@@ -46,6 +46,9 @@ theme), `tools/brandkit.py` (logo image → theme), `tools/anatomy.py` (any
 .pptx → palette/font/Morph report + reusable theme). All write to
 `database/data/themes.json`, which the generator merges over its 8 built-in
 themes (17 palettes total; `python generator/generate_pptx.py --themes`).
+Creator Mode: `tools/wizard.py` (goal → DB structure → QA'd starter deck),
+`tools/draft.py` (raw notes → spec, prose becomes speaker notes),
+`tools/coach.py` (talk-time, reading-risk, rehearsal cue cards).
 
 **🐲 The Monster Database** (`database/powerpoint.db`, 236 records / 12 tables /
 FTS5): query it *before* web-searching — creators, PlacePlate SKUs, techniques,
