@@ -111,6 +111,7 @@ Beyond the generator and the QA gate, the repo ships a small toolchain in
 | `draft.py` | Raw notes → spec (+ deck): headings, bullets, label:value data, numbered steps, quotes, stat lines, closing asks are auto-classified into slide types; original prose is preserved as speaker notes |
 | `coach.py` | Speaker Coach: per-slide talk time from notes (~130 wpm), READING-RISK (script copies slide, word-overlap), THIN SCRIPT and NO SCRIPT flags, target-runtime trims, `--write-md` rehearsal cue cards |
 | `wizard.py` | Creator Mode: goal + topic + claim → DB structure (recipe sequence → slide types) + DB-recommended theme + starter copy with coaching notes → built deck → QA verdict. Flags or `--interactive` |
+| `social.py` (+ `generator/portrait.py`) | Social Factory: any landscape spec → **Reel 9:16** (7.5×13.33", safe-band layouts, progress bar, advTm pacing ≈ notes or 4s) + **Carousel 4:5** (progress dots) + `caption.txt` + VO `shotlist.md`. Portrait types: hook, bigstat, tips, bars, steps, quote, compare, cta. Social copy is word-capped (~80 chars/card); full script stays in notes. Example pack: `examples/social/` |
 
 All theme tools write `database/data/themes.json`; the generator merges it
 over its built-ins, and `database/build_db.py` folds the same palettes into

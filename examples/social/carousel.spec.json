@@ -1,0 +1,231 @@
+{
+  "format": "carousel",
+  "theme": "teal-orbit",
+  "brand": "SAHARA SOLAR",
+  "rtl": false,
+  "title": "Sahara Solar — Investor Pitch",
+  "slides": [
+    {
+      "type": "hook",
+      "badge": "",
+      "title_lines": [
+        "Sunlight in,",
+        "Revenue out"
+      ],
+      "subtitle": "Sahara Solar turns unused commercial rooftops in the Gulf into income-generating solar assets — with zero upfront cost to building owners.",
+      "notes": "Open with the one-liner. Do not read the slide; it is a visual anchor."
+    },
+    {
+      "type": "steps",
+      "kicker": "Agenda",
+      "title": "What we'll cover in 15 minutes",
+      "steps": [
+        {
+          "head": "The problem: wasted rooftops, rising tariffs",
+          "body": ""
+        },
+        {
+          "head": "Our solution: solar-as-a-service",
+          "body": ""
+        },
+        {
+          "head": "Market, traction and business model",
+          "body": ""
+        },
+        {
+          "head": "Team and the ask",
+          "body": ""
+        }
+      ],
+      "notes": "Promise the arc in 20 seconds: problem, solution, market proof, ask."
+    },
+    {
+      "type": "tips",
+      "kicker": "The Problem",
+      "title": "Gulf rooftops sit empty while power bills climb",
+      "items": [
+        {
+          "icon": "idea",
+          "head": "92% of commercial roofs generate nothing",
+          "body": "Warehouses and malls pay full grid tariffs under 3,000+ hours of sun."
+        },
+        {
+          "icon": "idea",
+          "head": "Tariffs rose 38% in five years",
+          "body": "Energy is now the #2 operating cost in logistics and retail."
+        },
+        {
+          "icon": "idea",
+          "head": "Capex blocks adoption",
+          "body": "Owners refuse 7-figure upfront spend and maintenance risk."
+        }
+      ],
+      "notes": "Land the pain with one story: a warehouse owner paying full tariff under empty sun. Pause after the 38% figure."
+    },
+    {
+      "type": "hook",
+      "badge": "PART 02",
+      "title_lines": [
+        "The Solution"
+      ],
+      "subtitle": "We finance, install and operate the panels. Owners simply buy cheaper power.",
+      "notes": "Section beat. One sentence: we remove every barrier — money, risk, operations."
+    },
+    {
+      "type": "tips",
+      "kicker": "Solution",
+      "title": "Solar-as-a-service, end to end",
+      "items": [
+        {
+          "glyph": "$",
+          "head": "Zero capex",
+          "body": "We fund 100% against a 15-year power agreement."
+        },
+        {
+          "glyph": "⚡",
+          "head": "25% cheaper power",
+          "body": "Per-kWh pricing at a fixed discount from day one."
+        },
+        {
+          "glyph": "🛠",
+          "head": "Fully operated",
+          "body": "Monitoring, cleaning, maintenance — performance guaranteed."
+        },
+        {
+          "glyph": "📈",
+          "head": "Live dashboard",
+          "body": "Generation, savings and CO2 reporting for ESG."
+        },
+        {
+          "glyph": "🌍",
+          "head": "Carbon credits",
+          "body": "Credits aggregated; 30% of proceeds shared with owners."
+        },
+        {
+          "glyph": "🔒",
+          "head": "Bankable contracts",
+          "body": "Standard PPAs cleared by two regional lenders."
+        }
+      ],
+      "notes": "Walk the six tiles left-to-right, top row then bottom. Each tile = one objection removed."
+    },
+    {
+      "type": "steps",
+      "kicker": "How it works",
+      "title": "From empty roof to first kilowatt in 60 days",
+      "steps": [
+        {
+          "head": "Survey",
+          "body": "Drone scan and structural check within one week of signing."
+        },
+        {
+          "head": "Finance",
+          "body": "Asset is funded from our project facility — no owner capex."
+        },
+        {
+          "head": "Install",
+          "body": "Panels live in 3–5 weeks with zero disruption to tenants."
+        },
+        {
+          "head": "Earn",
+          "body": "Owner buys discounted power; we operate and insure the asset."
+        }
+      ],
+      "notes": "Emphasize 60 days and zero tenant disruption — the two operational fears."
+    },
+    {
+      "type": "bigstat",
+      "kicker": "MARKET",
+      "title": "A $48B regional market, a $1.2B beachhead",
+      "stat": "$1.2B",
+      "label": "SOM",
+      "context": "Our 3-year target across 400 contracted roofs",
+      "notes": "Bottom-up math lives in the appendix. Here: beachhead focus beats TAM theater."
+    },
+    {
+      "type": "bars",
+      "kicker": "Traction",
+      "title": "Revenue tripled year over year — before paid marketing",
+      "categories": [
+        "2023",
+        "2024",
+        "2025",
+        "2026E"
+      ],
+      "values": [
+        18,
+        41,
+        96,
+        210
+      ],
+      "highlight": 3,
+      "insight": "210k MRR expected by end of 2026, driven by 63 live roofs and a signed pipeline of 140 more. All growth so far is referral-based.",
+      "notes": "Strategic gray: only the current-year bar carries the accent color."
+    },
+    {
+      "type": "bigstat",
+      "stat": "63 roofs",
+      "label": "Live and generating today",
+      "context": "11.4 MW installed · 99.2% average uptime · zero owner churn",
+      "title": "",
+      "kicker": "",
+      "notes": "STAR moment. Let the number sit in silence for 3 seconds before speaking."
+    },
+    {
+      "type": "compare",
+      "kicker": "Competition",
+      "title": "We win on financing, not just panels",
+      "before": {
+        "head": "Buy panels yourself",
+        "highlight": false,
+        "rows": [
+          "- $400k+ upfront capex",
+          "- Owner carries performance risk",
+          "- Owner manages maintenance",
+          "+ Full ownership"
+        ]
+      },
+      "after": {
+        "head": "Sahara Solar",
+        "highlight": true,
+        "rows": [
+          "+ Zero upfront cost",
+          "+ Guaranteed output & uptime",
+          "+ Operations fully included",
+          "+ ESG dashboard + carbon share"
+        ]
+      },
+      "notes": "We win on financing and operations, not panel hardware — name the alternatives respectfully."
+    },
+    {
+      "type": "tips",
+      "kicker": "Team",
+      "title": "Operators who have built this before",
+      "items": [
+        {
+          "icon": "star",
+          "head": "Layla Haddad",
+          "body": "CEO — Previously VP at a regional utility; closed $300M in energy…"
+        },
+        {
+          "icon": "star",
+          "head": "Omar Farouk",
+          "body": "CTO — Built monitoring platforms for 1.2 GW of solar assets across three…"
+        },
+        {
+          "icon": "star",
+          "head": "Priya Nair",
+          "body": "CFO — Structured project-finance facilities for two listed renewable developers."
+        }
+      ],
+      "notes": "Each bio answers: why can THIS person execute their part? Keep to 20 seconds each."
+    },
+    {
+      "type": "cta",
+      "ask": "Raising $4M seed — 18 months of runway to 250 live roofs and Series A metrics.",
+      "subtitle": "",
+      "contact": "Layla Haddad  ·  founders@example.com  ·  Data room available on request",
+      "notes": "State the ask, the use, the milestone. Then stop talking — let them respond."
+    }
+  ]
+}

@@ -99,3 +99,14 @@ Add a builder function `s_<name>(slide, theme, data, idx, total, brand)`,
 register it in `BUILDERS`, name any cross-slide elements with `!!`, and document
 the recipe in `../reference/03-slide-recipes.md` (+ row in its mapping table).
 New themes: one dict entry in `THEMES` + a row in `../reference/02-design-system.md`.
+
+
+## Portrait: Reels & carousels
+
+`generator/portrait.py` builds vertical decks (9:16 reel, 4:5 carousel)
+with the same themes/Morph/helpers — hook, bigstat, tips, bars, steps,
+quote, compare, cta. `tools/social.py your-spec.json` converts any
+landscape spec into the full pack (both formats + caption + voiceover
+shotlist); reels carry `advTm` so PowerPoint's Export → Video is paced
+correctly out of the box. QA them like any deck (`tools/qa_deck.py`
+accepts 9:16/4:5 canvases).
