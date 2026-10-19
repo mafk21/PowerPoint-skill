@@ -180,3 +180,23 @@ y≈2.0–6.6, footer furniture y≈7.0.
 
 Every recipe also accepts `kicker` (small section label), `notes` (speaker
 notes), `morph_ms` and `morph_type` (`byObject`/`byWord`/`byChar`) overrides.
+
+
+## The Chart Lab (generator types, reference/05 §6)
+
+### R17 — Trend + insight rail (`line_chart`)
+Native line chart, one series in the accent, all others gray; the verdict sits in a persistent insight card right of the plot — the audience reads data → verdict in one eye-sweep (spatial contiguity). Duplicate the slide and change `highlight` to re-tell the same data from the gray series' angle.
+
+### R18 — Donut with center stat (`donut`)
+Max four segments, one accent, the takeaway *inside* the ring as a 34pt stat (`!!donut-center` — it can fly in from a big_number slide). Custom legend with values + % — never the default legend.
+
+### R19 — Shape-built waterfall (`waterfall`)
+Bars are shapes (`!!wf-N`), not a chart object, because charts can't Morph bar-by-bar: duplicate the slide, delete the last bar, and rebuild order = reveal order. Down-steps in Okabe vermilion (semantic + colorblind-safe), totals in accent, connectors thin gray.
+
+### R20 — 2×2 matrix (`matrix`)
+Quadrant *names* do the arguing ("Leaders", "Loud & shallow"); one hero dot, rivals gray; `!!mx-N` dots let you Morph the market shifting across quarters by duplicating with new coordinates.
+
+### R21 — Funnel with conversion callouts (`funnel`)
+Bar width ∝ value; the persuasive payload is the % between stages (the leak), set in the accent. Bar color grades accent→accent2 so depth reads as progression, not category.
+
+> Auto-timings: set `timings: true` on the spec (or `seconds` per slide) — the generator estimates advance times from speaker notes (~130 wpm) and writes `advTm` into the transitions, so the same deck exports as a correctly-paced video (reference/13 §6).

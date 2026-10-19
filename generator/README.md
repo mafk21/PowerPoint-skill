@@ -32,13 +32,14 @@ Top level:
 | `theme_overrides` | Optional dict to re-skin: any of `bg, card, ink, muted, accent, accent2, graybar, dark` (6-hex, no `#`) |
 | `brand` | Footer brand text (appears bottom-left, `!!brand`) |
 | `morph_ms` | Default Morph duration (default 900) |
+| `timings` | `true` → auto-advance (`advTm`) estimated from speaker notes ~130 wpm (6–45s); slide 1 gets a fade carrying its timing — the deck exports as a correctly-paced video |
 | `rtl` | `true` → Arabic mode: mirrors all geometry, sets RTL paragraph direction + right alignment, flips chevrons/arrows, defaults fonts to Cairo/Tajawal (see `../reference/14-arabic-and-rtl-decks.md`) |
 | `heading_font` / `body_font` | Override Montserrat/Inter (runs are remapped post-build) |
 | `slides` | Ordered list of slide objects (below) |
 
 Every slide object: `type` plus its fields, and optionally `kicker`
 (small top label), `notes` (speaker notes), `morph_ms`, `morph_type`
-(`byObject` | `byWord` | `byChar`). Slide types and fields — full anatomy &
+(`byObject` | `byWord` | `byChar`), `seconds` (per-slide auto-advance override). Slide types and fields — full anatomy &
 content limits in `../reference/03-slide-recipes.md`:
 
 | `type` | Fields |
@@ -47,7 +48,7 @@ content limits in `../reference/03-slide-recipes.md`:
 | `agenda` | `title`, `items[]` ≤6, `active` (progress-tracker index, default 0) |
 | `section` | `number`, `title`, `subtitle` |
 | `content` | `title`, `bullets[]` ≤4 of `{head, body}`, `visual_big` + `visual_caption` **or** `image` (path) |
-| `icon_grid` | `title`, `items[]` ≤6 of `{glyph, head, body}` (glyph = 1–2 chars/emoji shown in the chip) |
+| `icon_grid` | `title`, `items[]` ≤6 of `{icon or glyph, head, body}` — `icon` keyword (`growth`, `shield`, `bolt`, `check`, `star`…) maps to a glyph automatically; explicit `glyph` wins |
 | `process` / `timeline` | `title`, `steps[]` ≤5 of `{head, body}` |
 | `comparison` | `title`, `columns[]` ≤3 of `{head, highlight, rows[]}` — prefix rows `"+ "` for ✓, `"- "` for ✕ |
 | `chart` | `title` (states the finding!), `categories[]`, `values[]`, `highlight` (index of the accent bar), `series_name`, `insight` |
@@ -59,6 +60,11 @@ content limits in `../reference/03-slide-recipes.md`:
 | `stat_strip` | `title`, `stats[]` ≤4 of `{value, label, context}` |
 | `before_after` | `title`, `before{head, rows[]}`, `after{head, rows[]}` (✓/✕ added automatically) |
 | `logo_wall` | `title`, `names[]` ≤8, optional `caption` |
+| `line_chart` | `title`, `categories[]`, `series[]` of `{name, values[]}`, `highlight` (accent series index), `insight` (rail card) |
+| `donut` | `title`, `categories[]`/`values[]` ≤4, `highlight`, optional `center` stat (default = % of highlight), `insight` |
+| `waterfall` | `title`, `steps[]` ≤7 of `{label, value, kind: start/delta/total}` (deltas signed), optional `format`, `insight` — bars are `!!wf-N` shapes → Morph step-by-step; down-steps vermilion |
+| `matrix` | `title`, `quadrants` `[TL,TR,BL,BR]`, `items[]` ≤8 of `{label, x, y (0–1), highlight}`, `x_label`, `insight` (rail, heading via `y_label`) — hero dot `!!mx-N` |
+| `funnel` | `title`, `stages[]` ≤5 of `{label, value}`, `insight` — width ∝ value, conversion % between stages, bars `!!fn-N` |
 
 ## What's baked in automatically
 

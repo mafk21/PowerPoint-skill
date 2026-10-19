@@ -31,7 +31,8 @@ import sys
 from pptx import Presentation
 from pptx.chart.data import ChartData
 from pptx.dml.color import RGBColor
-from pptx.enum.chart import XL_CHART_TYPE, XL_LABEL_POSITION, XL_TICK_MARK
+from pptx.enum.chart import (XL_CHART_TYPE, XL_LABEL_POSITION,
+                             XL_LEGEND_POSITION, XL_TICK_MARK)
 from pptx.enum.shapes import MSO_SHAPE
 from pptx.enum.text import MSO_ANCHOR, PP_ALIGN
 from pptx.oxml.ns import qn
@@ -96,21 +97,50 @@ def C(hexstr):
 # PowerPoint writes Morph as a p14 extension inside <p:transition>.
 # type: byObject | byWord | byChar  (Effect Options in the UI)
 # ----------------------------------------------------------------------------
-def add_morph(slide, duration_ms=900, morph_type="byObject", speed="med"):
-    # p: = presentationml/2006/main, p14: = powerpoint/2010/main (dur attr + morph el)
-    xml = (
-        '<p:transition xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main" '
-        f'xmlns:p14="{P14}" spd="{speed}" p14:dur="{duration_ms}">'
-        f'<p14:morph type="{morph_type}"/></p:transition>'
-    )
-    el = etree.fromstring(xml)
-    sld = slide._element
+def _insert_transition(slide, el):
     # Schema order inside <p:sld>: cSld, clrMapOvr?, transition?, timing?, extLst?
+    sld = slide._element
     insert_at = 0
     for i, child in enumerate(sld):
         if child.tag.endswith("}cSld") or child.tag.endswith("}clrMapOvr"):
             insert_at = i + 1
     sld.insert(insert_at, el)
+
+
+def _adv_attrs(adv_ms):
+    return f' advClick="1" advTm="{int(adv_ms)}"' if adv_ms else ""
+
+
+def add_morph(slide, duration_ms=900, morph_type="byObject", speed="med",
+              adv_ms=None):
+    # p: = presentationml/2006/main, p14: = powerpoint/2010/main (dur + morph)
+    xml = (
+        '<p:transition xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main" '
+        f'xmlns:p14="{P14}" spd="{speed}" p14:dur="{duration_ms}"{_adv_attrs(adv_ms)}>'
+        f'<p14:morph type="{morph_type}"/></p:transition>'
+    )
+    _insert_transition(slide, etree.fromstring(xml))
+
+
+def add_fade_timing(slide, adv_ms):
+    """Slide 1 can't Morph (no before-state) — a plain fade carrying advTm
+    gives kiosk/video exports correct pacing from the first slide."""
+    xml = (
+        '<p:transition xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main" '
+        f'spd="med"{_adv_attrs(adv_ms)}><p:fade/></p:transition>'
+    )
+    _insert_transition(slide, etree.fromstring(xml))
+
+
+def _est_seconds(sd, spec):
+    """Auto-timing: explicit seconds win; else estimate from speaker notes
+    at ~130 wpm when spec.timings is on; clamp 6-45s."""
+    if sd.get("seconds"):
+        return float(sd["seconds"])
+    if spec.get("timings") in (True, "auto"):
+        words = len(str(sd.get("notes", "")).split())
+        return max(6.0, min(45.0, words / 130 * 60)) if words else 8.0
+    return None
 
 
 # ----------------------------------------------------------------------------
@@ -235,6 +265,39 @@ def headline(slide, theme, text, y=0.92, size=34):
 # ----------------------------------------------------------------------------
 # Slide builders -- one function per recipe in reference/03-slide-recipes.md
 # ----------------------------------------------------------------------------
+ICON_GLYPHS = {  # keyword -> widely-supported text glyph (icon engine)
+    "check": "\u2713", "cross": "\u2715", "arrow": "\u2192", "star": "\u2605",
+    "bolt": "\u26a1", "plus": "\u271a", "dot": "\u25cf", "diamond": "\u25c6",
+    "square": "\u25a0", "triangle": "\u25b2", "target": "\u25ce",
+    "chart": "\u25ae", "growth": "\u2197", "shield": "\u26e8",
+    "gear": "\u2699", "globe": "\u25cd", "idea": "\u2726",
+    "money": "$", "time": "\u25f7", "layers": "\u25a4", "link": "\u221e",
+    "heart": "\u2665", "flag": "\u2691",
+}
+
+
+def _icon_glyph(item):
+    if item.get("glyph"):
+        return item["glyph"]
+    return ICON_GLYPHS.get(str(item.get("icon", "")).lower(), "\u25c6")
+
+
+def _mix(c1, c2, f):
+    a = [int(c1[i:i + 2], 16) for i in (0, 2, 4)]
+    b = [int(c2[i:i + 2], 16) for i in (0, 2, 4)]
+    return "".join(f"{round(x + (y - x) * f):02X}" for x, y in zip(a, b))
+
+
+def _insight_rail(slide, t, text, label="KEY INSIGHT"):
+    add_shape(slide, MSO_SHAPE.ROUNDED_RECTANGLE, 9.35, 2.1, 3.3, 4.4,
+              fill=t["card"], adj=0.07, name="!!insight-card")
+    add_text(slide, 9.65, 2.4, 2.75, 0.5, label, size=12, bold=True,
+             font=HEADING_FONT,
+             color=t["accent"] if not t["dark"] else t["accent2"])
+    add_text(slide, 9.65, 2.85, 2.75, 3.4, text, size=15,
+             color=t["ink"], line_spacing=1.3)
+
+
 def s_title(slide, t, d, idx, total, brand):
     add_text(slide, 0.67, 1.55, 8.6, 2.2, d.get("title", "Presentation Title"),
              size=48, color=t["ink"], bold=True, font=HEADING_FONT,
@@ -328,7 +391,7 @@ def s_icon_grid(slide, t, d, idx, total, brand):
                   fill=t["card"], adj=0.08, name=f"!!card-{i}")
         add_shape(slide, MSO_SHAPE.OVAL, cx + 0.28, cy + 0.26, 0.62, 0.62,
                   fill=t["accent"], name=f"!!card-dot-{i}")
-        add_text(slide, cx + 0.28, cy + 0.36, 0.62, 0.45, it.get("glyph", "◆"),
+        add_text(slide, cx + 0.28, cy + 0.36, 0.62, 0.45, _icon_glyph(it),
                  size=16, color=t["bg"] if t["dark"] else "FFFFFF", bold=True,
                  align=PP_ALIGN.CENTER, font=HEADING_FONT)
         add_text(slide, cx + 0.28, cy + 1.02, cw - 0.5, 0.42, it.get("head", ""),
@@ -572,6 +635,198 @@ def s_logo_wall(slide, t, d, idx, total, brand):
                  color=t["muted"], align=PP_ALIGN.CENTER)
 
 
+def s_line_chart(slide, t, d, idx, total, brand):
+    headline(slide, t, d.get("title", "The trend is the finding"))
+    series = d.get("series") or [{"name": d.get("series_name", "Value"),
+                                   "values": d.get("values", [1, 2, 3])}]
+    highlight = int(d.get("highlight", len(series) - 1))
+    cd = ChartData()
+    cd.categories = d.get("categories", [])
+    for srs in series:
+        cd.add_series(srs.get("name", "s"), srs.get("values", []))
+    gf = slide.shapes.add_chart(XL_CHART_TYPE.LINE_MARKERS,
+                                Inches(0.67), Inches(2.1), Inches(8.3),
+                                Inches(4.4), cd)
+    chart = gf.chart
+    chart.has_title = False
+    chart.has_legend = len(series) > 1
+    if len(series) > 1:
+        chart.legend.position = XL_LEGEND_POSITION.BOTTOM
+        chart.legend.font.size = Pt(11)
+    for i, ser in enumerate(chart.series):
+        col = t["accent"] if i == highlight else t["graybar"]
+        ser.format.line.color.rgb = C(col)
+        ser.format.line.width = Pt(2.75 if i == highlight else 1.75)
+        ser.smooth = False
+    va, ca = chart.value_axis, chart.category_axis
+    va.has_major_gridlines = False
+    va.tick_labels.font.size = Pt(12)
+    va.tick_labels.font.color.rgb = C(t["muted"])
+    ca.tick_labels.font.size = Pt(12)
+    ca.tick_labels.font.color.rgb = C(t["ink"])
+    _insight_rail(slide, t, d.get("insight", ""))
+
+
+def s_donut(slide, t, d, idx, total, brand):
+    headline(slide, t, d.get("title", "Where the whole splits"))
+    cats = d.get("categories", [])[:4]      # part-to-whole: max 4 (ref/05)
+    vals = d.get("values", [])[:4]
+    highlight = int(d.get("highlight", 0))
+    tints = [t["graybar"], _mix(t["graybar"], t["accent2"], 0.45), t["muted"]]
+    cd = ChartData()
+    cd.categories = cats
+    cd.add_series("share", vals)
+    gf = slide.shapes.add_chart(XL_CHART_TYPE.DOUGHNUT,
+                                Inches(0.9), Inches(1.95), Inches(5.9),
+                                Inches(4.7), cd)
+    chart = gf.chart
+    chart.has_title = False
+    chart.has_legend = False
+    ser = chart.series[0]
+    ser.has_data_labels = True
+    dl = ser.data_labels
+    dl.show_percentage = True
+    dl.font.size = Pt(13)
+    dl.font.bold = True
+    dl.font.color.rgb = C(t["ink"])
+    ti = 0
+    for i, pt in enumerate(ser.points):
+        pt.format.fill.solid()
+        if i == highlight:
+            pt.format.fill.fore_color.rgb = C(t["accent"])
+        else:
+            pt.format.fill.fore_color.rgb = C(tints[ti % len(tints)]); ti += 1
+    total_v = sum(vals) or 1
+    add_text(slide, 2.75, 3.85, 2.2, 1.0,
+             d.get("center", f"{round(vals[highlight] / total_v * 100)}%"
+                   if vals else ""),
+             size=34, color=t["accent"], bold=True, font=HEADING_FONT,
+             align=PP_ALIGN.CENTER, name="!!donut-center")
+    y = 2.3
+    ti = 0
+    for i, (c, v) in enumerate(zip(cats, vals)):
+        col = t["accent"] if i == highlight else tints[ti % len(tints)]
+        if i != highlight:
+            ti += 1
+        add_shape(slide, MSO_SHAPE.OVAL, 7.6, y + 0.08, 0.3, 0.3, fill=col)
+        add_text(slide, 8.1, y, 4.5, 0.5,
+                 [[(f"{c}  ", {"bold": True, "color": t["ink"]}),
+                   (f"{v} ({round(v / total_v * 100)}%)", {"color": t["muted"]})]],
+                 size=15)
+        y += 0.62
+    add_text(slide, 7.6, y + 0.25, 5.0, 1.6, d.get("insight", ""), size=14.5,
+             color=t["ink"], line_spacing=1.3)
+
+
+def s_waterfall(slide, t, d, idx, total, brand):
+    """Shape-built waterfall (native charts can't Morph bar-by-bar; !! bars can).
+    steps: [{label, value, kind: start|delta|total}] — start/total absolute,
+    deltas signed. Down = Okabe vermilion (semantic, CVD-safe)."""
+    headline(slide, t, d.get("title", "How we get from A to B"))
+    steps = d.get("steps", [])[:7]
+    cum, bars = 0.0, []
+    for st in steps:
+        kind = st.get("kind", "delta")
+        v = float(st.get("value", 0))
+        if kind in ("start", "total"):
+            bars.append((st.get("label", ""), 0.0, v, kind, v)); cum = v
+        else:
+            bars.append((st.get("label", ""), cum, cum + v, kind, v)); cum += v
+    vmax = max([max(a, b) for _, a, b, _, _ in bars] + [1.0])
+    x0, base_y, plot_h, plot_w = 0.9, 5.85, 3.55, 11.5
+    n = max(len(bars), 1)
+    bw = min(1.15, (plot_w / n) * 0.62)
+    step_w = plot_w / n
+    prev_top = None
+    for i, (label, lo, hi, kind, v) in enumerate(bars):
+        cx = x0 + i * step_w + (step_w - bw) / 2
+        top = base_y - (hi / vmax) * plot_h
+        bot = base_y - (lo / vmax) * plot_h
+        if kind == "total":
+            col = t["accent"]
+        elif kind == "start":
+            col = t["graybar"]
+        elif v < 0:
+            col = "D55E00"
+        else:
+            col = t["accent2"] if t["dark"] else t["accent"]
+        add_shape(slide, MSO_SHAPE.ROUNDED_RECTANGLE, cx, top, bw, bot - top,
+                  fill=col, adj=0.06, name=f"!!wf-{i}")
+        if prev_top is not None:
+            add_shape(slide, MSO_SHAPE.RECTANGLE, cx - (step_w - bw) / 2 - 0.02,
+                      prev_top, (step_w - bw) / 2 + 0.04, 0.022, fill=t["muted"])
+        prev_top = top if (kind != "delta" or v >= 0) else bot
+        fmt = d.get("format", "{:+.0f}" if kind == "delta" else "{:.0f}")
+        add_text(slide, cx - 0.3, top - 0.42, bw + 0.6, 0.35, fmt.format(v),
+                 size=13.5, bold=True, color=t["ink"], align=PP_ALIGN.CENTER)
+        add_text(slide, cx - 0.35, base_y + 0.12, bw + 0.7, 0.55, label,
+                 size=12, color=t["muted"], align=PP_ALIGN.CENTER,
+                 line_spacing=1.1)
+    add_shape(slide, MSO_SHAPE.RECTANGLE, x0 - 0.2, base_y, plot_w + 0.4, 0.03,
+              fill=t["muted"], name="!!wf-axis")
+    if d.get("insight"):
+        add_text(slide, 0.9, 6.55, 11.5, 0.4, d["insight"], size=13.5,
+                 color=t["ink"])
+
+
+def s_matrix(slide, t, d, idx, total, brand):
+    headline(slide, t, d.get("title", "Where we win"))
+    px, py, pw, ph = 0.67, 2.05, 8.3, 4.45
+    add_shape(slide, MSO_SHAPE.ROUNDED_RECTANGLE, px, py, pw, ph,
+              fill=t["card"], adj=0.04, name="!!matrix-plot")
+    add_shape(slide, MSO_SHAPE.RECTANGLE, px + pw / 2 - 0.012, py + 0.15, 0.024,
+              ph - 0.3, fill=t["graybar"])
+    add_shape(slide, MSO_SHAPE.RECTANGLE, px + 0.15, py + ph / 2 - 0.012,
+              pw - 0.3, 0.024, fill=t["graybar"])
+    quads = (d.get("quadrants") or ["", "", "", ""])[:4]  # TL TR BL BR
+    quad_xy = [(px + 0.25, py + 0.18), (px + pw - 2.35, py + 0.18),
+               (px + 0.25, py + ph - 0.55), (px + pw - 2.35, py + ph - 0.55)]
+    for (qx, qy), q in zip(quad_xy, quads):
+        if q:
+            add_text(slide, qx, qy, 2.1, 0.35, q.upper(), size=12.5, bold=True,
+                     font=HEADING_FONT, color=t["muted"],
+                     align=PP_ALIGN.RIGHT if qx > px + pw / 2 else PP_ALIGN.LEFT)
+    for i, it in enumerate(d.get("items", [])[:8]):
+        cx = px + 0.5 + float(it.get("x", 0.5)) * (pw - 1.0)
+        cy = py + 0.45 + (1 - float(it.get("y", 0.5))) * (ph - 0.95)
+        hero = it.get("highlight", False)
+        dsz = 0.34 if hero else 0.26
+        add_shape(slide, MSO_SHAPE.OVAL, cx - dsz / 2, cy - dsz / 2, dsz, dsz,
+                  fill=t["accent"] if hero else t["graybar"],
+                  name=f"!!mx-{i}")
+        add_text(slide, cx + 0.24, cy - 0.16, 2.2, 0.35, it.get("label", ""),
+                 size=13, bold=hero, color=t["ink"] if hero else t["muted"])
+    add_text(slide, px, py + ph + 0.14, pw, 0.35, d.get("x_label", ""),
+             size=12.5, color=t["muted"], bold=True, align=PP_ALIGN.CENTER)
+    _insight_rail(slide, t, d.get("insight", ""),
+                  label=d.get("y_label", "KEY INSIGHT"))
+
+
+def s_funnel(slide, t, d, idx, total, brand):
+    headline(slide, t, d.get("title", "Where the funnel leaks"))
+    stages = d.get("stages", [])[:5]
+    vmax = max([float(s.get("value", 0)) for s in stages] + [1.0])
+    cx_mid, top, bh, gap = 4.6, 2.1, 0.78, 0.16
+    for i, st in enumerate(stages):
+        v = float(st.get("value", 0))
+        w = 1.6 + (v / vmax) * 5.6
+        col = _mix(t["accent"], t["accent2"], i / max(len(stages) - 1, 1))
+        yy = top + i * (bh + gap)
+        add_shape(slide, MSO_SHAPE.ROUNDED_RECTANGLE, cx_mid - w / 2, yy, w, bh,
+                  fill=col, adj=0.14, name=f"!!fn-{i}")
+        base = t["bg"] if t["dark"] else "FFFFFF"
+        add_text(slide, cx_mid - w / 2 + 0.25, yy + 0.2, w - 0.5, 0.42,
+                 [[(f"{st.get('label', '')}  ", {"bold": True, "color": base}),
+                   (f"{v:,.0f}", {"color": base})]], size=14.5)
+        if i > 0:
+            prev = float(stages[i - 1].get("value", 0)) or 1
+            add_text(slide, cx_mid + 3.9, yy + 0.18, 2.4, 0.4,
+                     f"{round(v / prev * 100)}% \u2193", size=14, bold=True,
+                     color=t["accent"] if not t["dark"] else t["accent2"])
+    add_text(slide, 9.0, 2.3, 3.65, 3.6, d.get("insight", ""), size=14.5,
+             color=t["ink"], line_spacing=1.35)
+
+
 BUILDERS = {
     "title": s_title, "agenda": s_agenda, "section": s_section,
     "content": s_content, "icon_grid": s_icon_grid, "process": s_process,
@@ -580,12 +835,15 @@ BUILDERS = {
     "team": s_team, "quote": s_quote, "closing": s_closing,
     "stat_strip": s_stat_strip, "before_after": s_before_after,
     "logo_wall": s_logo_wall,
+    "line_chart": s_line_chart, "donut": s_donut, "waterfall": s_waterfall,
+    "matrix": s_matrix, "funnel": s_funnel,
 }
 
 # Which slides get the standard headline chrome vs. a bespoke layout
 CHROME_KICKER = {"agenda", "content", "icon_grid", "process", "timeline",
                  "comparison", "chart", "market", "tam_sam_som", "team",
-                 "stat_strip", "before_after", "logo_wall"}
+                 "stat_strip", "before_after", "logo_wall",
+                 "line_chart", "donut", "waterfall", "matrix", "funnel"}
 
 
 # ----------------------------------------------------------------------------
@@ -657,10 +915,14 @@ def build(spec, out_path):
         BUILDERS.get(stype, s_content)(slide, t, sd, idx, len(slides), brand)
         if rtl or font_map:
             _polish(slide, rtl, font_map)
+        secs = _est_seconds(sd, spec)
+        adv = int(secs * 1000) if secs else None
         if idx > 0:  # Morph needs a "before" slide -- never on slide 1
             add_morph(slide,
                       duration_ms=int(sd.get("morph_ms", spec.get("morph_ms", 900))),
-                      morph_type=sd.get("morph_type", "byObject"))
+                      morph_type=sd.get("morph_type", "byObject"), adv_ms=adv)
+        elif adv:    # timed kiosk/video pacing from slide 1 (fade carries advTm)
+            add_fade_timing(slide, adv)
         if sd.get("notes"):
             slide.notes_slide.notes_text_frame.text = sd["notes"]
 
