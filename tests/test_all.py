@@ -248,5 +248,55 @@ class Showpiece(unittest.TestCase):
         self.assertTrue(os.path.exists(os.path.join(outdir, "demo.html")))
 
 
+class Rescue(unittest.TestCase):
+    def test_title_lines_alias_no_default_leak(self):
+        spec = {"theme": "teal-orbit", "slides": [
+            {"type": "title", "title_lines": ["Real Title"]},
+            {"type": "closing", "title_lines": ["Real End"]}]}
+        xmls = slide_xmls(build(spec, "alias.pptx"))
+        self.assertIn("Real Title", xmls[0])
+        self.assertNotIn("Presentation Title", xmls[0])
+        self.assertIn("Real End", xmls[1])
+
+    def test_qa_placeholder_fails(self):
+        spec = {"theme": "teal-orbit", "slides": [
+            {"type": "content", "title": "Presentation Title",
+             "bullets": [{"head": "a", "body": "b"}]}]}
+        qa = load_tool("qa_deck")
+        self.assertEqual(qa.main([build(spec, "ph.pptx")]), 1)
+
+    def test_decompile_roundtrip(self):
+        dc = load_tool("decompile")
+        src = os.path.join(ROOT, "examples", "qbr-business-demo.pptx")
+        out = os.path.join(TMP, "qbr.spec.json")
+        import shutil
+        work = os.path.join(TMP, "qbr.pptx")
+        shutil.copy(src, work)
+        self.assertEqual(dc.main(["decompile", work, "--out", out,
+                                  "--build"]), 0)
+        spec2 = json.load(open(out, encoding="utf-8"))
+        self.assertEqual(len(spec2["slides"]), 7)
+        types = [s["type"] for s in spec2["slides"]]
+        self.assertIn("chart", types)
+        self.assertIn("stat_strip", types)
+        stats = next(s for s in spec2["slides"] if s["type"] == "stat_strip")
+        self.assertEqual(stats["stats"][0]["value"], "$4.2M")
+        self.assertEqual(stats["stats"][0]["label"], "Revenue")
+
+    def test_merge_with_charts(self):
+        mg = load_tool("merge")
+        out = os.path.join(TMP, "merged.pptx")
+        a = os.path.join(ROOT, "examples", "qbr-business-demo.pptx") + ":1,3"
+        b = os.path.join(ROOT, "examples", "placeplate-style-demo.pptx") + ":8"
+        self.assertEqual(mg.main(["merge", "--out", out, "--morph", a, b]), 0)
+        from pptx import Presentation
+        prs = Presentation(out)
+        self.assertEqual(len(prs.slides), 3)
+        charts = sum(1 for s in prs.slides for sh in s.shapes if sh.has_chart)
+        self.assertEqual(charts, 2)
+        xmls = slide_xmls(out)
+        self.assertIn("p14:morph", xmls[1])
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

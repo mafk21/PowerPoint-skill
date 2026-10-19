@@ -115,6 +115,8 @@ Beyond the generator and the QA gate, the repo ships a small toolchain in
 | `diff.py` | Deck diff: slide/text/notes/palette/font/Morph-map changelog between two .pptx versions (exit 1 when different) |
 | `db_lint.py` | Data-layer linter: JSON sanity, theme WCAG floors, stale-DB detection, builder↔docs drift. Run after any data edit |
 | `hijri.py` | Gregorian → tabular Hijri converter (same math as the generator's `{hijri}` token) |
+| `decompile.py` | Deck Decompiler: any .pptx → spec.json (chrome-furniture filtering, brand recovery, geometry-paired stat strips, chart data, picture extraction, anatomy-guessed theme) → regenerate + diff to measure fidelity |
+| `merge.py` | Slide-library merge: cherry-pick slides across decks with full OPC relationship surgery (native charts + embedded workbooks survive), optional Morph re-stamp |
 
 **Hardening:** `tests/test_all.py` (18 stdlib-unittest tests: Morph/timing
 XML, RTL, bilingual guards, Hijri epoch-exactness, contrast floors, DB

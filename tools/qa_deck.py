@@ -184,6 +184,8 @@ def main(argv=None):
     word_counts, label_heads, notes_have = [], [], 0
     fill_colors = Counter()
     overflow, tight = [], []
+    PLACEHOLDERS = {"Presentation Title", "Your hook here"}
+    placeholder_hits = []
     contrast_fails, contrast_warns = [], []
     for i, slide in enumerate(prs.slides, 1):
         total_words, biggest = 0, (0, "")
@@ -204,6 +206,8 @@ def main(argv=None):
         for shape in shapes:
             text, runs = shape_text(shape)
             total_words += len(text.split())
+            if text.strip() in PLACEHOLDERS:
+                placeholder_hits.append((i, text.strip()))
             for r in runs:
                 if r.font.name:
                     fonts[r.font.name] += 1
@@ -286,6 +290,11 @@ def main(argv=None):
     results.append((PASS if len(fill_colors) <= 10 else WARN,
                     "Color discipline (distinct fills)",
                     f"{len(fill_colors)} distinct fill colors"))
+    results.append((FAIL if placeholder_hits else PASS,
+                    "No leaked placeholder/default text",
+                    (f"{len(placeholder_hits)} e.g. slide {placeholder_hits[0][0]} "
+                     f"'{placeholder_hits[0][1]}' (spec field typo?)"
+                     if placeholder_hits else "none")))
     results.append((PASS if notes_have >= max(n - 1, 0) else WARN,
                     "Speaker notes coverage", f"{notes_have}/{n} slides"))
     ostatus = FAIL if overflow else (WARN if tight else PASS)

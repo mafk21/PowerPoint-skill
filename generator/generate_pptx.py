@@ -381,7 +381,11 @@ def _insight_rail(slide, t, text, label="KEY INSIGHT"):
 
 
 def s_title(slide, t, d, idx, total, brand):
-    add_text(slide, 0.67, 1.55, 8.6, 2.2, d.get("title", "Presentation Title"),
+    # `title_lines` (list) is an accepted alias of `title` (string with \n);
+    # producers in tools/ emit both spellings — never leak the default.
+    title = d.get("title") or "\n".join(d.get("title_lines") or []) \
+        or "Presentation Title"
+    add_text(slide, 0.67, 1.55, 8.6, 2.2, title,
              size=48, color=t["ink"], bold=True, font=HEADING_FONT,
              name="!!hero-title", line_spacing=1.04)
     if d.get("subtitle"):
@@ -647,7 +651,9 @@ def s_quote(slide, t, d, idx, total, brand):
 
 
 def s_closing(slide, t, d, idx, total, brand):
-    add_text(slide, 0.67, 2.0, 11.5, 1.6, d.get("title", "Thank you"), size=54,
+    ctitle = d.get("title") or "\n".join(d.get("title_lines") or []) \
+        or "Thank you"
+    add_text(slide, 0.67, 2.0, 11.5, 1.6, ctitle, size=54,
              color=t["ink"], bold=True, font=HEADING_FONT, name="!!closing-title")
     if d.get("ask"):
         add_text(slide, 0.67, 3.6, 10.5, 1.0, d["ask"], size=22,
