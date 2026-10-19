@@ -826,9 +826,15 @@ def s_funnel(slide, t, d, idx, total, brand):
         add_shape(slide, MSO_SHAPE.ROUNDED_RECTANGLE, cx_mid - w / 2, yy, w, bh,
                   fill=col, adj=0.14, name=f"!!fn-{i}")
         base = t["bg"] if t["dark"] else "FFFFFF"
-        add_text(slide, cx_mid - w / 2 + 0.25, yy + 0.2, w - 0.5, 0.42,
-                 [[(f"{st.get('label', '')}  ", {"bold": True, "color": base}),
-                   (f"{v:,.0f}", {"color": base})]], size=14.5)
+        if w >= 3.0:  # wide bar: label inside, on the color
+            add_text(slide, cx_mid - w / 2 + 0.25, yy + 0.2, w - 0.5, 0.42,
+                     [[(f"{st.get('label', '')}  ", {"bold": True, "color": base}),
+                       (f"{v:,.0f}", {"color": base})]], size=14.5)
+        else:  # narrow bar: inside text would wrap+spill (QA sentinel catch)
+            lx = cx_mid + w / 2 + 0.22
+            add_text(slide, lx, yy + 0.2, max(8.3 - lx, 1.2), 0.42,
+                     [[(f"{st.get('label', '')}  ", {"bold": True, "color": t["ink"]}),
+                       (f"{v:,.0f}", {"color": t["muted"]})]], size=14.5)
         if i > 0:
             prev = float(stages[i - 1].get("value", 0)) or 1
             add_text(slide, cx_mid + 3.9, yy + 0.18, 2.4, 0.4,

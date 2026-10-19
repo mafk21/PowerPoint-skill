@@ -80,3 +80,27 @@ documented choice).
 | Data doesn't land | Assertion headline + strategic gray + insight rail |
 | Motion feels gimmicky | Kill object animations; Morph only, shorter, sparser |
 | Too long | Keep-10 test; appendix the rest; merge section+stat slides |
+
+
+## QA v2 — what the analyzer now measures for you (tools/qa_deck.py)
+
+Two checks that used to require opening PowerPoint are now automated:
+
+- **Overflow sentinel** — estimates rendered text height (glyph-advance
+  model ≈0.50em, 0.58em all-caps; line height from paragraph spacing;
+  margin-aware — `Length(0)` is falsy, so zeroed margins need an
+  `is not None` test) versus each box. `>1.12x` = likely spill (FAIL),
+  `1.0–1.12x` = tight (WARN). It caught a real bug on day one: narrow
+  funnel bars squeezing their labels until they wrapped.
+- **Contrast auditor** — measures every colored run against its
+  *effective* background (own fill → nearest filled shape beneath
+  containing its center → slide bg) and applies WCAG floors (4.5:1 text,
+  3:1 large/bold). Runs ≤2 chars are treated as graphics (dingbat chips).
+  FAIL only when the background was confidently determined.
+- Canvas check accepts 16:9, 9:16, 4:5, 1:1 and 4:3 (social formats).
+
+And `tools/render.py deck.pptx` emits a standalone HTML **contact sheet**
+— real geometry/fills/type as a wireframe proof sheet, charts/images as
+labeled summary blocks, Morph map + word counts per slide. Eyeball it
+before you ever open PowerPoint; it's also the fastest way to share a
+preview or eyeball two versions side by side.

@@ -103,7 +103,8 @@ Beyond the generator and the QA gate, the repo ships a small toolchain in
 
 | Tool | What it does |
 |---|---|
-| `qa_deck.py` | Automated QA gate (Morph map, word budgets, type floors, notes) — must pass GREEN |
+| `qa_deck.py` | Automated QA gate v2 (Morph map, word budgets, type floors, notes, **overflow sentinel**, **WCAG contrast auditor**, multi-ratio canvas) — must pass GREEN |
+| `render.py` | Contact-sheet renderer: any .pptx → standalone HTML wireframe proof sheet (real geometry/colors/type, chart data summaries, RTL-aware) |
 | `palette_lab.py` | One seed hex → full 7-role theme via color harmonies, auto-repaired to WCAG floors (ink 10:1, muted 4.5:1, accent 3:1); `--pack` installs 8 curated themes |
 | `brandkit.py` | Logo/image → theme: median-cut palette, vivid-pixel recovery (antialias washout fix), BrandKit scoring favors highlight-usable saturated colors; `--also-dark` emits a dark sibling |
 | `anatomy.py` | Any .pptx → report: canvas, Morph map, palette by painted area, text colors by char count, fonts, per-slide census — plus a guessed theme pinned to the deck's real bg/card (`--write NAME` saves it) |
