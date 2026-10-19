@@ -220,9 +220,9 @@ def add_chrome(slide, theme, idx, total, brand="", kicker=None):
                  color=t["accent"] if not t["dark"] else t["accent2"],
                  bold=True, font=HEADING_FONT, name="!!kicker")
     if brand:
-        add_text(slide, 0.67, 7.02, 6.0, 0.3, brand, size=11, color=t["muted"],
+        add_text(slide, 0.67, 7.02, 6.0, 0.3, brand, size=12.5, color=t["muted"],
                  name="!!brand")
-    add_text(slide, 12.1, 7.02, 0.6, 0.3, f"{idx + 1:02d}", size=11,
+    add_text(slide, 12.1, 7.02, 0.6, 0.3, f"{idx + 1:02d}", size=12.5,
              color=t["muted"], align=PP_ALIGN.RIGHT, name="!!pageno")
 
 
@@ -417,7 +417,7 @@ def s_chart(slide, t, d, idx, total, brand):
     va = chart.value_axis
     va.has_major_gridlines = False
     va.has_title = False
-    va.tick_labels.font.size = Pt(11)
+    va.tick_labels.font.size = Pt(12)
     va.tick_labels.font.color.rgb = C(t["muted"])
     va.minimum_scale = 0                      # never truncate the axis
     ca = chart.category_axis
@@ -588,12 +588,57 @@ CHROME_KICKER = {"agenda", "content", "icon_grid", "process", "timeline",
                  "stat_strip", "before_after", "logo_wall"}
 
 
+# ----------------------------------------------------------------------------
+# RTL / font polish pass (reference/14): mirrors geometry, sets paragraph
+# direction rtl=1 + right alignment, flips directional shapes, remaps fonts.
+# ----------------------------------------------------------------------------
+_FLIP_TYPES = None  # lazily built (MSO_SHAPE members)
+
+
+def _polish(slide, rtl, font_map):
+    global _FLIP_TYPES
+    if _FLIP_TYPES is None:
+        _FLIP_TYPES = {MSO_SHAPE.CHEVRON, MSO_SHAPE.RIGHT_ARROW,
+                       MSO_SHAPE.PENTAGON}
+    for shape in slide.shapes:
+        if shape.has_text_frame:
+            for para in shape.text_frame.paragraphs:
+                if rtl:
+                    para._p.get_or_add_pPr().set("rtl", "1")
+                    if para.alignment in (None, PP_ALIGN.LEFT):
+                        para.alignment = PP_ALIGN.RIGHT
+                for run in para.runs:
+                    if run.font.name in font_map:
+                        run.font.name = font_map[run.font.name]
+        if rtl:
+            try:
+                shape.left = int(SLIDE_W) - (int(shape.left) + int(shape.width))
+            except Exception:
+                pass
+            try:
+                if shape.auto_shape_type in _FLIP_TYPES:
+                    xfrm = shape._element.spPr.find(qn("a:xfrm"))
+                    if xfrm is not None:
+                        xfrm.set("flipH", "1")
+            except Exception:
+                pass
+
+
 def build(spec, out_path):
     theme_name = spec.get("theme", "teal-orbit")
     t = dict(THEMES.get(theme_name, THEMES["teal-orbit"]))
     t.update(spec.get("theme_overrides", {}))
     brand = spec.get("brand", "")
     slides = spec.get("slides", [])
+    rtl = bool(spec.get("rtl"))
+    font_map = {}
+    if spec.get("heading_font"):
+        font_map[HEADING_FONT] = spec["heading_font"]
+    if spec.get("body_font"):
+        font_map[BODY_FONT] = spec["body_font"]
+    if rtl:  # Arabic defaults (reference/14)
+        font_map.setdefault(HEADING_FONT, "Cairo")
+        font_map.setdefault(BODY_FONT, "Tajawal")
     if not slides:
         raise SystemExit("Spec has no slides.")
 
@@ -610,6 +655,8 @@ def build(spec, out_path):
         add_chrome(slide, t, idx, len(slides), brand=brand,
                    kicker=sd.get("kicker") if stype in CHROME_KICKER else None)
         BUILDERS.get(stype, s_content)(slide, t, sd, idx, len(slides), brand)
+        if rtl or font_map:
+            _polish(slide, rtl, font_map)
         if idx > 0:  # Morph needs a "before" slide -- never on slide 1
             add_morph(slide,
                       duration_ms=int(sd.get("morph_ms", spec.get("morph_ms", 900))),

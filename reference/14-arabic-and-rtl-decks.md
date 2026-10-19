@@ -86,10 +86,14 @@ inside a number, scientific notation/formulas, maps.
 
 ## Implementation notes for the generator
 
-`generator/generate_pptx.py` is currently LTR-geometry. For Arabic decks:
-generate LTR, then in PowerPoint set paragraph RTL + right-align per text box
-and mirror layouts via master edit — **or** extend the generator: python-pptx
-paragraph direction = set `rtl="1"` on `<a:pPr>` and `algn="r"`; shape x
-coordinates mirror as `x' = 13.333 − (x + w)`. A `--rtl` rendering pass
-(mirror geometry + RTL runs + Cairo/Tajawal font swap) is the natural next
-feature; until it lands, budget manual flip time and QA every mixed line.
+✅ **Implemented** (`"rtl": true` in the spec): the generator runs a polish
+pass per slide — mirrors every shape's x (`x' = slideW − (x + w)`), sets
+`rtl="1"` on each paragraph + right alignment (centered text stays centered),
+flips chevrons/arrows via `flipH`, and remaps Montserrat→Cairo / Inter→Tajawal
+(override with `heading_font`/`body_font`). Verified on
+`examples/arabic-pitch-demo.pptx` (128 RTL paragraphs, 5 flipped directionals,
+Cairo/Tajawal only). Known v1 limits: native chart internals (axis direction,
+chart fonts) stay LTR — PowerPoint applies complex-script fallback so Arabic
+labels shape correctly, but eyeball charts in the app; grouped shapes are
+mirrored as units. Still QA every mixed-direction line (Latin brand names,
+numbers, URLs) per the BiDi rules above.

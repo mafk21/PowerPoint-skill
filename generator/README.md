@@ -17,6 +17,10 @@ python generate_pptx.py --demo out.pptx                   # tiny built-in demo
 Present the result in **PowerPoint 2019+ / Microsoft 365** — Morph won't play
 in Google Slides/Keynote/PDF; export MP4 to share the motion.
 
+After building, grade it: `python ../tools/qa_deck.py out.pptx` (aim: GREEN).
+Worked examples: `../examples/specs/*.json` → `../examples/*-demo.pptx`
+(pitch, thesis, QBR, Arabic RTL).
+
 ## Spec format
 
 Top level:
@@ -28,6 +32,8 @@ Top level:
 | `theme_overrides` | Optional dict to re-skin: any of `bg, card, ink, muted, accent, accent2, graybar, dark` (6-hex, no `#`) |
 | `brand` | Footer brand text (appears bottom-left, `!!brand`) |
 | `morph_ms` | Default Morph duration (default 900) |
+| `rtl` | `true` → Arabic mode: mirrors all geometry, sets RTL paragraph direction + right alignment, flips chevrons/arrows, defaults fonts to Cairo/Tajawal (see `../reference/14-arabic-and-rtl-decks.md`) |
+| `heading_font` / `body_font` | Override Montserrat/Inter (runs are remapped post-build) |
 | `slides` | Ordered list of slide objects (below) |
 
 Every slide object: `type` plus its fields, and optionally `kicker`

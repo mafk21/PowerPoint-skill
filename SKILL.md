@@ -39,7 +39,16 @@ Reference map (open on demand — don't guess what you can look up):
 | `reference/15-prompt-playbook.md` | 12 copy-paste LLM prompts incl. JSON-spec generator chain | working faster with AI |
 
 Generator: `generator/generate_pptx.py` (JSON spec → real Morph-enabled .pptx;
-16 slide builders, 8 themes). Prompt chain for content: `reference/15-prompt-playbook.md`.
+16 slide builders, 8 themes, **RTL/Arabic mode** via `"rtl": true` in spec).
+QA analyzer: `tools/qa_deck.py`. Prompt chain: `reference/15-prompt-playbook.md`.
+
+**🐲 The Monster Database** (`database/powerpoint.db`, 227 records / 12 tables /
+FTS5): query it *before* web-searching — creators, PlacePlate SKUs, techniques,
+recipes, structures, research principles + myths, tools, fonts, prompts,
+palettes. `python database/query.py search "<anything>"`,
+`recommend <pitch|thesis|business|sales|seminar|qbr|decision>`,
+`templates --free`, `prompt 6`, or raw `sql "SELECT …"`. Rebuild after editing
+`database/data/*.json`: `python database/build_db.py` (manual: `database/README.md`).
 Example spec: `generator/deck-spec.example.json` → `examples/placeplate-style-demo.pptx`.
 
 ---
@@ -76,6 +85,8 @@ profile / sales-proposal / seminar / business review), **audience & tone**,
 **minutes available** (→ slide count ≈ minutes, cap by structure in `04`),
 **content** (user's material or draft it), **brand colors/logo** if any.
 If the user gave enough, don't interrogate — build and state assumptions.
+Arabic/bilingual request? Set `"rtl": true` in the spec (mirrors geometry,
+sets RTL paragraphs, flips chevrons/arrows, swaps Cairo/Tajawal) and follow `14`.
 
 ### Step 2 — Pick the design identity
 From `02-design-system.md`, choose motif + theme (or map user brand color into
@@ -116,11 +127,12 @@ edit copy → Transitions ▸ Morph on the destination slide; `!!name` pairs via
 Selection Pane for cross-type morphs; drag exiting objects off-canvas.
 
 ### Step 6 — QA gate (mandatory)
-Run **every** applicable box in `06-qa-checklist-and-mistakes.md`. For generated
-files, also verify programmatically: unzip the .pptx and confirm each
-`ppt/slides/slide*.xml` (2..N) contains `morph`, and shared elements carry
-identical `!!` names across slides. Fix failures before delivery; report any
-deliberate deviations (e.g. Calibri fallback, denser academic appendix).
+Run `python tools/qa_deck.py deck.pptx` (automated form of
+`06-qa-checklist-and-mistakes.md`: 16:9, Morph map, `!!` anchors, word budgets,
+font floors/families, headline heuristic, color discipline, notes coverage) —
+ship only on GREEN (0 fails), then eyeball the remaining checklist boxes the
+tool can't judge. Fix failures before delivery; report deliberate deviations
+(e.g. Calibri fallback, dense appendix exhibits).
 
 ### Step 7 — Deliver correctly
 - Hand over the **.pptx** (presentable) + note: "Present in PowerPoint

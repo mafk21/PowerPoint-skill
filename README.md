@@ -35,6 +35,24 @@ classic storytelling frameworks, and the full tool ecosystem**:
 | [`reference/14-arabic-and-rtl-decks.md`](reference/14-arabic-and-rtl-decks.md) | 🌙 Arabic & RTL decks: mirroring, Cairo/Tajawal, BiDi, bilingual patterns |
 | [`reference/15-prompt-playbook.md`](reference/15-prompt-playbook.md) | 💬 12 copy-paste AI prompts, incl. one that emits generator-ready JSON |
 
+## 🐲 The Monster Database
+
+Everything above is also a **real queryable database** — `database/powerpoint.db`
+(SQLite + FTS5, **227 records / 12 tables**: creators, templates, techniques,
+recipes, structures, research, tools, fonts, prompts, palettes):
+
+```bash
+python database/query.py recommend pitch      # structure + themes + SKUs, joined
+python database/query.py search "logo reveal" # full-text across everything
+python database/query.py templates --free     # the 3 free PlacePlate samplers
+python tools/qa_deck.py examples/arabic-pitch-demo.pptx   # automated QA gate
+```
+
+Showcase decks in `examples/` (all QA-GREEN, Morph-verified): investor pitch,
+thesis defense, QBR decision deck, and a full **Arabic RTL pitch**
+(`"rtl": true` → mirrored geometry, RTL paragraphs, Cairo/Tajawal) — specs in
+`examples/specs/`. Database manual: [`database/README.md`](database/README.md).
+
 ## Try it in 30 seconds
 
 ```bash

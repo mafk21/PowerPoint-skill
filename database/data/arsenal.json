@@ -1,0 +1,433 @@
+{
+ "_meta": {
+  "source": "Tool roundups Oct 2026 + references 09,13,14,15. Generator themes are imported live from generate_pptx.THEMES at DB build (single source of truth)."
+ },
+ "tools": [
+  {
+   "name": "BrightSlide",
+   "category": "addin",
+   "cost": "Free",
+   "url": "https://www.brightcarbon.com/brightslide/",
+   "superpower": "Precision align/distribute/match-size, select-similar, animation stagger",
+   "verdict": "Install first. Best free add-in (consensus)."
+  },
+  {
+   "name": "think-cell",
+   "category": "addin",
+   "cost": "~$27/mo Suite",
+   "url": "https://www.think-cell.com/",
+   "superpower": "Waterfall/Gantt/Mekko + live Excel links, CAGR arrows",
+   "verdict": "Consulting/finance standard if chart-heavy."
+  },
+  {
+   "name": "iSlide",
+   "category": "addin",
+   "cost": "Freemium",
+   "url": "https://www.islide.cc/",
+   "superpower": "Template/icon/diagram libraries, one-click beautify",
+   "verdict": "Template-shop crowd favorite."
+  },
+  {
+   "name": "PPT Productivity",
+   "category": "addin",
+   "cost": "from $179/yr",
+   "url": "https://pptproductivity.com/",
+   "superpower": "800+ shortcut commands, slide library",
+   "verdict": "Keyboard-driven pros; Windows."
+  },
+  {
+   "name": "Power-user",
+   "category": "addin",
+   "cost": "~$99/yr",
+   "url": "https://www.powerusersoftwares.com/",
+   "superpower": "Business slides/maps, Excel link, cleanup",
+   "verdict": "Fast corporate decks."
+  },
+  {
+   "name": "Office Timeline (Lucen)",
+   "category": "addin",
+   "cost": "Paid",
+   "url": "https://www.officetimeline.com/",
+   "superpower": "Project timelines/Gantt from data",
+   "verdict": "PM decks."
+  },
+  {
+   "name": "Pexels (Office add-in)",
+   "category": "addin",
+   "cost": "Free",
+   "url": "https://appsource.microsoft.com/",
+   "superpower": "Stock photos inside PowerPoint",
+   "verdict": "License-safe imagery fast."
+  },
+  {
+   "name": "Empower/Templafy/UpSlide/SlideHub",
+   "category": "addin-enterprise",
+   "cost": "Enterprise",
+   "url": "https://slidehub.com/",
+   "superpower": "Brand governance, approved slide libraries",
+   "verdict": "Teams rebuilding same decks weekly."
+  },
+  {
+   "name": "MS Copilot in PowerPoint",
+   "category": "ai-tool",
+   "cost": "M365 + ~$18-30/user/mo",
+   "url": "https://www.microsoft.com/microsoft-365/copilot",
+   "superpower": "Native .pptx generation/editing; agentic since Apr 2026",
+   "verdict": "Best AI-in-the-real-tool; no export problem. No Morph choreography."
+  },
+  {
+   "name": "Gamma",
+   "category": "ai-tool",
+   "cost": "Free 400 credits; Plus ~$10/mo",
+   "url": "https://gamma.app/",
+   "superpower": "Fastest prompt->draft web decks",
+   "verdict": "PPTX export flattens/shifts (~30% editable text reported); draft only."
+  },
+  {
+   "name": "Beautiful.ai",
+   "category": "ai-tool",
+   "cost": "$12+/mo, no free tier",
+   "url": "https://www.beautiful.ai/",
+   "superpower": "Brand-consistent auto-layouts",
+   "verdict": "Decent PPTX fidelity; rigid templates."
+  },
+  {
+   "name": "Canva",
+   "category": "ai-tool",
+   "cost": "Free tier real; Pro paid",
+   "url": "https://www.canva.com/",
+   "superpower": "Asset library + AI design",
+   "verdict": "Some effects flatten on PPTX export."
+  },
+  {
+   "name": "Plus AI",
+   "category": "ai-tool",
+   "cost": "~$10/mo annual",
+   "url": "https://plusai.com/",
+   "superpower": "Builds inside PowerPoint/Slides -> native files",
+   "verdict": "Good middle path; metered credits."
+  },
+  {
+   "name": "Gemini in Google Slides",
+   "category": "ai-tool",
+   "cost": "Workspace tiers",
+   "url": "https://workspace.google.com/",
+   "superpower": "Multi-slide generation (2026)",
+   "verdict": "Check editability (some exports image-per-slide)."
+  },
+  {
+   "name": "Prezi",
+   "category": "ai-tool",
+   "cost": "Paid",
+   "url": "https://prezi.com/",
+   "superpower": "Zoom-canvas presenting",
+   "verdict": "No meaningful PPTX export; different medium."
+  },
+  {
+   "name": "Envato Elements / GraphicRiver",
+   "category": "marketplace",
+   "cost": "Subscription",
+   "url": "https://elements.envato.com/",
+   "superpower": "Largest commercial template library",
+   "verdict": "When buying beats building."
+  },
+  {
+   "name": "Creative Market",
+   "category": "marketplace",
+   "cost": "Per-item",
+   "url": "https://creativemarket.com/",
+   "superpower": "Designer template shops",
+   "verdict": "Quality indie SKUs."
+  },
+  {
+   "name": "Slidesgo",
+   "category": "marketplace",
+   "cost": "Freemium",
+   "url": "https://slidesgo.com/",
+   "superpower": "Huge education catalog",
+   "verdict": "Fast free starts; check license tier."
+  },
+  {
+   "name": "SlideModel",
+   "category": "marketplace",
+   "cost": "Subscription",
+   "url": "https://slidemodel.com/",
+   "superpower": "Business diagrams incl. Morph templates",
+   "verdict": "Diagram part-bin."
+  },
+  {
+   "name": "SlidesCarnival",
+   "category": "marketplace",
+   "cost": "Free (attribution)",
+   "url": "https://www.slidescarnival.com/",
+   "superpower": "Clean free templates",
+   "verdict": "Good free bases."
+  },
+  {
+   "name": "PresentationGO",
+   "category": "marketplace",
+   "cost": "Free",
+   "url": "https://www.presentationgo.com/",
+   "superpower": "Single diagram slides",
+   "verdict": "Grab individual exhibits."
+  },
+  {
+   "name": "Microsoft Create",
+   "category": "marketplace",
+   "cost": "Free",
+   "url": "https://create.microsoft.com/",
+   "superpower": "Official templates",
+   "verdict": "Safe defaults."
+  },
+  {
+   "name": "Unsplash / Pexels / Pixabay",
+   "category": "assets-photos",
+   "cost": "Free",
+   "url": "https://unsplash.com/",
+   "superpower": "Commercial-safe photography",
+   "verdict": "Default photo sources."
+  },
+  {
+   "name": "Flaticon / Noun Project / Iconscout / Icons8",
+   "category": "assets-icons",
+   "cost": "Freemium",
+   "url": "https://www.flaticon.com/",
+   "superpower": "Icon systems (SVG)",
+   "verdict": "One style per deck; recolor to accent."
+  },
+  {
+   "name": "unDraw / Storyset",
+   "category": "assets-illustration",
+   "cost": "Free",
+   "url": "https://undraw.co/",
+   "superpower": "Recolorable illustrations",
+   "verdict": "Match accent color before insert."
+  },
+  {
+   "name": "remove.bg / Squoosh",
+   "category": "assets-utils",
+   "cost": "Freemium",
+   "url": "https://www.remove.bg/",
+   "superpower": "Background removal; image compression",
+   "verdict": "Keep decks light for smooth Morph."
+  },
+  {
+   "name": "Coolors / Adobe Color",
+   "category": "assets-color",
+   "cost": "Freemium",
+   "url": "https://coolors.co/",
+   "superpower": "Palette generation",
+   "verdict": "Feed 3-role system only."
+  },
+  {
+   "name": "ColorBrewer 2.0",
+   "category": "assets-color",
+   "cost": "Free",
+   "url": "https://colorbrewer2.org/",
+   "superpower": "Data-safe palettes with colorblind filter",
+   "verdict": "Charts/maps."
+  },
+  {
+   "name": "WebAIM Contrast Checker / Coblis",
+   "category": "assets-color",
+   "cost": "Free",
+   "url": "https://webaim.org/resources/contrastchecker/",
+   "superpower": "WCAG contrast + CVD simulation",
+   "verdict": "Mandatory pre-flight."
+  },
+  {
+   "name": "FT Visual Vocabulary",
+   "category": "assets-dataviz",
+   "cost": "Free",
+   "url": "https://github.com/Financial-Times/chart-doctor",
+   "superpower": "Chart-type chooser poster",
+   "verdict": "Pick chart by data relationship."
+  }
+ ],
+ "fonts": [
+  {
+   "name": "Montserrat",
+   "script": "Latin",
+   "role": "Headings (generator default)",
+   "pairs_with": "Inter",
+   "source": "Google Fonts (free)"
+  },
+  {
+   "name": "Inter",
+   "script": "Latin",
+   "role": "Body (generator default); PlacePlate PP-1 body",
+   "pairs_with": "Montserrat / Onest",
+   "source": "Google Fonts (free)"
+  },
+  {
+   "name": "Onest",
+   "script": "Latin",
+   "role": "Headings — PlacePlate PP-1 pairing",
+   "pairs_with": "Inter",
+   "source": "Google Fonts (free)"
+  },
+  {
+   "name": "Poppins",
+   "script": "Latin",
+   "role": "Geometric headings alternative",
+   "pairs_with": "Inter",
+   "source": "Google Fonts (free)"
+  },
+  {
+   "name": "Plus Jakarta Sans",
+   "script": "Latin",
+   "role": "Modern corporate all-rounder",
+   "pairs_with": "Inter",
+   "source": "Google Fonts (free)"
+  },
+  {
+   "name": "Calibri",
+   "script": "Latin",
+   "role": "Zero-install fallback (ships with Office)",
+   "pairs_with": "—",
+   "source": "Microsoft Office"
+  },
+  {
+   "name": "Cairo",
+   "script": "Arabic",
+   "role": "Arabic headings — geometric, Montserrat-like",
+   "pairs_with": "Montserrat/Inter",
+   "source": "Google Fonts (free, OFL)"
+  },
+  {
+   "name": "Tajawal",
+   "script": "Arabic",
+   "role": "Arabic body workhorse",
+   "pairs_with": "Inter",
+   "source": "Google Fonts (free, OFL)"
+  },
+  {
+   "name": "IBM Plex Sans Arabic",
+   "script": "Arabic",
+   "role": "Arabic tech/corporate",
+   "pairs_with": "IBM Plex Sans",
+   "source": "Google Fonts (free, OFL)"
+  },
+  {
+   "name": "Almarai",
+   "script": "Arabic",
+   "role": "Saudi-market standard",
+   "pairs_with": "Inter",
+   "source": "Google Fonts (free, OFL)"
+  },
+  {
+   "name": "Noto Sans Arabic",
+   "script": "Arabic",
+   "role": "Universal Arabic fallback",
+   "pairs_with": "Noto Sans",
+   "source": "Google Fonts (free, OFL)"
+  },
+  {
+   "name": "Amiri",
+   "script": "Arabic",
+   "role": "Formal/academic Naskh serif",
+   "pairs_with": "— (formal Latin serif sparingly)",
+   "source": "Google Fonts (free, OFL)"
+  }
+ ],
+ "prompts": [
+  {
+   "id": 1,
+   "name": "Big Idea extractor",
+   "stage": "strategy",
+   "text": "Act as a presentation strategist trained in Nancy Duarte's method. Topic: [TOPIC]. Audience: [WHO]. I want them to [DECISION/ACTION]. Give me 5 candidate Big Idea sentences — each states a unique point of view, conveys what's at stake, one complete sentence. Rank them, flag the strongest. No slide content yet."
+  },
+  {
+   "id": 2,
+   "name": "SCQA opener",
+   "stage": "strategy",
+   "text": "Write an SCQA opening: Situation (1 agreed sentence), Complication (1 sentence, what broke), Question (implied), Answer (my recommendation, 1 sentence = governing thought). Max 4 sentences. Context: [PASTE]. Recommendation: [PASTE]."
+  },
+  {
+   "id": 3,
+   "name": "Pyramid ghost deck",
+   "stage": "outline",
+   "text": "Structure as Minto pyramid: line 1 = single-sentence answer; then 3-4 MECE supporting arguments with evidence bullets; then convert to a ghost deck of complete-sentence action titles (<=15 words, active voice, quantified). Material: [PASTE]."
+  },
+  {
+   "id": 4,
+   "name": "Assertion-headline converter",
+   "stage": "outline",
+   "text": "Rewrite these topic titles as assertion headlines: full-sentence conclusions (max 2 lines), specific and quantified; read together they must tell the whole story (horizontal logic). Titles+content: [PASTE]."
+  },
+  {
+   "id": 5,
+   "name": "Sparkline storyteller",
+   "stage": "outline",
+   "text": "Outline a [X]-min talk on [TOPIC] with Duarte's sparkline: what-is opener (<=10%), call to adventure, alternating IS/COULD-BE beats, one STAR moment ~70% (give 3 options), new-bliss ending + explicit CTA. Per slide: beat label, assertion headline, visual idea."
+  },
+  {
+   "id": 6,
+   "name": "Deck-spec JSON generator",
+   "stage": "build",
+   "text": "Using generator/deck-spec.example.json format and reference/03 recipes: create a complete spec for [USE CASE] about [TOPIC], audience [WHO], [N] slides, theme [THEME]. Enforce assertion headlines, <=3 bullets x <=7 words, ~30 words/slide, finding-titled charts, speaker notes everywhere, specific closing ask. Output ONLY valid JSON. Source: [PASTE]."
+  },
+  {
+   "id": 7,
+   "name": "Data-slide surgeon",
+   "stage": "data",
+   "text": "From this data [PASTE]: (1) the one defensible finding = headline sentence; (2) chart type + 1-line justification; (3) strategic gray: which ONE bar/series gets accent + why; (4) KEY INSIGHT rail text (1-2 sentences); (5) clutter deletion list."
+  },
+  {
+   "id": 8,
+   "name": "Bullet-to-visual converter",
+   "stage": "build",
+   "text": "Convert these bullets to visuals: choose per group process/grid/comparison/hero-stat/chart; write exact labels (heads <=4 words, bodies <=12). No bullet list survives. Bullets: [PASTE]."
+  },
+  {
+   "id": 9,
+   "name": "Speaker-notes writer",
+   "stage": "delivery",
+   "text": "Write presenter notes per slide: talk track ~60-90s conversational, one transition sentence, one likely question + crisp answer. Slides: [PASTE TITLES+CONTENT]."
+  },
+  {
+   "id": 10,
+   "name": "Deck critic",
+   "stage": "qa",
+   "text": "Review against Richard Mayer coherence/signaling/redundancy, assertion-evidence, horizontal+vertical logic, reverse storyboard. Per slide: headline verdict, words to cut, one fix. Then top-5 changes by impact. Be ruthless. Deck: [PASTE]."
+  },
+  {
+   "id": 11,
+   "name": "Reel script (PlacePlate formula)",
+   "stage": "social",
+   "text": "20-second IG/TikTok reel script showing this deck's Morph (no face-cam): 3 hook text options, shot list (slide flips 2-3s each, STAR last), caption <=150 chars with link-in-bio CTA, hashtag block (#powerpoint #morphtransition #powerpointpresentation #powerpointtemplate #presentation). Theme: [X]."
+  },
+  {
+   "id": 12,
+   "name": "Arabic localization pass",
+   "stage": "localization",
+   "text": "Localize to professional Saudi-business Arabic (not literal): assertion headlines <=2 lines, bullets <=7 words, Western numerals unless told. Flag cultural adaptations; give EN captions for bilingual slides; list layout elements to mirror. Text: [PASTE]."
+  }
+ ],
+ "palettes_extra": [
+  {
+   "name": "Okabe-Ito (colorblind-safe categorical)",
+   "colors": [
+    "E69F00",
+    "56B4E9",
+    "009E73",
+    "F0E442",
+    "0072B2",
+    "D55E00",
+    "CC79A7",
+    "000000"
+   ],
+   "use": "Multi-category charts; yellow for fills only (1.32:1 on white); still check WCAG contrast per background",
+   "source": "Wong, Nature Methods 2011"
+  },
+  {
+   "name": "Strategic-gray chart scheme",
+   "colors": [
+    "theme.graybar x N-1",
+    "theme.accent x 1"
+   ],
+   "use": "All bars gray except the finding bar in accent (PlacePlate/Knaflic)",
+   "source": "reference/05"
+  }
+ ]
+}

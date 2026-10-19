@@ -1,0 +1,130 @@
+{
+  "title": "Q3 Business Review — Dune Tech",
+  "author": "Generator example (QBR arc)",
+  "theme": "steel-blue",
+  "brand": "DUNE TECH  ·  INTERNAL",
+  "slides": [
+    {
+      "type": "title",
+      "title": "Q3 Review:\nGrowth held, margins slipped",
+      "subtitle": "Decision deck — three calls needed today, flagged on the final slide.",
+      "meta": "QUARTERLY BUSINESS REVIEW",
+      "notes": "Answer-first (Minto): the headline IS the quarter. Three decisions at the end."
+    },
+    {
+      "type": "stat_strip",
+      "kicker": "Executive Summary",
+      "title": "The quarter in four numbers",
+      "stats": [
+        {
+          "value": "$4.2M",
+          "label": "Revenue",
+          "context": "+38% YoY, plan beaten by 6%"
+        },
+        {
+          "value": "61%",
+          "label": "Gross margin",
+          "context": "-4 pts QoQ — cloud costs"
+        },
+        {
+          "value": "1.8%",
+          "label": "Churn",
+          "context": "Best quarter on record"
+        },
+        {
+          "value": "14 mo",
+          "label": "Runway",
+          "context": "At current burn, pre-raise"
+        }
+      ],
+      "notes": "Exec summary = pyramid top. Margin is the red thread to the decisions slide."
+    },
+    {
+      "type": "chart",
+      "kicker": "Growth",
+      "title": "new ARR doubled YoY on enterprise wins",
+      "categories": [
+        "Q3-25",
+        "Q4-25",
+        "Q1-26",
+        "Q2-26",
+        "Q3-26"
+      ],
+      "values": [
+        210,
+        260,
+        310,
+        365,
+        430
+      ],
+      "highlight": 4,
+      "series_name": "new ARR added ($k)",
+      "insight": "Two enterprise logos = 44% of Q3 new ARR. Growth is real but concentrated — pipeline coverage for Q4 is the watch item.",
+      "notes": "Name concentration risk out loud before anyone asks."
+    },
+    {
+      "type": "chart",
+      "kicker": "Margins",
+      "title": "Cloud spend grew 2x faster than revenue",
+      "categories": [
+        "Q1-26",
+        "Q2-26",
+        "Q3-26"
+      ],
+      "values": [
+        18,
+        24,
+        31
+      ],
+      "highlight": 2,
+      "series_name": "Cloud cost as % of revenue",
+      "insight": "GPU inference for the new AI tier drives the slope. Committed-use discounts + caching recover ~6 of the 13 points.",
+      "notes": "This chart motivates Decision 1 (infra commitment) on the final slide."
+    },
+    {
+      "type": "content",
+      "kicker": "Misses",
+      "title": "Two misses, both fixable this quarter",
+      "bullets": [
+        {
+          "head": "Self-serve funnel stalled at 2.1%",
+          "body": "Onboarding drop-off at step 3; redesign ships in sprint 14."
+        },
+        {
+          "head": "Hiring: 3 of 9 roles filled",
+          "body": "Senior backend market is slow; contractor bridge approved."
+        }
+      ],
+      "visual_big": "2.1%",
+      "visual_caption": "Self-serve conversion vs 3.5% target.",
+      "notes": "Honest misses build trust for the ask. Owners named in appendix."
+    },
+    {
+      "type": "process",
+      "kicker": "Initiatives",
+      "title": "Q4 plan attacks margin first",
+      "steps": [
+        {
+          "head": "October",
+          "body": "Committed-use purchase; inference caching live."
+        },
+        {
+          "head": "November",
+          "body": "Onboarding v2; enterprise pipeline push."
+        },
+        {
+          "head": "December",
+          "body": "Pricing test on AI tier; hiring sprint."
+        }
+      ],
+      "notes": "Each step maps to a chart shown earlier — vertical logic end to end."
+    },
+    {
+      "type": "closing",
+      "title": "Three decisions needed today",
+      "ask": "1) Approve $480k cloud commitment  ·  2) Approve AI-tier pricing test  ·  3) Extend contractor budget one quarter",
+      "contact": "Appendix: full P&L, cohort tables, pipeline detail",
+      "notes": "Read the three asks verbatim. Silence after = decision pressure. Do not fill it."
+    }
+  ]
+}

@@ -1,0 +1,639 @@
+{
+ "_meta": {
+  "source": "Distilled from references 01-06,10-12 (PlacePlate guides, creator ecosystem, Mayer/Sweller/Alley/Duarte/Minto/Knaflic)."
+ },
+ "techniques": [
+  {
+   "name": "Duplicate-and-Morph (core workflow)",
+   "category": "morph-core",
+   "difficulty": "easy",
+   "morph_type": "byObject",
+   "steps": "Duplicate slide > edit copy only > select copy > Transitions > Morph > Preview/tune duration 0.8-1.2s",
+   "learned_from": "PlacePlate guide",
+   "generator_support": "native"
+  },
+  {
+   "name": "!! Forced-morph naming",
+   "category": "morph-core",
+   "difficulty": "medium",
+   "morph_type": "byObject",
+   "steps": "Selection Pane > rename both partner objects to identical !!name on both slides > Morph forces match across types",
+   "learned_from": "PlacePlate guide",
+   "generator_support": "native"
+  },
+  {
+   "name": "Travelling element",
+   "category": "morph-core",
+   "difficulty": "easy",
+   "morph_type": "byObject",
+   "steps": "Same !! shape repositioned/resized on every slide -> continuous glide through deck",
+   "learned_from": "PlacePlate templates",
+   "generator_support": "native (orb/ring/bar/kicker auto)"
+  },
+  {
+   "name": "Off-canvas exit (never delete)",
+   "category": "morph-core",
+   "difficulty": "easy",
+   "morph_type": "byObject",
+   "steps": "Drag exiting objects outside slide edge on next slide instead of deleting",
+   "learned_from": "l_presentation viral tip",
+   "generator_support": "manual/spec design"
+  },
+  {
+   "name": "Zoom-in hero reveal",
+   "category": "morph-recipe",
+   "difficulty": "easy",
+   "morph_type": "byObject",
+   "steps": "Object small slide N > full-bleed N+1 > Morph = camera zoom",
+   "learned_from": "PlacePlate 5 pro uses",
+   "generator_support": "native via orb scale"
+  },
+  {
+   "name": "Expanding navigation dots",
+   "category": "morph-recipe",
+   "difficulty": "medium",
+   "morph_type": "byObject",
+   "steps": "One dot -> row of !!nav-dot-i on agenda slide; reuse with active index as progress tracker",
+   "learned_from": "PlacePlate 5 pro uses",
+   "generator_support": "native (agenda active)"
+  },
+  {
+   "name": "Animated data (duplicate + new values)",
+   "category": "morph-recipe",
+   "difficulty": "medium",
+   "morph_type": "byObject",
+   "steps": "Duplicate chart slide, change values; same chart object interpolates (M365). Fallback: !! rectangle bars",
+   "learned_from": "PlacePlate 5 pro uses",
+   "generator_support": "partial (native chart object)"
+  },
+  {
+   "name": "Cinematic text (Words/Characters)",
+   "category": "morph-recipe",
+   "difficulty": "easy",
+   "morph_type": "byWord/byChar",
+   "steps": "Effect Options > Words or Characters; title travels center->corner",
+   "learned_from": "PlacePlate 5 pro uses",
+   "generator_support": "native (morph_type field)"
+  },
+  {
+   "name": "Scrolling infographic / one-canvas pan",
+   "category": "morph-advanced",
+   "difficulty": "hard",
+   "morph_type": "byObject",
+   "steps": "Build oversized scene across canvas edges; each duplicate shifts group; Morph pans camera",
+   "learned_from": "Creator ecosystem / One Skill",
+   "generator_support": "manual"
+  },
+  {
+   "name": "3D model rotation morph",
+   "category": "morph-advanced",
+   "difficulty": "medium",
+   "morph_type": "byObject",
+   "steps": "Same 3D model both slides, rotate on 2nd, Morph spins live (M365)",
+   "learned_from": "yerra.dzn, One Skill",
+   "generator_support": "manual"
+  },
+  {
+   "name": "Photo un-crop / Ken Burns push-in",
+   "category": "morph-advanced",
+   "difficulty": "easy",
+   "morph_type": "byObject",
+   "steps": "Crop tight on N, relax crop on N+1 (works on video objects too)",
+   "learned_from": "Creator ecosystem",
+   "generator_support": "manual"
+  },
+  {
+   "name": "Blur/color state shift",
+   "category": "morph-advanced",
+   "difficulty": "easy",
+   "morph_type": "byObject",
+   "steps": "Duplicate; change brightness/blur/fills on copy; Morph cross-grades scene",
+   "learned_from": "superslideppt",
+   "generator_support": "manual"
+  },
+  {
+   "name": "Morph logo reveal",
+   "category": "morph-advanced",
+   "difficulty": "medium",
+   "morph_type": "byObject",
+   "steps": "Photo bg + 40% black mask + logo cut-out (Merge Shapes Subtract) > duplicate > scale huge > Morph",
+   "learned_from": "superslideppt",
+   "generator_support": "manual"
+  },
+  {
+   "name": "Rotation/spin motif",
+   "category": "morph-advanced",
+   "difficulty": "medium",
+   "morph_type": "byObject",
+   "steps": "Wheel rotated 30-45deg per duplicate, center pinned; Morph = spin",
+   "learned_from": "deskzenzone",
+   "generator_support": "manual"
+  },
+  {
+   "name": "Image slider strip",
+   "category": "morph-advanced",
+   "difficulty": "medium",
+   "morph_type": "byObject",
+   "steps": "Card strip overflowing canvas; shift one card per duplicate; center card scales up",
+   "learned_from": "YouTube tutorials",
+   "generator_support": "partial (!!card-i naming)"
+  },
+  {
+   "name": "Progress/counter walk",
+   "category": "morph-advanced",
+   "difficulty": "easy",
+   "morph_type": "byObject/byChar",
+   "steps": "Duplicate advancing fill/number one step each; Morph all",
+   "learned_from": "slide.sage",
+   "generator_support": "native via agenda; manual for counters"
+  },
+  {
+   "name": "Slide/Section/Summary Zoom hub",
+   "category": "interactive",
+   "difficulty": "medium",
+   "morph_type": "n/a",
+   "steps": "Insert > Zoom on hub slide; click dives to section, auto-returns",
+   "learned_from": "One Skill",
+   "generator_support": "manual (PowerPoint UI)"
+  },
+  {
+   "name": "Trigger pop-ups",
+   "category": "interactive",
+   "difficulty": "medium",
+   "morph_type": "n/a",
+   "steps": "Animations > Trigger > On Click Of [button] reveals hidden content same-slide",
+   "learned_from": "Presented/One Skill",
+   "generator_support": "manual"
+  },
+  {
+   "name": "Kiosk mode loop",
+   "category": "interactive",
+   "difficulty": "easy",
+   "morph_type": "n/a",
+   "steps": "Set Up Show > Browsed at a kiosk: keys dead, hyperlinks only, loops",
+   "learned_from": "One Skill",
+   "generator_support": "manual"
+  },
+  {
+   "name": "Parallax layers",
+   "category": "animation",
+   "difficulty": "hard",
+   "morph_type": "byObject",
+   "steps": "2-3 bg layers move different distances across Morph duplicates = depth",
+   "learned_from": "One Skill",
+   "generator_support": "manual"
+  },
+  {
+   "name": "Masked emergence",
+   "category": "animation",
+   "difficulty": "medium",
+   "morph_type": "n/a",
+   "steps": "Object animates behind slide-bg-filled foreground shape -> emerges from edge/card",
+   "learned_from": "One Skill",
+   "generator_support": "manual"
+  },
+  {
+   "name": "Book flip (3D rotation states)",
+   "category": "animation",
+   "difficulty": "hard",
+   "morph_type": "byObject",
+   "steps": "Page shape through 3D rotation key states + Morph between",
+   "learned_from": "One Skill",
+   "generator_support": "manual"
+  },
+  {
+   "name": "Merge Shapes surgery",
+   "category": "craft",
+   "difficulty": "medium",
+   "morph_type": "n/a",
+   "steps": "Union/Combine/Fragment/Intersect/Subtract for motifs, masks, cut-out text",
+   "learned_from": "Creator ecosystem",
+   "generator_support": "n/a (design-time)"
+  },
+  {
+   "name": "SVG icon recolor",
+   "category": "craft",
+   "difficulty": "easy",
+   "morph_type": "n/a",
+   "steps": "Insert Icons or paste SVG > Convert to Shape > ungroup > theme fills",
+   "learned_from": "Creator ecosystem",
+   "generator_support": "n/a"
+  },
+  {
+   "name": "Ctrl+D transform repeat",
+   "category": "craft",
+   "difficulty": "easy",
+   "morph_type": "n/a",
+   "steps": "Duplicate once with offset, then Ctrl+D repeatedly repeats transform -> instant grids",
+   "learned_from": "Creator ecosystem",
+   "generator_support": "n/a"
+  }
+ ],
+ "recipes": [
+  {
+   "id": "R1",
+   "type": "title",
+   "name": "Title / Hero cover",
+   "purpose": "Set tone in 3 seconds",
+   "content_limits": "title <=8 words; subtitle <=25",
+   "spec_fields": "title, subtitle, meta"
+  },
+  {
+   "id": "R2",
+   "type": "agenda",
+   "name": "Agenda / progress tracker",
+   "purpose": "Roadmap; lowers cognitive load",
+   "content_limits": "<=6 items x <=6 words; active=index for progress",
+   "spec_fields": "title, items, active"
+  },
+  {
+   "id": "R3",
+   "type": "section",
+   "name": "Section divider",
+   "purpose": "Chapter break, reset attention",
+   "content_limits": "number + title + 1-line sub",
+   "spec_fields": "number, title, subtitle"
+  },
+  {
+   "id": "R4",
+   "type": "content",
+   "name": "Content split",
+   "purpose": "Workhorse: points + visual",
+   "content_limits": "<=4 cards; head <=8 words; body <=18",
+   "spec_fields": "title, bullets[{head,body}], visual_big/caption or image"
+  },
+  {
+   "id": "R5",
+   "type": "icon_grid",
+   "name": "Icon/feature grid",
+   "purpose": "3-6 parallel features",
+   "content_limits": "3/4/6 items; head <=4 words",
+   "spec_fields": "title, items[{glyph,head,body}]"
+  },
+  {
+   "id": "R6",
+   "type": "process",
+   "name": "Process / timeline",
+   "purpose": "Sequences, methodology, roadmap",
+   "content_limits": "<=5 steps; body <=15 words",
+   "spec_fields": "title, steps[{head,body}]"
+  },
+  {
+   "id": "R7",
+   "type": "comparison",
+   "name": "Comparison columns",
+   "purpose": "Us-vs-them, pricing tiers",
+   "content_limits": "<=3 cols x <=7 rows; +/- prefixes",
+   "spec_fields": "title, columns[{head,highlight,rows}]"
+  },
+  {
+   "id": "R8",
+   "type": "chart",
+   "name": "Chart + insight rail",
+   "purpose": "One finding, proven",
+   "content_limits": "1 series focus; 1 accent bar; axis at 0",
+   "spec_fields": "title(finding), categories, values, highlight, insight"
+  },
+  {
+   "id": "R9",
+   "type": "hero_stat",
+   "name": "Hero stat",
+   "purpose": "The keynote number (STAR slot)",
+   "content_limits": "number+label+1 context line; 3-second test",
+   "spec_fields": "stat, label, context"
+  },
+  {
+   "id": "R10",
+   "type": "market",
+   "name": "Market rings TAM/SAM/SOM",
+   "purpose": "Market sizing w/ credibility",
+   "content_limits": "3 rings; bottom-up + source in notes",
+   "spec_fields": "title, rings[{label,value,note}]"
+  },
+  {
+   "id": "R11",
+   "type": "team",
+   "name": "Team",
+   "purpose": "Why us — proof bios",
+   "content_limits": "<=4 people; evidence not adjectives",
+   "spec_fields": "title, people[{name,role,bio}]"
+  },
+  {
+   "id": "R12",
+   "type": "quote",
+   "name": "Quote / testimonial",
+   "purpose": "Social proof",
+   "content_limits": "1 quote + attribution",
+   "spec_fields": "quote, attribution"
+  },
+  {
+   "id": "R13",
+   "type": "closing",
+   "name": "Closing / The Ask",
+   "purpose": "End on specific ask",
+   "content_limits": "ask = amount+use+milestone",
+   "spec_fields": "title, ask, contact"
+  },
+  {
+   "id": "R14",
+   "type": "stat_strip",
+   "name": "Stat strip",
+   "purpose": "Exec summary in numbers",
+   "content_limits": "<=4 stats, each labeled+contextualized",
+   "spec_fields": "title, stats[{value,label,context}]"
+  },
+  {
+   "id": "R15",
+   "type": "before_after",
+   "name": "Before / After",
+   "purpose": "Transformation in one slide",
+   "content_limits": "<=6 parallel rows per side",
+   "spec_fields": "title, before{head,rows}, after{head,rows}"
+  },
+  {
+   "id": "R16",
+   "type": "logo_wall",
+   "name": "Logo / proof wall",
+   "purpose": "Trust grid",
+   "content_limits": "<=8 marks, equal weight",
+   "spec_fields": "title, names, caption"
+  }
+ ],
+ "structures": [
+  {
+   "name": "Investor pitch deck",
+   "slide_count": "12",
+   "minutes": "10-20",
+   "sequence": "R1 title > R4 problem > R4/R5 solution > R10 market > R4 product > R5 model > R8/R9 traction (move early if strong) > R6 GTM > R7 competition > R11 team > R8 financials > R13 ask",
+   "primary_framework": "Duarte sparkline",
+   "suggested_themes": "teal-orbit, steel-blue, obsidian-star",
+   "placeplate_skus": "PP-1, PP-23, PP-49, PP-46(free)"
+  },
+  {
+   "name": "Academic / thesis defense",
+   "slide_count": "10-12 per 10 min",
+   "minutes": "10-20",
+   "sequence": "R1 > R2 outline > R4 intro > R5 research questions > R6 methodology > R8/R9 results x2-3 > R4 conclusion > references > backup slides",
+   "primary_framework": "Assertion-Evidence",
+   "suggested_themes": "royal-blue, aqua-neumorphic",
+   "placeplate_skus": "PP-20, PP-36, PP-43, PP-25"
+  },
+  {
+   "name": "Business / company profile",
+   "slide_count": "12-15",
+   "minutes": "15-25",
+   "sequence": "R1 > R2 > R4 who we are > R8 market problem > R5 services > R6 process > R8+R9 proof > R12 case quote > R7 differentiation > R16 logos > R11 team > R6 roadmap > R13",
+   "primary_framework": "Sparkline-lite",
+   "suggested_themes": "steel-blue, royal-blue, emerald-ring",
+   "placeplate_skus": "PP-31, Business Pack"
+  },
+  {
+   "name": "Sales / proposal",
+   "slide_count": "10-12",
+   "minutes": "15-20",
+   "sequence": "R1(client-branded) > R4 their situation > R9 cost of inaction > R5 solution > R6 plan > R8 outcomes > R12 proof > R7 why us > R7 pricing > R4 risks > R13 next steps",
+   "primary_framework": "SCQA + sparkline per module",
+   "suggested_themes": "obsidian-star, steel-blue",
+   "placeplate_skus": "PP-1"
+  },
+  {
+   "name": "Seminar / training / keynote",
+   "slide_count": "1 per 1-2 min",
+   "minutes": "20-45",
+   "sequence": "R1 > R9 hook > R2 > per section [R3 + R4 concept + R8 example + recap] > R5 synthesis > R13 resources",
+   "primary_framework": "Presentation Zen + Duarte contrast",
+   "suggested_themes": "lilac-soft, aqua-neumorphic",
+   "placeplate_skus": "Modern Style Pack"
+  },
+  {
+   "name": "Business review (QBR)",
+   "slide_count": "10-12 + appendix",
+   "minutes": "20-30",
+   "sequence": "R1 > R14 exec stats > R8 KPI stories x4-6 > R4 misses&causes > R6 initiatives > R13 decisions needed",
+   "primary_framework": "Minto pyramid (answer-first)",
+   "suggested_themes": "steel-blue, royal-blue",
+   "placeplate_skus": "PP-32, PP-42"
+  },
+  {
+   "name": "Executive decision deck",
+   "slide_count": "6-10 + deep appendix",
+   "minutes": "15",
+   "sequence": "cover > SCQA exec summary (R4) > one R8 per MECE argument > R7 options > R13 recommendation+owners/dates",
+   "primary_framework": "Minto pyramid + SCQA",
+   "suggested_themes": "royal-blue, obsidian-star",
+   "placeplate_skus": "PP-1"
+  }
+ ],
+ "principles": [
+  {
+   "name": "Coherence",
+   "kind": "Richard Mayer",
+   "generation_rule": "Delete everything not serving the message (seductive details out)",
+   "evidence": "23/23 tests, median d=0.86",
+   "source": "Richard Mayer & Fiorella 2014"
+  },
+  {
+   "name": "Signaling",
+   "kind": "Richard Mayer",
+   "generation_rule": "Cue the essential: one accent element, bold key terms, preview headlines",
+   "evidence": "24-26/28 tests, d=0.41-0.70",
+   "source": "Richard Mayer & Fiorella 2014"
+  },
+  {
+   "name": "Redundancy",
+   "kind": "Richard Mayer",
+   "generation_rule": "Never print your script and read it; visuals + voice only",
+   "evidence": "16/16 tests (fast-paced), d=0.86 (2014 review)",
+   "source": "Richard Mayer & Fiorella 2014"
+  },
+  {
+   "name": "Spatial contiguity",
+   "kind": "Richard Mayer",
+   "generation_rule": "Labels on/next to chart elements; kill legends",
+   "evidence": "22/22 tests, d=1.10",
+   "source": "Richard Mayer & Fiorella 2014"
+  },
+  {
+   "name": "Temporal contiguity",
+   "kind": "Richard Mayer",
+   "generation_rule": "Reveal visual and narration together",
+   "evidence": "9/9 tests, d=1.22-1.30",
+   "source": "Richard Mayer & Fiorella 2014"
+  },
+  {
+   "name": "Segmenting",
+   "kind": "Richard Mayer",
+   "generation_rule": "Chunk content; paced sections; one idea per slide",
+   "evidence": "strong, replicated",
+   "source": "Mayer 2021"
+  },
+  {
+   "name": "Pre-training",
+   "kind": "Richard Mayer",
+   "generation_rule": "Define key terms before the complex model",
+   "evidence": "moderate",
+   "source": "Mayer 2021"
+  },
+  {
+   "name": "Modality",
+   "kind": "Richard Mayer",
+   "generation_rule": "Explain complex visuals by voice, not paragraphs",
+   "evidence": "most-studied principle",
+   "source": "Mayer 2021"
+  },
+  {
+   "name": "Multimedia",
+   "kind": "Richard Mayer",
+   "generation_rule": "Words + relevant pictures > words alone",
+   "evidence": "d=1.67 (5 tests)",
+   "source": "Mayer 2017 review"
+  },
+  {
+   "name": "Image principle (null)",
+   "kind": "Richard Mayer",
+   "generation_rule": "Decorative speaker images don't aid learning — spend pixels on evidence",
+   "evidence": "approx. null effect",
+   "source": "Mayer 2021"
+  },
+  {
+   "name": "Split-attention effect",
+   "kind": "CLT",
+   "generation_rule": "Integrate mutually-dependent text+diagram physically",
+   "evidence": "Chandler & Sweller 1991; robust",
+   "source": "Sweller et al."
+  },
+  {
+   "name": "Redundancy effect (CLT)",
+   "kind": "CLT",
+   "generation_rule": "If visual is self-explanatory, repeating it in text hurts",
+   "evidence": "Chandler & Sweller 1991",
+   "source": "Sweller et al."
+  },
+  {
+   "name": "Transient information",
+   "kind": "CLT",
+   "generation_rule": "Dense animation overloads; leave final state visible",
+   "evidence": "CLT literature",
+   "source": "Sweller 2010+"
+  },
+  {
+   "name": "Working-memory limit ~3-4",
+   "kind": "CLT",
+   "generation_rule": "Max 3-4 new interacting elements per view; rule-of-3 arguments",
+   "evidence": "Cowan; CLT consensus",
+   "source": "Sweller; Minto practice"
+  },
+  {
+   "name": "Assertion-Evidence advantage",
+   "kind": "empirical",
+   "generation_rule": "Sentence headline (assertion) + visual evidence body, no bullets",
+   "evidence": "110 students: better comprehension (d~0.60 dynamic), fewer misconceptions, better 1-week recall",
+   "source": "Garner & Alley 2013"
+  },
+  {
+   "name": "More words != more learning",
+   "kind": "empirical",
+   "generation_rule": "Cut slide text; bullet group saw +73% words, remembered no more",
+   "evidence": "334 vs 193 words experiment",
+   "source": "Alley et al. 2011"
+  },
+  {
+   "name": "Presenter benefit",
+   "kind": "empirical",
+   "generation_rule": "Building assertion-evidence slides deepens presenter's own understanding",
+   "evidence": "significant post-test advantage p<0.05",
+   "source": "Garner et al. 2016"
+  },
+  {
+   "name": "Picture superiority",
+   "kind": "memory",
+   "generation_rule": "Distinctive content-bearing visuals beat words (dual coding); generic stock loses the edge",
+   "evidence": "Paivio 1971+; word+picture ~2x recall in classic tests",
+   "source": "Paivio; 2025 distinctiveness updates"
+  },
+  {
+   "name": "Von Restorff isolation",
+   "kind": "memory",
+   "generation_rule": "One different element against homogeneous set gets remembered — one isolate per context",
+   "evidence": "von Restorff 1933; replicated",
+   "source": "von Restorff"
+  },
+  {
+   "name": "Peak-end + serial position",
+   "kind": "memory",
+   "generation_rule": "Invest in opening, peak (STAR), and closer; end on the ask",
+   "evidence": "Kahneman peak-end; primacy/recency",
+   "source": "memory literature"
+  },
+  {
+   "name": "Perception ranking",
+   "kind": "dataviz",
+   "generation_rule": "Position > length > angle > area: bars beat pies",
+   "evidence": "Cleveland & McGill experiments",
+   "source": "Cleveland & McGill 1984"
+  },
+  {
+   "name": "Data-ink / chartjunk",
+   "kind": "dataviz",
+   "generation_rule": "Erase non-data ink; small multiples > spaghetti",
+   "evidence": "Edward Tufte framework",
+   "source": "Edward Tufte 1983"
+  },
+  {
+   "name": "Contrast minimums",
+   "kind": "accessibility",
+   "generation_rule": "Text >=4.5:1 (3:1 large); graphics >=3:1; never color-only encoding",
+   "evidence": "WCAG 2.x AA",
+   "source": "W3C"
+  },
+  {
+   "name": "Okabe-Ito palette",
+   "kind": "accessibility",
+   "generation_rule": "CVD-safe categories: E69F00 56B4E9 009E73 F0E442(fills) 0072B2 D55E00 CC79A7 000000; still check contrast separately",
+   "evidence": "Nature Methods standard",
+   "source": "Wong 2011 / Color Universal Design"
+  },
+  {
+   "name": "Learning Pyramid retention % (10% read...90% do)",
+   "kind": "MYTH",
+   "generation_rule": "NEVER cite: Dale's 1946 cone had no numbers; % are 1967 folklore, data nonexistent",
+   "evidence": "Debunked: Subramony et al. 2014; Masters 2013/2020",
+   "source": "myth-bust"
+  },
+  {
+   "name": "Mehrabian 7-38-55 communication",
+   "kind": "MYTH",
+   "generation_rule": "Only measured like/dislike under inconsistent cues; invalid for informational talks; author disclaims",
+   "evidence": "Lapakko 2007",
+   "source": "myth-bust"
+  },
+  {
+   "name": "Learning styles / 65% visual learners",
+   "kind": "MYTH",
+   "generation_rule": "No evidence style-matching helps; design for content type instead",
+   "evidence": "Pashler et al. consensus",
+   "source": "myth-bust"
+  },
+  {
+   "name": "8-second goldfish attention",
+   "kind": "MYTH",
+   "generation_rule": "Untraceable stat; attention is task-dependent — use segmenting/contrast",
+   "evidence": "misattributed consumer report",
+   "source": "myth-bust"
+  },
+  {
+   "name": "Generational learning needs",
+   "kind": "MYTH",
+   "generation_rule": "No evidence; clarity+pacing help everyone",
+   "evidence": "literature consensus",
+   "source": "myth-bust"
+  },
+  {
+   "name": "Vendor 'X% more persuasive with visuals'",
+   "kind": "MYTH",
+   "generation_rule": "Replace with Mayer/Alley effect sizes which are citable",
+   "evidence": "—",
+   "source": "myth-bust"
+  }
+ ]
+}
