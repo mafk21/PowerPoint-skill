@@ -39,6 +39,16 @@
     "ink": "F4F5F6",
     "muted": "A2B4B9"
   },
+  "desert-sand": {
+    "accent": "B07D4F",
+    "accent2": "006C35",
+    "bg": "F8F8F7",
+    "card": "FFFFFF",
+    "dark": false,
+    "graybar": "D1CCC7",
+    "ink": "27211B",
+    "muted": "736559"
+  },
   "forest-paper": {
     "accent": "15803D",
     "accent2": "3D1580",
@@ -68,6 +78,16 @@
     "graybar": "6D5559",
     "ink": "F6F4F4",
     "muted": "B9A2A6"
+  },
+  "saudi-green": {
+    "accent": "007B3D",
+    "accent2": "C8A24B",
+    "bg": "0C1812",
+    "card": "162E22",
+    "dark": true,
+    "graybar": "556D61",
+    "ink": "F4F6F5",
+    "muted": "A2B9AD"
   },
   "sky-mist": {
     "accent": "0284C7",

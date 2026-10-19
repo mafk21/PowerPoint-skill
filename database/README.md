@@ -3,7 +3,7 @@
 A real, queryable SQLite database of everything this repo knows — built from
 the JSON sources in `data/` so it can grow forever without hand-editing SQL.
 
-- **236 records · 12 tables · FTS5 full-text search** (census: [`INDEX.md`](INDEX.md))
+- **238 records · 12 tables · FTS5 full-text search** (census: [`INDEX.md`](INDEX.md))
 - Rebuild anytime: `python database/build_db.py` (stdlib only)
 - Query CLI: `python database/query.py …` (stdlib only)
 

@@ -38,7 +38,7 @@ classic storytelling frameworks, and the full tool ecosystem**:
 ## 🐲 The Monster Database
 
 Everything above is also a **real queryable database** — `database/powerpoint.db`
-(SQLite + FTS5, **236 records / 12 tables**: creators, templates, techniques,
+(SQLite + FTS5, **238 records / 12 tables**: creators, templates, techniques,
 recipes, structures, research, tools, fonts, prompts, palettes):
 
 ```bash

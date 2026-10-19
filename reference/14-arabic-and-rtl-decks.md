@@ -97,3 +97,32 @@ chart fonts) stay LTR — PowerPoint applies complex-script fallback so Arabic
 labels shape correctly, but eyeball charts in the app; grouped shapes are
 mirrored as units. Still QA every mixed-direction line (Latin brand names,
 numbers, URLs) per the BiDi rules above.
+
+
+## Implemented in the generator (Arabic Pro)
+
+- **`bilingual` slide type** — Arabic panel right (reads first), English
+  left, hairline divider. AR shapes are named `ar!…` and get `rtl="1"` +
+  Cairo/Tajawal in a dedicated pass; EN shapes are named `ltr!…` and the
+  RTL polish mirrors their *position only* (never direction/fonts), so the
+  same slide is correct in RTL and LTR decks. Fields: `ar_title`/
+  `en_title`, `ar_bullets`/`en_bullets` (`{head, body}` ≤4), `ar_body`/
+  `en_body`.
+- **`"numerals": "arabic-indic"`** — converts Western digits to ٠١٢٣٤٥٦٧٨٩
+  in every run *except* `ltr!` (English-panel) shapes. Works in RTL and
+  bilingual decks, landscape and portrait. Tip: write stats like `87%` —
+  conversion yields the correct reading order automatically in RTL runs.
+- **Hijri dates** — put `{hijri}` (or `{gregorian}`) in any spec string;
+  it expands from `spec.date` (YYYY-MM-DD) or today, using the arithmetical
+  (tabular/Kuwaiti) algorithm in `generate_pptx.gregorian_to_hijri`
+  (verified: 2026-10-19 → 7 جمادى الأولى 1448هـ; 622-07-19 → 1-1-1).
+  Tabular Hijri may differ ±1 day from Umm al-Qura — fine for covers.
+  CLI: `python tools/hijri.py [YYYY-MM-DD]`.
+- **Saudi themes** in `themes.json`: `saudi-green` (flag green #006C35 —
+  auto-brightened to #007B3D on dark for contrast — + sand-gold) and
+  `desert-sand` (light bronze + Saudi green secondary). 19 themes total.
+- QA font rule is per-script now: ≤2 Latin + ≤2 Arabic families passes.
+- Demo: `examples/arabic-bilingual-demo.pptx` (spec:
+  `examples/specs/arabic-bilingual.json`) — verified in XML: 15 rtl
+  paragraphs on the bilingual slide, EN paragraphs untouched, fonts split
+  Cairo/Tajawal vs Montserrat/Inter, hero stat rendered ٨٧.

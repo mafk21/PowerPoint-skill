@@ -1,0 +1,38 @@
+{
+  "theme": "saudi-green",
+  "brand": "وصل · WASL",
+  "rtl": true,
+  "numerals": "arabic-indic",
+  "date": "2026-10-19",
+  "timings": true,
+  "slides": [
+    {"type": "title", "badge": "عرض المستثمرين",
+     "title_lines": ["منصة وصل"],
+     "subtitle": "حجوزات أذكى للمقاهي والمحامص في الخليج",
+     "meta": "{hijri} · الرياض",
+     "notes": "افتتح بالادعاء الأساسي: نحوّل بقايا القهوة إلى قيمة. التاريخ الهجري ظاهر في الغلاف تلقائيا."},
+    {"type": "bilingual", "kicker": "المشكلة · THE PROBLEM",
+     "ar_title": "المقاهي تدفع مرتين: للتخلص وللشراء",
+     "en_title": "Cafes pay twice: to dump and to buy",
+     "ar_bullets": [
+       {"head": "تكلفة النفايات", "body": "رسوم المرادم ارتفعت 3 سنوات متتالية"},
+       {"head": "مشتريات التغليف", "body": "صواني بلاستيكية بكر بأسعار متقلبة"},
+       {"head": "خطر السمعة", "body": "العملاء يصوّرون الحاويات الممتلئة لا القهوة"}],
+     "en_bullets": [
+       {"head": "Waste fees", "body": "Landfill charges up 3 years in a row"},
+       {"head": "Packaging spend", "body": "Virgin plastic trays at volatile prices"},
+       {"head": "Brand risk", "body": "Customers photograph bins, not lattes"}],
+     "notes": "الشريحة ثنائية اللغة: العربية يمينا تُقرأ أولا، والإنجليزية مرجع. Numbers 3 stays Western in EN."},
+    {"type": "hero_stat", "stat": "87%", "label": "من مقاهي التجربة جدّدت بعد الشهر الأول",
+     "context": "التجديد هو أقوى دليل عندنا",
+     "notes": "رقم واحد، قلْه ببطء ثم اصمت لحظة."},
+    {"type": "chart", "kicker": "النمو", "title": "المحامص النشطة تتضاعف كل ربع",
+     "categories": ["يناير", "فبراير", "مارس", "أبريل"],
+     "values": [12, 19, 26, 41], "highlight": 3, "series_name": "محامص نشطة",
+     "insight": "النمو من الإحالات بين أصحاب المقاهي، لا من الإعلانات.",
+     "notes": "الأرقام في عناوين الأعمدة عربية مشرقية تلقائيا مع خيار الأرقام."},
+    {"type": "closing", "title_lines": ["نغلق الحلقة معا"],
+     "subtitle": "نجمع 450K دولار لخط جدة — انضم إلينا",
+     "notes": "اختم بطلب محدد وتاريخ: الجولة تُغلق نهاية الربع."}
+  ]
+}

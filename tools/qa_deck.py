@@ -272,8 +272,14 @@ def main(argv=None):
                     f"{len(tiny)} tiny runs" + (f" e.g. slide {tiny[0][0]} {tiny[0][1]:.0f}pt '{tiny[0][2]}'" if tiny else "")))
     results.append((WARN if small else PASS, "Text 12-16pt (footer/chart zone only)",
                     f"{len(small)} runs"))
-    results.append((PASS if len(fonts) <= 2 else WARN, "Font families <= 2",
-                    ", ".join(f"{k}×{v}" for k, v in fonts.most_common(4)) or "none set"))
+    AR_FONTS = ("cairo", "tajawal", "amiri", "almarai", "arabic", "noto")
+    ar_fams = [f for f in fonts if any(k in f.lower() for k in AR_FONTS)]
+    la_fams = [f for f in fonts if f not in ar_fams]
+    fonts_ok = len(fonts) <= 2 or (len(ar_fams) <= 2 and len(la_fams) <= 2)
+    results.append((PASS if fonts_ok else WARN,
+                    "Font families <= 2 (per script)",
+                    ", ".join(f"{k}×{v}" for k, v in fonts.most_common(5))
+                    or "none set"))
     results.append((WARN if label_heads else PASS,
                     "Headlines look like assertions (heuristic)",
                     f"possible topic-labels: {label_heads[:4]}" if label_heads else "all >3 words"))

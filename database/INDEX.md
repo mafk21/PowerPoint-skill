@@ -1,6 +1,6 @@
 # Monster Database — Census
 
-**236 records** across 12 tables in `powerpoint.db` (SQLite + FTS5 full-text). Rebuilt by `build_db.py` from `data/*.json` + generator themes.
+**238 records** across 12 tables in `powerpoint.db` (SQLite + FTS5 full-text). Rebuilt by `build_db.py` from `data/*.json` + generator themes.
 
 | Table | Records | What |
 |---|---:|---|
@@ -15,6 +15,6 @@
 | `tools` | 30 | Add-ins, AI tools, marketplaces, asset libraries |
 | `fonts` | 12 | Latin + Arabic font system |
 | `prompts` | 12 | Copy-paste AI prompt playbook |
-| `palettes` | 19 | Generator themes + accessible chart palettes |
+| `palettes` | 21 | Generator themes + accessible chart palettes |
 
 Query it: `python database/query.py --help` · Rebuild: `python database/build_db.py`

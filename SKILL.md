@@ -50,7 +50,7 @@ Creator Mode: `tools/wizard.py` (goal → DB structure → QA'd starter deck),
 `tools/draft.py` (raw notes → spec, prose becomes speaker notes),
 `tools/coach.py` (talk-time, reading-risk, rehearsal cue cards).
 
-**🐲 The Monster Database** (`database/powerpoint.db`, 236 records / 12 tables /
+**🐲 The Monster Database** (`database/powerpoint.db`, 238 records / 12 tables /
 FTS5): query it *before* web-searching — creators, PlacePlate SKUs, techniques,
 recipes, structures, research principles + myths, tools, fonts, prompts,
 palettes. `python database/query.py search "<anything>"`,

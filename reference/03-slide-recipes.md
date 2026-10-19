@@ -200,3 +200,7 @@ Quadrant *names* do the arguing ("Leaders", "Loud & shallow"); one hero dot, riv
 Bar width ∝ value; the persuasive payload is the % between stages (the leak), set in the accent. Bar color grades accent→accent2 so depth reads as progression, not category.
 
 > Auto-timings: set `timings: true` on the spec (or `seconds` per slide) — the generator estimates advance times from speaker notes (~130 wpm) and writes `advTm` into the transitions, so the same deck exports as a correctly-paced video (reference/13 §6).
+
+
+### R22 — Bilingual twin panels (`bilingual`)
+For Saudi/Gulf enterprise rooms where the deck must serve Arabic-first and English-reference readers at once: Arabic panel on the right (reading order starts there), English twin left, same bullet order so eyes can cross-check line by line. Keep both sides terse — a bilingual slide carries 2× words by definition (QA warns "dense"; that's the one warn you're allowed to nod at). Full mechanics in reference/14 (Arabic Pro section).

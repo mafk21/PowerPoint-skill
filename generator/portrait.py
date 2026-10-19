@@ -280,6 +280,7 @@ def build_portrait(spec, out_path):
     if not slides:
         raise SystemExit("Spec has no slides.")
     rtl = bool(spec.get("rtl"))
+    indic = str(spec.get("numerals", "")).lower() == "arabic-indic"
     font_map = {}
     if spec.get("heading_font"):
         font_map[G.HEADING_FONT] = spec["heading_font"]
@@ -297,13 +298,15 @@ def build_portrait(spec, out_path):
     try:
         G.SLIDE_W = Inches(W)
         for idx, sd in enumerate(slides):
+            sd = G._expand_tokens(sd, spec)
             slide = prs.slides.add_slide(blank)
             G.set_bg(slide, t["bg"])
             BUILDERS.get(sd.get("type", "tips"), p_tips)(
                 slide, t, sd, idx, len(slides), brand, W, H, fmt)
             _chrome(slide, t, idx, len(slides), brand, W, H, fmt)
-            if rtl or font_map:
-                G._polish(slide, rtl, font_map)
+            G._fix_arabic_shapes(slide)
+            if rtl or font_map or indic:
+                G._polish(slide, rtl, font_map, indic)
             secs = sd.get("seconds") or spec.get("seconds")
             if not secs and fmt == "reel":
                 secs = G._est_seconds(dict(sd, notes=sd.get("notes", "")),

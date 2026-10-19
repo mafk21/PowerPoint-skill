@@ -143,6 +143,77 @@ def add_fade_timing(slide, adv_ms):
     _insert_transition(slide, etree.fromstring(xml))
 
 
+HIJRI_MONTHS = ["محرم", "صفر", "ربيع الأول", "ربيع الثاني", "جمادى الأولى",
+                "جمادى الثانية", "رجب", "شعبان", "رمضان", "شوال", "ذو القعدة",
+                "ذو الحجة"]
+
+
+def gregorian_to_hijri(y, m, d):
+    """Arithmetical (tabular/Kuwaiti) Hijri conversion. ±1 day vs observed
+    calendars is normal — label generated dates accordingly if official."""
+    a = (14 - m) // 12
+    y2, m2 = y + 4800 - a, m + 12 * a - 3
+    jd = d + (153 * m2 + 2) // 5 + 365 * y2 + y2 // 4 - y2 // 100 + y2 // 400 - 32045
+    l = jd - 1948440 + 10632
+    n = (l - 1) // 10631
+    l = l - 10631 * n + 354
+    j = ((10985 - l) // 5316) * ((50 * l) // 17719) + (l // 5670) * ((43 * l) // 15238)
+    l = l - ((30 - j) // 15) * ((17719 * j) // 50) - (j // 16) * ((15238 * j) // 43) + 29
+    hm = (24 * l) // 709
+    hd = l - (709 * hm) // 24
+    return 30 * n + j - 30, hm, hd
+
+
+def hijri_str(y, m, d):
+    hy, hm, hd = gregorian_to_hijri(y, m, d)
+    return f"{hd} {HIJRI_MONTHS[hm - 1]} {hy}هـ"
+
+
+_INDIC = str.maketrans("0123456789", "٠١٢٣٤٥٦٧٨٩")
+
+
+def _expand_tokens(obj, spec):
+    """Replace {hijri} / {gregorian} tokens in slide strings.
+    Date from spec['date'] (YYYY-MM-DD) or today."""
+    import datetime as _dt
+    raw = str(spec.get("date", ""))
+    try:
+        dt = _dt.date.fromisoformat(raw) if raw else _dt.date.today()
+    except ValueError:
+        dt = _dt.date.today()
+    repl = {"{hijri}": hijri_str(dt.year, dt.month, dt.day),
+            "{gregorian}": dt.isoformat()}
+
+    def walk(o):
+        if isinstance(o, str):
+            for k, v in repl.items():
+                o = o.replace(k, v)
+            return o
+        if isinstance(o, dict):
+            return {k: walk(v) for k, v in o.items()}
+        if isinstance(o, list):
+            return [walk(v) for v in o]
+        return o
+    return walk(obj)
+
+
+def _fix_arabic_shapes(slide):
+    """Shapes named 'ar!…' (bilingual builder) get true Arabic paragraph
+    direction + Cairo/Tajawal even inside an LTR deck (reference/14)."""
+    for shape in slide.shapes:
+        if not (shape.name or "").startswith("ar!") or not shape.has_text_frame:
+            continue
+        for para in shape.text_frame.paragraphs:
+            para._p.get_or_add_pPr().set("rtl", "1")
+            if para.alignment in (None, PP_ALIGN.LEFT):
+                para.alignment = PP_ALIGN.RIGHT
+            for run in para.runs:
+                if run.font.name == HEADING_FONT:
+                    run.font.name = "Cairo"
+                elif run.font.name == BODY_FONT:
+                    run.font.name = "Tajawal"
+
+
 def _est_seconds(sd, spec):
     """Auto-timing: explicit seconds win; else estimate from speaker notes
     at ~130 wpm when spec.timings is on; clamp 6-45s."""
@@ -844,6 +915,46 @@ def s_funnel(slide, t, d, idx, total, brand):
              color=t["ink"], line_spacing=1.35)
 
 
+def s_bilingual(slide, t, d, idx, total, brand):
+    """Arabic (right, reads first) + English (left) twins on one slide.
+    AR shapes are named 'ar!…' -> _fix_arabic_shapes gives them rtl=1 +
+    Cairo/Tajawal; EN shapes 'ltr!…' -> _polish mirrors position only, so
+    the slide is correct in both RTL and LTR decks (reference/14)."""
+    accent = t["accent"] if not t["dark"] else t["accent2"]
+    add_text(slide, 6.77, 0.92, 5.9, 1.15,
+             d.get("ar_title") or d.get("title", ""), size=29, bold=True,
+             font=HEADING_FONT, color=t["ink"], align=PP_ALIGN.RIGHT,
+             line_spacing=1.12, name="ar!ar-title")
+    add_text(slide, 0.67, 0.92, 5.9, 1.15,
+             d.get("en_title") or d.get("title", ""), size=27, bold=True,
+             font=HEADING_FONT, color=t["ink"], align=PP_ALIGN.LEFT,
+             line_spacing=1.12, name="ltr!en-title")
+    add_shape(slide, MSO_SHAPE.RECTANGLE, 6.652, 2.15, 0.03, 4.35,
+              fill=t["graybar"], name="!!bi-divider")
+    panels = [  # (x, label, bullets key, body key, align, prefix)
+        (6.77, "العربية", "ar_bullets", "ar_body", PP_ALIGN.RIGHT, "ar!"),
+        (0.67, "ENGLISH", "en_bullets", "en_body", PP_ALIGN.LEFT, "ltr!"),
+    ]
+    for x, label, bkey, bodykey, align, pfx in panels:
+        add_text(slide, x, 2.18, 5.9, 0.4, label, size=12.5, bold=True,
+                 font=HEADING_FONT, color=accent, align=align,
+                 name=pfx + "label")
+        y = 2.72
+        for i, b in enumerate(d.get(bkey, [])[:4]):
+            add_text(slide, x, y, 5.9, 0.42, b.get("head", ""), size=17,
+                     bold=True, font=HEADING_FONT, color=t["ink"],
+                     align=align, name=f"{pfx}h{i}")
+            if b.get("body"):
+                add_text(slide, x, y + 0.4, 5.9, 0.62, b["body"], size=13.5,
+                         color=t["muted"], align=align, line_spacing=1.2,
+                         name=f"{pfx}b{i}")
+            y += 1.02
+        if d.get(bodykey):
+            add_text(slide, x, y, 5.9, 2.2, d[bodykey], size=14.5,
+                     color=t["ink"], align=align, line_spacing=1.35,
+                     name=pfx + "body")
+
+
 BUILDERS = {
     "title": s_title, "agenda": s_agenda, "section": s_section,
     "content": s_content, "icon_grid": s_icon_grid, "process": s_process,
@@ -853,14 +964,14 @@ BUILDERS = {
     "stat_strip": s_stat_strip, "before_after": s_before_after,
     "logo_wall": s_logo_wall,
     "line_chart": s_line_chart, "donut": s_donut, "waterfall": s_waterfall,
-    "matrix": s_matrix, "funnel": s_funnel,
+    "matrix": s_matrix, "funnel": s_funnel, "bilingual": s_bilingual,
 }
 
 # Which slides get the standard headline chrome vs. a bespoke layout
 CHROME_KICKER = {"agenda", "content", "icon_grid", "process", "timeline",
                  "comparison", "chart", "market", "tam_sam_som", "team",
                  "stat_strip", "before_after", "logo_wall",
-                 "line_chart", "donut", "waterfall", "matrix", "funnel"}
+                 "line_chart", "donut", "waterfall", "matrix", "funnel", "bilingual"}
 
 
 # ----------------------------------------------------------------------------
@@ -870,13 +981,16 @@ CHROME_KICKER = {"agenda", "content", "icon_grid", "process", "timeline",
 _FLIP_TYPES = None  # lazily built (MSO_SHAPE members)
 
 
-def _polish(slide, rtl, font_map):
+def _polish(slide, rtl, font_map, indic=False):
     global _FLIP_TYPES
     if _FLIP_TYPES is None:
         _FLIP_TYPES = {MSO_SHAPE.CHEVRON, MSO_SHAPE.RIGHT_ARROW,
                        MSO_SHAPE.PENTAGON}
     for shape in slide.shapes:
-        if shape.has_text_frame:
+        # 'ltr!…' shapes (English panel of bilingual slides): mirror the
+        # position like everything else, but never touch direction/fonts.
+        ltr_panel = (shape.name or "").startswith("ltr!")
+        if shape.has_text_frame and not ltr_panel:
             for para in shape.text_frame.paragraphs:
                 if rtl:
                     para._p.get_or_add_pPr().set("rtl", "1")
@@ -885,6 +999,8 @@ def _polish(slide, rtl, font_map):
                 for run in para.runs:
                     if run.font.name in font_map:
                         run.font.name = font_map[run.font.name]
+                    if indic and run.text:
+                        run.text = run.text.translate(_INDIC)
         if rtl:
             try:
                 shape.left = int(SLIDE_W) - (int(shape.left) + int(shape.width))
@@ -906,6 +1022,7 @@ def build(spec, out_path):
     brand = spec.get("brand", "")
     slides = spec.get("slides", [])
     rtl = bool(spec.get("rtl"))
+    indic = str(spec.get("numerals", "")).lower() == "arabic-indic"
     font_map = {}
     if spec.get("heading_font"):
         font_map[HEADING_FONT] = spec["heading_font"]
@@ -924,14 +1041,16 @@ def build(spec, out_path):
     blank = prs.slide_layouts[6]
 
     for idx, sd in enumerate(slides):
+        sd = _expand_tokens(sd, spec)  # {hijri} / {gregorian} in any string
         stype = sd.get("type", "content")
         slide = prs.slides.add_slide(blank)
         set_bg(slide, t["bg"])
         add_chrome(slide, t, idx, len(slides), brand=brand,
                    kicker=sd.get("kicker") if stype in CHROME_KICKER else None)
         BUILDERS.get(stype, s_content)(slide, t, sd, idx, len(slides), brand)
-        if rtl or font_map:
-            _polish(slide, rtl, font_map)
+        _fix_arabic_shapes(slide)
+        if rtl or font_map or indic:
+            _polish(slide, rtl, font_map, indic)
         secs = _est_seconds(sd, spec)
         adv = int(secs * 1000) if secs else None
         if idx > 0:  # Morph needs a "before" slide -- never on slide 1

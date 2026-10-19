@@ -34,6 +34,8 @@ Top level:
 | `morph_ms` | Default Morph duration (default 900) |
 | `timings` | `true` → auto-advance (`advTm`) estimated from speaker notes ~130 wpm (6–45s); slide 1 gets a fade carrying its timing — the deck exports as a correctly-paced video |
 | `rtl` | `true` → Arabic mode: mirrors all geometry, sets RTL paragraph direction + right alignment, flips chevrons/arrows, defaults fonts to Cairo/Tajawal (see `../reference/14-arabic-and-rtl-decks.md`) |
+| `numerals` | `"arabic-indic"` → Western digits become ٠١٢٣٤٥٦٧٨٩ in all runs except English (`ltr!`) panels |
+| `date` | `YYYY-MM-DD` — `{hijri}` / `{gregorian}` tokens in any string expand from this date (default: today); Hijri is tabular (±1 day vs Umm al-Qura) |
 | `heading_font` / `body_font` | Override Montserrat/Inter (runs are remapped post-build) |
 | `slides` | Ordered list of slide objects (below) |
 
@@ -65,6 +67,7 @@ content limits in `../reference/03-slide-recipes.md`:
 | `waterfall` | `title`, `steps[]` ≤7 of `{label, value, kind: start/delta/total}` (deltas signed), optional `format`, `insight` — bars are `!!wf-N` shapes → Morph step-by-step; down-steps vermilion |
 | `matrix` | `title`, `quadrants` `[TL,TR,BL,BR]`, `items[]` ≤8 of `{label, x, y (0–1), highlight}`, `x_label`, `insight` (rail, heading via `y_label`) — hero dot `!!mx-N` |
 | `funnel` | `title`, `stages[]` ≤5 of `{label, value}`, `insight` — width ∝ value, conversion % between stages, bars `!!fn-N` |
+| `bilingual` | `ar_title`/`en_title`, `ar_bullets`/`en_bullets` ≤4 `{head, body}`, optional `ar_body`/`en_body` — Arabic right (rtl=1, Cairo/Tajawal), English left; correct in both RTL and LTR decks (reference/14) |
 
 ## What's baked in automatically
 
