@@ -94,3 +94,21 @@ Quantitative Information* · Richard Mayer — *Multimedia Learning* · Stephen
 Kosslyn — *Clear and to the Point* · Gene Zelazny — *Say It With Charts* ·
 Courses: One Skill "PowerPoint Animation Mastery" (pptskill.com), Duarte
 workshops, SWD live sessions, BrightCarbon masterclasses (free webinars).
+
+
+## This repo's own tools
+
+Beyond the generator and the QA gate, the repo ships a small toolchain in
+`tools/` (all stdlib + python-pptx; BrandKit needs Pillow):
+
+| Tool | What it does |
+|---|---|
+| `qa_deck.py` | Automated QA gate (Morph map, word budgets, type floors, notes) — must pass GREEN |
+| `palette_lab.py` | One seed hex → full 7-role theme via color harmonies, auto-repaired to WCAG floors (ink 10:1, muted 4.5:1, accent 3:1); `--pack` installs 8 curated themes |
+| `brandkit.py` | Logo/image → theme: median-cut palette, vivid-pixel recovery (antialias washout fix), BrandKit scoring favors highlight-usable saturated colors; `--also-dark` emits a dark sibling |
+| `anatomy.py` | Any .pptx → report: canvas, Morph map, palette by painted area, text colors by char count, fonts, per-slide census — plus a guessed theme pinned to the deck's real bg/card (`--write NAME` saves it) |
+
+All theme tools write `database/data/themes.json`; the generator merges it
+over its built-ins, and `database/build_db.py` folds the same palettes into
+the Monster Database (`query.py palettes`). One source of truth, three
+consumers.

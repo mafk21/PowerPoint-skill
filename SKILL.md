@@ -41,8 +41,13 @@ Reference map (open on demand — don't guess what you can look up):
 Generator: `generator/generate_pptx.py` (JSON spec → real Morph-enabled .pptx;
 16 slide builders, 8 themes, **RTL/Arabic mode** via `"rtl": true` in spec).
 QA analyzer: `tools/qa_deck.py`. Prompt chain: `reference/15-prompt-playbook.md`.
+Brand & style tools: `tools/palette_lab.py` (seed color → contrast-safe
+theme), `tools/brandkit.py` (logo image → theme), `tools/anatomy.py` (any
+.pptx → palette/font/Morph report + reusable theme). All write to
+`database/data/themes.json`, which the generator merges over its 8 built-in
+themes (17 palettes total; `python generator/generate_pptx.py --themes`).
 
-**🐲 The Monster Database** (`database/powerpoint.db`, 227 records / 12 tables /
+**🐲 The Monster Database** (`database/powerpoint.db`, 236 records / 12 tables /
 FTS5): query it *before* web-searching — creators, PlacePlate SKUs, techniques,
 recipes, structures, research principles + myths, tools, fonts, prompts,
 palettes. `python database/query.py search "<anything>"`,

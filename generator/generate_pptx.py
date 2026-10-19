@@ -85,6 +85,17 @@ THEMES = {
         accent="8B5CF6", accent2="C4B5FD", graybar="CFC6E8", dark=False),
 }
 
+# External themes (tools/palette_lab.py, brandkit.py, anatomy.py write here)
+# merge over the built-ins, so DB palettes are usable by name in specs.
+_EXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..",
+                    "database", "data", "themes.json")
+if os.path.exists(_EXT):
+    try:
+        with open(_EXT, encoding="utf-8") as _f:
+            THEMES.update(json.load(_f))
+    except Exception:
+        pass
+
 P14 = "http://schemas.microsoft.com/office/powerpoint/2010/main"
 
 

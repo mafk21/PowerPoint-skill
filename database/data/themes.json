@@ -1,0 +1,92 @@
+{
+  "amber-dusk": {
+    "accent": "D97706",
+    "accent2": "C0D906",
+    "bg": "18120C",
+    "card": "2E2316",
+    "dark": true,
+    "graybar": "6D6255",
+    "ink": "F6F5F4",
+    "muted": "B9AEA2"
+  },
+  "berry-cream": {
+    "accent": "C026D3",
+    "accent2": "D32681",
+    "bg": "F9F7F9",
+    "card": "FFFFFF",
+    "dark": false,
+    "graybar": "D0C7D1",
+    "ink": "2A162D",
+    "muted": "705973"
+  },
+  "coral-pop": {
+    "accent": "FF522B",
+    "accent2": "4AFFE4",
+    "bg": "F9F7F7",
+    "card": "FFFFFF",
+    "dark": false,
+    "graybar": "D1C9C7",
+    "ink": "321711",
+    "muted": "735E59"
+  },
+  "deep-ocean": {
+    "accent": "0891B2",
+    "accent2": "B22908",
+    "bg": "0C1618",
+    "card": "162A2E",
+    "dark": true,
+    "graybar": "55686D",
+    "ink": "F4F5F6",
+    "muted": "A2B4B9"
+  },
+  "forest-paper": {
+    "accent": "15803D",
+    "accent2": "3D1580",
+    "bg": "F7F9F8",
+    "card": "FFFFFF",
+    "dark": false,
+    "graybar": "C7D1CB",
+    "ink": "152D1E",
+    "muted": "597363"
+  },
+  "midnight-lime": {
+    "accent": "A3E635",
+    "accent2": "D0F299",
+    "bg": "13180C",
+    "card": "252E16",
+    "dark": true,
+    "graybar": "646D55",
+    "ink": "F5F6F4",
+    "muted": "B0B9A2"
+  },
+  "rose-noir": {
+    "accent": "F43F5E",
+    "accent2": "FAA8B6",
+    "bg": "180C0E",
+    "card": "2E161B",
+    "dark": true,
+    "graybar": "6D5559",
+    "ink": "F6F4F4",
+    "muted": "B9A2A6"
+  },
+  "sky-mist": {
+    "accent": "0284C7",
+    "accent2": "0211C7",
+    "bg": "F7F8F9",
+    "card": "FFFFFF",
+    "dark": false,
+    "graybar": "C7CED1",
+    "ink": "112631",
+    "muted": "596A73"
+  },
+  "violet-volt": {
+    "accent": "7C3AED",
+    "accent2": "ED7C3A",
+    "bg": "100C18",
+    "card": "1F162E",
+    "dark": true,
+    "graybar": "5E556D",
+    "ink": "F5F4F6",
+    "muted": "AAA2B9"
+  }
+}
