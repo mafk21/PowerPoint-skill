@@ -226,5 +226,27 @@ class CreatorTools(unittest.TestCase):
                 self.assertEqual(qa.main([os.path.join(ex, fn)]), 0, fn)
 
 
+class Showpiece(unittest.TestCase):
+    def test_htmldeck(self):
+        hd = load_tool("htmldeck")
+        spec_path = os.path.join(TMP, "hd.json")
+        json.dump(BASE, open(spec_path, "w"))
+        out = os.path.join(TMP, "hd.html")
+        self.assertEqual(hd.main(["htmldeck", spec_path, "--out", out]), 0)
+        doc = open(out, encoding="utf-8").read()
+        self.assertEqual(doc.count('<section class="slide"'),
+                         len(BASE["slides"]))
+        self.assertIn("--accent:", doc)
+
+    def test_site_generates(self):
+        site = load_tool("site")
+        outdir = os.path.join(TMP, "site")
+        self.assertEqual(site.main(["site", "--outdir", outdir]), 0)
+        doc = open(os.path.join(outdir, "index.html"), encoding="utf-8").read()
+        self.assertIn("creators", doc)          # census table present
+        self.assertIn("saudi-green", doc)       # theme gallery live
+        self.assertTrue(os.path.exists(os.path.join(outdir, "demo.html")))
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

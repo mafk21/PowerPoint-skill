@@ -49,6 +49,11 @@ themes (17 palettes total; `python generator/generate_pptx.py --themes`).
 Creator Mode: `tools/wizard.py` (goal → DB structure → QA'd starter deck),
 `tools/draft.py` (raw notes → spec, prose becomes speaker notes),
 `tools/coach.py` (talk-time, reading-risk, rehearsal cue cards).
+Proof & publish: `tools/render.py` (contact sheet), `tools/htmldeck.py`
+(playable HTML deck), `tools/social.py` (Reel/Carousel pack),
+`tools/diff.py` (version changelog), `tools/site.py` (project site in
+`site/`). Hardening: `tests/test_all.py` + CI — run `python -m unittest
+discover -s tests` and `python tools/db_lint.py` before committing.
 
 **🐲 The Monster Database** (`database/powerpoint.db`, 238 records / 12 tables /
 FTS5): query it *before* web-searching — creators, PlacePlate SKUs, techniques,

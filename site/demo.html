@@ -1,0 +1,102 @@
+<!doctype html><html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sahara Solar — Investor Pitch</title><style>:root{--bg:#04333F;--card:#0B4A5A;--ink:#F2FBFA;--muted:#A9CCC9;--accent:#14C8B4;--graybar:#5E7A80;}
+*{box-sizing:border-box} html,body{margin:0;height:100%;background:#0c0e11}
+body{font-family:Inter,Tajawal,system-ui,sans-serif;color:var(--ink)}
+#deck{height:100vh;display:flex;align-items:center;justify-content:center}
+.slide{display:none;width:min(96vw,150vh);aspect-ratio:16/9;background:var(--bg);
+border-radius:14px;padding:4.5% 5.5%;position:relative;overflow:hidden;
+box-shadow:0 18px 60px rgba(0,0,0,.55)}
+.slide.on{display:block}
+h1{font-family:Montserrat,Cairo,sans-serif;font-size:clamp(26px,5.2vw,64px);
+line-height:1.08;margin:.25em 0}
+h2{font-family:Montserrat,Cairo,sans-serif;font-size:clamp(20px,3vw,38px);margin:.1em 0 .6em}
+h3{font-family:Montserrat,Cairo,sans-serif;font-size:clamp(13px,1.5vw,20px);margin:.2em 0}
+p{font-size:clamp(12px,1.35vw,18px);line-height:1.45;color:var(--ink)}
+.kick{color:var(--accent);font-weight:700;letter-spacing:.14em;font-size:clamp(10px,1.1vw,14px)}
+.hero{height:100%;display:flex;flex-direction:column;justify-content:center}
+.sub{font-size:clamp(16px,2.2vw,28px);color:var(--muted)}
+.meta{color:var(--muted);font-size:clamp(11px,1.2vw,15px)}
+.badge{background:var(--accent);color:var(--bg);border-radius:999px;padding:.35em 1em;
+font-weight:700;font-size:clamp(10px,1.1vw,14px);width:max-content}
+.secnum{font-size:clamp(40px,7vw,90px);color:var(--accent);font-weight:800;
+font-family:Montserrat,Cairo,sans-serif}
+.agenda{font-size:clamp(16px,2vw,26px);line-height:1.9}
+.agenda .on{color:var(--accent);font-weight:800}
+.stat{height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.bignum{font-family:Montserrat,Cairo,sans-serif;font-weight:800;color:var(--accent);
+font-size:clamp(60px,11vw,150px);line-height:1}
+.bignum.sm{font-size:clamp(34px,5vw,64px)}
+.statlabel{font-size:clamp(16px,2vw,26px);font-weight:700}
+.strip{display:flex;gap:2%}
+.statcell{background:var(--card);border-radius:12px;padding:18px;flex:1;text-align:center}
+.bars{margin-top:2%}
+.bar-row{display:flex;align-items:center;gap:12px;margin:10px 0}
+.bar-cat{width:22%;font-weight:600;font-size:clamp(12px,1.3vw,17px)}
+.bar-track{flex:1;background:var(--graybar);border-radius:99px;height:20px;overflow:hidden;opacity:.9}
+.bar-fill{display:block;height:100%;background:#9aa7ad;border-radius:99px}
+.bar-fill.hot{background:var(--accent)}
+.bar-val{width:8%;font-weight:700}
+.insight{background:var(--card);border-radius:12px;padding:14px 18px;margin-top:3%;
+font-size:clamp(12px,1.4vw,18px)}
+.insight b{display:block;color:var(--accent);font-size:.78em;letter-spacing:.12em}
+.steps{display:flex;flex-direction:column;gap:14px}
+.step{display:flex;gap:14px;align-items:flex-start}
+.step .num{background:var(--accent);color:var(--bg);width:38px;height:38px;flex:0 0 38px;
+border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.card{background:var(--card);border-radius:14px;padding:18px}
+.chip{background:var(--accent);color:var(--bg);width:40px;height:40px;border-radius:50%;
+display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800}
+.avatar{background:var(--accent);color:var(--bg);width:52px;height:52px;border-radius:50%;
+display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px}
+.role{color:var(--accent);font-weight:700}
+.split{display:grid;grid-template-columns:1.6fr 1fr;gap:4%}
+.visual{background:var(--card);border-radius:14px;display:flex;flex-direction:column;
+align-items:center;justify-content:center;padding:18px;text-align:center}
+.bul{margin-bottom:14px}
+.cols{display:flex;gap:2%}
+.col{background:var(--card);border-radius:14px;padding:20px;flex:1}
+.col.hot-col{background:var(--accent);color:var(--bg)}
+.col.hot-col p,.col.hot-col li{color:var(--bg)}
+.ring{display:flex;gap:16px;align-items:center;background:var(--card);border-radius:12px;
+padding:14px 18px;margin:10px 0}
+.ringlab{font-weight:800;color:var(--accent)}
+.ringval{font-family:Montserrat,Cairo,sans-serif;font-weight:800;font-size:clamp(20px,2.6vw,34px)}
+blockquote{font-family:Montserrat,Cairo,sans-serif;font-size:clamp(20px,3.2vw,40px);
+font-weight:700;line-height:1.3;margin:8% 4%}
+blockquote cite{display:block;margin-top:1em;font-size:.5em;color:var(--muted);font-style:normal}
+.wall{display:flex;flex-wrap:wrap;gap:14px}
+.logo{background:var(--card);border-radius:10px;padding:14px 22px;font-weight:800;
+font-family:Montserrat,Cairo,sans-serif}
+.mx li.hot{color:var(--accent);font-weight:800}
+.notes{display:none;position:absolute;inset-inline:0;bottom:0;background:rgba(0,0,0,.82);
+color:#fff;padding:14px 20px;font-size:14px;line-height:1.5}
+body.shownotes .notes{display:block}
+.notes b{display:block;color:var(--accent);font-size:11px;letter-spacing:.12em}
+#hud{position:fixed;bottom:14px;inset-inline:0;display:flex;justify-content:center;gap:14px;
+color:#9aa0a6;font-size:12px;font-family:Inter,system-ui}
+#prog{position:fixed;top:0;left:0;height:3px;background:var(--accent);transition:width .25s}
+body.overview #deck{display:block;height:auto;padding:20px}
+body.overview .slide{display:block;width:640px;max-width:92vw;margin:0 auto 22px}
+@media (prefers-color-scheme: light){ html,body{background:#dfe3e6} }
+</style></head>
+<body><div id="prog"></div><main id="deck"><section class="slide"><div class="hero"><h1>Sunlight in,
+Revenue out</h1><p class="sub">Sahara Solar turns unused commercial rooftops in the Gulf into income-generating solar assets — with zero upfront cost to building owners.</p><p class="meta">SEED ROUND  ·  2026</p></div><aside class="notes"><b>Speaker notes</b>Open with the one-liner. Do not read the slide; it is a visual anchor.</aside></section><section class="slide"><div class="kick">Agenda</div><h2>What we&#x27;ll cover in 15 minutes</h2><ol class="agenda"><li class="on">The problem: wasted rooftops, rising tariffs</li><li class="">Our solution: solar-as-a-service</li><li class="">Market, traction and business model</li><li class="">Team and the ask</li></ol><aside class="notes"><b>Speaker notes</b>Promise the arc in 20 seconds: problem, solution, market proof, ask.</aside></section><section class="slide"><div class="kick">The Problem</div><h2>Gulf rooftops sit empty while power bills climb</h2><div class="split"><div><div class="bullets"><div class="bul"><h3>92% of commercial roofs generate nothing</h3><p>Warehouses and malls pay full grid tariffs under 3,000+ hours of sun.</p></div><div class="bul"><h3>Tariffs rose 38% in five years</h3><p>Energy is now the #2 operating cost in logistics and retail.</p></div><div class="bul"><h3>Capex blocks adoption</h3><p>Owners refuse 7-figure upfront spend and maintenance risk.</p></div></div></div><div class="visual"><div class="bignum sm">38%</div><p class="meta">Rise in regional commercial tariffs since 2021.</p></div></div><aside class="notes"><b>Speaker notes</b>Land the pain with one story: a warehouse owner paying full tariff under empty sun. Pause after the 38% figure.</aside></section><section class="slide"><div class="hero"><span class="secnum">02</span><h1>The Solution</h1><p class="sub">We finance, install and operate the panels. Owners simply buy cheaper power.</p></div><aside class="notes"><b>Speaker notes</b>Section beat. One sentence: we remove every barrier — money, risk, operations.</aside></section><section class="slide"><div class="kick">Solution</div><h2>Solar-as-a-service, end to end</h2><div class="grid"><div class="card"><div class="chip">$</div><h3>Zero capex</h3><p>We fund 100% against a 15-year power agreement.</p></div><div class="card"><div class="chip">⚡</div><h3>25% cheaper power</h3><p>Per-kWh pricing at a fixed discount from day one.</p></div><div class="card"><div class="chip">🛠</div><h3>Fully operated</h3><p>Monitoring, cleaning, maintenance — performance guaranteed.</p></div><div class="card"><div class="chip">📈</div><h3>Live dashboard</h3><p>Generation, savings and CO2 reporting for ESG.</p></div><div class="card"><div class="chip">🌍</div><h3>Carbon credits</h3><p>Credits aggregated; 30% of proceeds shared with owners.</p></div><div class="card"><div class="chip">🔒</div><h3>Bankable contracts</h3><p>Standard PPAs cleared by two regional lenders.</p></div></div><aside class="notes"><b>Speaker notes</b>Walk the six tiles left-to-right, top row then bottom. Each tile = one objection removed.</aside></section><section class="slide"><div class="kick">How it works</div><h2>From empty roof to first kilowatt in 60 days</h2><div class="steps"><div class="step"><span class="num">1</span><div><h3>Survey</h3><p>Drone scan and structural check within one week of signing.</p></div></div><div class="step"><span class="num">2</span><div><h3>Finance</h3><p>Asset is funded from our project facility — no owner capex.</p></div></div><div class="step"><span class="num">3</span><div><h3>Install</h3><p>Panels live in 3–5 weeks with zero disruption to tenants.</p></div></div><div class="step"><span class="num">4</span><div><h3>Earn</h3><p>Owner buys discounted power; we operate and insure the asset.</p></div></div></div><aside class="notes"><b>Speaker notes</b>Emphasize 60 days and zero tenant disruption — the two operational fears.</aside></section><section class="slide"><div class="kick">Market</div><h2>A $48B regional market, a $1.2B beachhead</h2><div class="rings"><div class="ring"><span class="ringlab">TAM</span><span class="ringval">$48B</span><span class="meta">Commercial rooftop solar spend, GCC, by 2030</span></div><div class="ring"><span class="ringlab">SAM</span><span class="ringval">$12B</span><span class="meta">Saudi Arabia + UAE logistics &amp; retail rooftops</span></div><div class="ring"><span class="ringlab">SOM</span><span class="ringval">$1.2B</span><span class="meta">Our 3-year target across 400 contracted roofs</span></div></div><aside class="notes"><b>Speaker notes</b>Bottom-up math lives in the appendix. Here: beachhead focus beats TAM theater.</aside></section><section class="slide"><div class="kick">Traction</div><h2>Revenue tripled year over year — before paid marketing</h2><div class="bars"><div class="bar-row"><span class="bar-cat">2023</span><span class="bar-track"><span class="bar-fill " style="width:9%"></span></span><span class="bar-val">18</span></div><div class="bar-row"><span class="bar-cat">2024</span><span class="bar-track"><span class="bar-fill " style="width:20%"></span></span><span class="bar-val">41</span></div><div class="bar-row"><span class="bar-cat">2025</span><span class="bar-track"><span class="bar-fill " style="width:46%"></span></span><span class="bar-val">96</span></div><div class="bar-row"><span class="bar-cat">2026E</span><span class="bar-track"><span class="bar-fill hot" style="width:100%"></span></span><span class="bar-val">210</span></div></div><div class="insight"><b>KEY INSIGHT</b>210k MRR expected by end of 2026, driven by 63 live roofs and a signed pipeline of 140 more. All growth so far is referral-based.</div><aside class="notes"><b>Speaker notes</b>Strategic gray: only the current-year bar carries the accent color.</aside></section><section class="slide"><div class="stat"><div class="bignum">63 roofs</div><div class="statlabel">Live and generating today</div><p class="meta">11.4 MW installed · 99.2% average uptime · zero owner churn</p></div><aside class="notes"><b>Speaker notes</b>STAR moment. Let the number sit in silence for 3 seconds before speaking.</aside></section><section class="slide"><div class="kick">Competition</div><h2>We win on financing, not just panels</h2><div class="cols"><div class="col "><h3>Buy panels yourself</h3><ul><li>$400k+ upfront capex</li><li>Owner carries performance risk</li><li>Owner manages maintenance</li><li>Full ownership</li></ul></div><div class="col "><h3>Generic installers</h3><ul><li>Financing arranged separately</li><li>No operations guarantee</li><li>Fast installation</li><li>No ESG reporting</li></ul></div><div class="col hot-col"><h3>Sahara Solar</h3><ul><li>Zero upfront cost</li><li>Guaranteed output &amp; uptime</li><li>Operations fully included</li><li>ESG dashboard + carbon share</li></ul></div></div><aside class="notes"><b>Speaker notes</b>We win on financing and operations, not panel hardware — name the alternatives respectfully.</aside></section><section class="slide"><div class="kick">Team</div><h2>Operators who have built this before</h2><div class="grid"><div class="card"><div class="avatar">LH</div><h3>Layla Haddad</h3><p class="role">CEO</p><p>Previously VP at a regional utility; closed $300M in energy infrastructure deals.</p></div><div class="card"><div class="avatar">OF</div><h3>Omar Farouk</h3><p class="role">CTO</p><p>Built monitoring platforms for 1.2 GW of solar assets across three continents.</p></div><div class="card"><div class="avatar">PN</div><h3>Priya Nair</h3><p class="role">CFO</p><p>Structured project-finance facilities for two listed renewable developers.</p></div></div><aside class="notes"><b>Speaker notes</b>Each bio answers: why can THIS person execute their part? Keep to 20 seconds each.</aside></section><section class="slide"><div class="hero"><h1>Raising $4M seed — 18 months of runway to 250 live roofs and Series A metrics.</h1><p class="sub"></p><p class="meta">Layla Haddad  ·  founders@example.com  ·  Data room available on request</p></div><aside class="notes"><b>Speaker notes</b>State the ask, the use, the milestone. Then stop talking — let them respond.</aside></section></main>
+<div id="hud"><span id="count"></span><span>← → navigate · <b>o</b> overview · <b>n</b> notes · click halves to move</span>
+<span>SAHARA SOLAR</span></div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];let i=0;
+function show(n){i=Math.max(0,Math.min(slides.length-1,n));
+slides.forEach((s,k)=>s.classList.toggle('on',k===i));
+document.getElementById('count').textContent=(i+1)+' / '+slides.length;
+document.getElementById('prog').style.width=((i+1)/slides.length*100)+'%';}
+addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')show(i+1);
+else if(e.key==='ArrowLeft')show(i-1);else if(e.key==='Home')show(0);
+else if(e.key==='End')show(slides.length-1);
+else if(e.key==='o'||e.key==='O')document.body.classList.toggle('overview');
+else if(e.key==='n'||e.key==='N')document.body.classList.toggle('shownotes');});
+addEventListener('click',e=>{if(!document.body.classList.contains('overview'))
+show(i+(e.clientX>innerWidth/2?1:-1))});
+show(0);
+</script></body></html>

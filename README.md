@@ -88,3 +88,17 @@ Style, techniques and catalog facts: **PlacePlate** —
 This repo is an original synthesis for learning/generation; it contains none of
 their files. Their templates cost $3.50–$7 (three are free) — if you want an
 original, buy it via the links in `reference/07-template-catalog.md`.
+
+
+## Creator toolchain & publishing
+
+Beyond the generator: **Wizard** (`tools/wizard.py` — goal → DB-driven
+starter deck), **Drafter** (raw notes → deck), **Speaker Coach**
+(talk-time + rehearsal cards), **BrandKit / Palette Lab / Anatomy**
+(themes from logos, seeds, or existing decks), **Social Factory**
+(Reel 9:16 + Carousel 4:5 packs with captions and VO shotlists),
+**HTML decks** (`tools/htmldeck.py`), a **contact-sheet renderer**
+(`tools/render.py`), **deck diff**, **DB linter**, and a generated
+project site: `python tools/site.py` → `site/index.html` (live census,
+theme gallery, playable demo). Tests: `python -m unittest discover -s
+tests`; CI runs tests + lint + the QA gate on every example deck.
