@@ -65,7 +65,7 @@ class Generator(unittest.TestCase):
         for b in ("line_chart", "donut", "waterfall", "matrix", "funnel",
                   "bilingual"):
             self.assertIn(b, G.BUILDERS)
-        self.assertEqual(len(portrait.BUILDERS), 8)
+        self.assertGreaterEqual(len(portrait.BUILDERS), 9)
 
     def test_morph_and_no_morph_on_first(self):
         xmls = slide_xmls(build(BASE, "a.pptx"))
@@ -296,6 +296,62 @@ class Rescue(unittest.TestCase):
         self.assertEqual(charts, 2)
         xmls = slide_xmls(out)
         self.assertIn("p14:morph", xmls[1])
+
+
+class MediaInteraction(unittest.TestCase):
+    def test_imgkit_and_image_full(self):
+        from PIL import Image
+        src = os.path.join(TMP, "ph.jpg")
+        Image.new("RGB", (800, 600), (120, 140, 160)).save(src)
+        kit = load_tool("imgkit")
+        treated = os.path.join(TMP, "ph16.jpg")
+        self.assertEqual(kit.main(["imgkit", src, "--theme", "teal-orbit",
+                                   "--duotone", "--ratio", "16:9",
+                                   "--out", treated]), 0)
+        self.assertEqual(Image.open(treated).size, (1920, 1080))
+        spec = {"theme": "teal-orbit", "slides": [
+            {"type": "title", "title_lines": ["T"]},
+            {"type": "image_full", "image": treated, "title": "Photo slide",
+             "kicker": "TEST"}]}
+        out = build(spec, "imgfull.pptx")
+        from pptx import Presentation
+        pics = sum(1 for s in Presentation(out).slides
+                   for sh in s.shapes if sh.shape_type == 13)
+        self.assertGreaterEqual(pics, 1)
+
+    def test_clickable_agenda_and_loop(self):
+        spec = {"theme": "teal-orbit", "links": True, "loop": True, "slides": [
+            {"type": "title", "title_lines": ["T"]},
+            {"type": "agenda", "title": "Go", "items": ["Problem", "The ask"]},
+            {"type": "content", "kicker": "PROBLEM",
+             "title": "The problem hurts",
+             "bullets": [{"head": "a", "body": "b"}]},
+            {"type": "closing", "title": "Join",
+             "contact": "hi@example.com"}]}
+        out = build(spec, "links.pptx")
+        from pptx import Presentation
+        from pptx.opc.constants import RELATIONSHIP_TYPE as RT
+        prs = Presentation(out)
+        jumps = [r for r in prs.slides[1].part.rels.values()
+                 if r.reltype == RT.SLIDE]
+        self.assertEqual(len(jumps), 2)
+        ext = [r for r in prs.slides[3].part.rels.values() if r.is_external]
+        self.assertTrue(any("mailto:" in r.target_ref for r in ext))
+        z = ZipFile(out)
+        pp = [n for n in z.namelist() if n.endswith("presProps.xml")][0]
+        self.assertIn(b'loop="1"', z.read(pp))
+
+    def test_social_voiceover(self):
+        soc = load_tool("social")
+        outdir = os.path.join(TMP, "soc")
+        rc = soc.main(["social",
+                       os.path.join(ROOT, "generator",
+                                    "deck-spec.example.json"),
+                       "--format", "reel", "--outdir", outdir])
+        self.assertEqual(rc, 0)
+        vo = open(os.path.join(outdir, "voiceover.txt"),
+                  encoding="utf-8").read()
+        self.assertIn("[01 ·", vo)
 
 
 if __name__ == "__main__":

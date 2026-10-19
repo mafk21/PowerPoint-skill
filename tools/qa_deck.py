@@ -251,7 +251,8 @@ def main(argv=None):
                     except Exception:
                         continue
                     pt = r.font.size.pt if r.font.size else 18.0
-                    floor = 3.0 if pt >= 24 or (pt >= 18 and r.font.bold) else 4.5
+                    # WCAG large text: >=18pt, or >=14pt bold
+                    floor = 3.0 if pt >= 18 or (pt >= 14 and r.font.bold) else 4.5
                     cr = _contrast(fg, bg)
                     if cr < floor:
                         row = (i, round(cr, 1), floor, fg, bg, t[:22])

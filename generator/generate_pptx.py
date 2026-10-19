@@ -26,11 +26,13 @@ not play in Google Slides, Keynote or PDF. Export to MP4 to share the motion.
 
 import json
 import os
+import re
 import sys
 
 from pptx import Presentation
 from pptx.chart.data import ChartData
 from pptx.dml.color import RGBColor
+from pptx.opc.constants import RELATIONSHIP_TYPE as RT
 from pptx.enum.chart import (XL_CHART_TYPE, XL_LABEL_POSITION,
                              XL_LEGEND_POSITION, XL_TICK_MARK)
 from pptx.enum.shapes import MSO_SHAPE
@@ -328,7 +330,7 @@ def add_chrome(slide, theme, idx, total, brand="", kicker=None):
     add_shape(slide, MSO_SHAPE.ROUNDED_RECTANGLE, 0.67, 1.52, 0.85, 0.09,
               fill=t["accent"], name="!!accent-bar", adj=0.5)
     if kicker:
-        add_text(slide, 0.67, 0.52, 8.5, 0.35, kicker.upper(), size=13,
+        add_text(slide, 0.67, 0.5, 8.5, 0.38, kicker.upper(), size=14,
                  color=t["accent"] if not t["dark"] else t["accent2"],
                  bold=True, font=HEADING_FONT, name="!!kicker")
     if brand:
@@ -373,11 +375,32 @@ def _mix(c1, c2, f):
 def _insight_rail(slide, t, text, label="KEY INSIGHT"):
     add_shape(slide, MSO_SHAPE.ROUNDED_RECTANGLE, 9.35, 2.1, 3.3, 4.4,
               fill=t["card"], adj=0.07, name="!!insight-card")
-    add_text(slide, 9.65, 2.4, 2.75, 0.5, label, size=12, bold=True,
+    add_text(slide, 9.65, 2.4, 2.75, 0.5, label, size=14, bold=True,
              font=HEADING_FONT,
              color=t["accent"] if not t["dark"] else t["accent2"])
     add_text(slide, 9.65, 2.85, 2.75, 3.4, text, size=15,
              color=t["ink"], line_spacing=1.3)
+
+
+def add_picture_cover(slide, path, x, y, w, h, name=None):
+    """Add a picture filling the box (CSS background-size: cover) via crop
+    fractions — no distortion, centered. Pillow reads the source size."""
+    from PIL import Image as _PILImage
+    iw, ih = _PILImage.open(path).size
+    pic = slide.shapes.add_picture(path, Inches(x), Inches(y),
+                                   Inches(w), Inches(h))
+    img_r, box_r = iw / ih, w / h
+    if img_r > box_r:
+        crop = (1 - box_r / img_r) / 2
+        pic.crop_left = crop
+        pic.crop_right = crop
+    elif img_r < box_r:
+        crop = (1 - img_r / box_r) / 2
+        pic.crop_top = crop
+        pic.crop_bottom = crop
+    if name:
+        pic.name = name
+    return pic
 
 
 def s_title(slide, t, d, idx, total, brand):
@@ -577,7 +600,7 @@ def s_chart(slide, t, d, idx, total, brand):
     # Insight rail on the right: the "so what"
     add_shape(slide, MSO_SHAPE.ROUNDED_RECTANGLE, 9.35, 2.1, 3.3, 4.4,
               fill=t["card"], adj=0.07, name="!!insight-card")
-    add_text(slide, 9.65, 2.4, 2.75, 0.5, "KEY INSIGHT", size=12, bold=True,
+    add_text(slide, 9.65, 2.4, 2.75, 0.5, "KEY INSIGHT", size=14, bold=True,
              font=HEADING_FONT, color=t["accent"] if not t["dark"] else t["accent2"])
     add_text(slide, 9.65, 2.85, 2.75, 3.4, d.get("insight", ""), size=15,
              color=t["ink"], line_spacing=1.3)
@@ -634,7 +657,7 @@ def s_team(slide, t, d, idx, total, brand):
                  color=t["bg"] if t["dark"] else "FFFFFF")
         add_text(slide, cx + 0.3, 4.0, cw - 0.6, 0.5, p.get("name", ""), size=17,
                  bold=True, font=HEADING_FONT, color=t["ink"], align=PP_ALIGN.CENTER)
-        add_text(slide, cx + 0.3, 4.5, cw - 0.6, 0.4, p.get("role", ""), size=13,
+        add_text(slide, cx + 0.3, 4.5, cw - 0.6, 0.42, p.get("role", ""), size=14,
                  color=t["accent"] if not t["dark"] else t["accent2"],
                  bold=True, align=PP_ALIGN.CENTER)
         add_text(slide, cx + 0.35, 5.0, cw - 0.7, 1.2, p.get("bio", ""), size=12,
@@ -942,7 +965,7 @@ def s_bilingual(slide, t, d, idx, total, brand):
         (0.67, "ENGLISH", "en_bullets", "en_body", PP_ALIGN.LEFT, "ltr!"),
     ]
     for x, label, bkey, bodykey, align, pfx in panels:
-        add_text(slide, x, 2.18, 5.9, 0.4, label, size=12.5, bold=True,
+        add_text(slide, x, 2.18, 5.9, 0.4, label, size=14, bold=True,
                  font=HEADING_FONT, color=accent, align=align,
                  name=pfx + "label")
         y = 2.72
@@ -961,6 +984,35 @@ def s_bilingual(slide, t, d, idx, total, brand):
                      name=pfx + "body")
 
 
+def s_image_full(slide, t, d, idx, total, brand):
+    """Full-bleed photo + headline bar. Pre-treat the photo with
+    tools/imgkit.py (duotone/shade) so it belongs to the theme. The photo
+    covers the standard chrome on this slide by design (a visual breath);
+    the !! anchors still exist underneath, so Morph continuity survives."""
+    if d.get("image"):
+        add_picture_cover(slide, d["image"], 0, 0, 13.333, 7.5,
+                          name="!!img-photo")
+    else:
+        add_shape(slide, MSO_SHAPE.RECTANGLE, 0, 0, 13.333, 7.5,
+                  fill=t["card"], name="!!img-photo")
+    if d.get("kicker"):
+        kw = 0.5 + 0.105 * len(d["kicker"])
+        add_shape(slide, MSO_SHAPE.ROUNDED_RECTANGLE, 0.67, 0.55, kw, 0.5,
+                  fill=t["accent"], adj=0.5, name="!!img-chip")
+        add_text(slide, 0.67, 0.63, kw, 0.36, d["kicker"].upper(), size=14,
+                 bold=True, font=HEADING_FONT,
+                 color=t["bg"] if t["dark"] else "FFFFFF",
+                 align=PP_ALIGN.CENTER)
+    add_shape(slide, MSO_SHAPE.RECTANGLE, 0, 5.3, 13.333, 2.2,
+              fill=t["card"], name="!!img-bar")
+    add_text(slide, 0.67, 5.62, 7.9, 1.5, d.get("title", ""), size=30,
+             bold=True, font=HEADING_FONT, color=t["ink"],
+             line_spacing=1.12, name="!!img-title")
+    if d.get("caption"):
+        add_text(slide, 8.9, 5.75, 3.75, 1.4, d["caption"], size=14,
+                 color=t["muted"], line_spacing=1.3)
+
+
 BUILDERS = {
     "title": s_title, "agenda": s_agenda, "section": s_section,
     "content": s_content, "icon_grid": s_icon_grid, "process": s_process,
@@ -971,6 +1023,7 @@ BUILDERS = {
     "logo_wall": s_logo_wall,
     "line_chart": s_line_chart, "donut": s_donut, "waterfall": s_waterfall,
     "matrix": s_matrix, "funnel": s_funnel, "bilingual": s_bilingual,
+    "image_full": s_image_full,
 }
 
 # Which slides get the standard headline chrome vs. a bespoke layout
@@ -1021,6 +1074,117 @@ def _polish(slide, rtl, font_map, indic=False):
                 pass
 
 
+def _set_slide_link(run, src_slide, target_slide):
+    """Internal slide-jump hyperlink on a run (ppaction hlinksldjump)."""
+    rId = src_slide.part.relate_to(target_slide.part, RT.SLIDE)
+    rPr = run._r.get_or_add_rPr()
+    hlink = rPr.makeelement(qn("a:hlinkClick"),
+                            {qn("r:id"): rId,
+                             "action": "ppaction://hlinksldjump"})
+    rPr.append(hlink)
+
+
+def _norm(s):
+    return re.sub(r"[^a-z0-9؀-ۿ ]", "", str(s).lower()).strip()
+
+
+def _apply_links(built, spec):
+    """built: [(slide, slide_dict)]. Agenda items jump to their sections
+    (explicit `targets: [slide numbers]` on the agenda slide wins; else
+    auto-match by distinctive words vs later titles/kickers). Any slide may
+    set `link_url` (+ `link_text` to find the run); closing contacts with
+    @/http auto-link. Presentations stay Morph-animated — links are the
+    clickable layer on top."""
+    slides = [sl for sl, _ in built]
+    dicts = [sd for _, sd in built]
+
+    def link_runs(slide, needle, fn):
+        ndl = _norm(re.sub(r"^\d+[.)]\s*", "", needle))
+        if not ndl:
+            return 0
+        hits = 0
+        for shape in slide.shapes:
+            if not shape.has_text_frame:
+                continue
+            for para in shape.text_frame.paragraphs:
+                ptxt = _norm("".join(r.text for r in para.runs))
+                if ndl and ndl in ptxt:
+                    for r in para.runs:
+                        if r.text.strip():
+                            fn(r)
+                            hits += 1
+        return hits
+
+    keys = []
+    for sd in dicts:
+        words = set()
+        for f in ("title", "kicker", "ask"):
+            words.update(w for w in _norm(sd.get(f, "")).split() if len(w) > 3)
+        if sd.get("type") == "closing":
+            words |= {"ask", "closing", "next", "contact", "join"}
+        keys.append(words)
+
+    for i, (slide, sd) in enumerate(built):
+        if sd.get("type") == "agenda":
+            items = sd.get("items", [])
+            targets = sd.get("targets") or []
+            for k, item in enumerate(items):
+                tgt = None
+                if k < len(targets) and targets[k]:
+                    tgt = int(targets[k]) - 1
+                else:
+                    want = {w for w in _norm(item).split()
+                            if len(w) >= 3 and w not in
+                            {"the", "and", "for", "our", "your"}}
+                    for j in range(i + 1, len(slides)):
+                        if want & keys[j] or _norm(item) in _norm(
+                                dicts[j].get("title", "")):
+                            tgt = j
+                            break
+                if tgt is not None and 0 <= tgt < len(slides) and tgt != i:
+                    ts = slides[tgt]
+                    link_runs(slide, str(item),
+                              lambda r, ts=ts: _set_slide_link(r, slide, ts))
+        url = sd.get("link_url")
+        if url:
+            link_runs(slide, sd.get("link_text") or sd.get("contact") or url,
+                      lambda r, u=url: setattr(r.hyperlink, "address", u))
+        contact = str(sd.get("contact", ""))
+        if "@" in contact and "." in contact:
+            link_runs(slide, contact,
+                      lambda r, c=contact: setattr(
+                          r.hyperlink, "address", "mailto:" + c.strip()))
+        elif contact.startswith("http"):
+            link_runs(slide, contact,
+                      lambda r, c=contact: setattr(r.hyperlink, "address", c))
+
+
+def _set_loop(prs):
+    """presProps: loop the show and honor timings (kiosk-style playback;
+    pair with spec timings). No-op if the part is absent."""
+    try:
+        for part in prs.part.package.iter_parts():
+            if str(part.partname).endswith("presProps.xml"):
+                root = etree.fromstring(part.blob)  # plain Part: edit blob
+                show = root.find(qn("p:showPr"))
+                if show is None:
+                    show = root.makeelement(qn("p:showPr"), {})
+                    ext = root.find(qn("p:extLst"))
+                    if ext is not None:
+                        ext.addprevious(show)
+                    else:
+                        root.append(show)
+                show.set("loop", "1")
+                show.set("useTimings", "1")
+                part._blob = etree.tostring(
+                    root, xml_declaration=True, encoding="UTF-8",
+                    standalone=True)
+                return True
+    except Exception:
+        pass
+    return False
+
+
 def build(spec, out_path):
     theme_name = spec.get("theme", "teal-orbit")
     t = dict(THEMES.get(theme_name, THEMES["teal-orbit"]))
@@ -1046,6 +1210,7 @@ def build(spec, out_path):
     prs.core_properties.author = spec.get("author", "")
     blank = prs.slide_layouts[6]
 
+    built = []
     for idx, sd in enumerate(slides):
         sd = _expand_tokens(sd, spec)  # {hijri} / {gregorian} in any string
         stype = sd.get("type", "content")
@@ -1067,7 +1232,12 @@ def build(spec, out_path):
             add_fade_timing(slide, adv)
         if sd.get("notes"):
             slide.notes_slide.notes_text_frame.text = sd["notes"]
+        built.append((slide, sd))
 
+    if spec.get("links"):
+        _apply_links(built, spec)
+    if spec.get("loop"):
+        _set_loop(prs)
     prs.save(out_path)
     return len(slides)
 

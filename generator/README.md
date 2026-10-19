@@ -33,6 +33,8 @@ Top level:
 | `brand` | Footer brand text (appears bottom-left, `!!brand`) |
 | `morph_ms` | Default Morph duration (default 900) |
 | `timings` | `true` → auto-advance (`advTm`) estimated from speaker notes ~130 wpm (6–45s); slide 1 gets a fade carrying its timing — the deck exports as a correctly-paced video |
+| `links` | `true` → clickable deck: agenda items hyperlink to their sections (auto-matched by title/kicker words, or explicit `targets: [slide numbers]` on the agenda slide); any slide may set `link_url` (+ `link_text`); closing `contact` with `@`/http auto-links (mailto/URL) |
+| `loop` | `true` → presentation loops honoring timings (presProps `loop`+`useTimings`) — kiosk/trade-show playback; pair with `timings` |
 | `rtl` | `true` → Arabic mode: mirrors all geometry, sets RTL paragraph direction + right alignment, flips chevrons/arrows, defaults fonts to Cairo/Tajawal (see `../reference/14-arabic-and-rtl-decks.md`) |
 | `numerals` | `"arabic-indic"` → Western digits become ٠١٢٣٤٥٦٧٨٩ in all runs except English (`ltr!`) panels |
 | `date` | `YYYY-MM-DD` — `{hijri}` / `{gregorian}` tokens in any string expand from this date (default: today); Hijri is tabular (±1 day vs Umm al-Qura) |
@@ -68,6 +70,7 @@ content limits in `../reference/03-slide-recipes.md`:
 | `matrix` | `title`, `quadrants` `[TL,TR,BL,BR]`, `items[]` ≤8 of `{label, x, y (0–1), highlight}`, `x_label`, `insight` (rail, heading via `y_label`) — hero dot `!!mx-N` |
 | `funnel` | `title`, `stages[]` ≤5 of `{label, value}`, `insight` — width ∝ value, conversion % between stages, bars `!!fn-N` |
 | `bilingual` | `ar_title`/`en_title`, `ar_bullets`/`en_bullets` ≤4 `{head, body}`, optional `ar_body`/`en_body` — Arabic right (rtl=1, Cairo/Tajawal), English left; correct in both RTL and LTR decks (reference/14) |
+| `image_full` | `image` (path), `title` (headline on the bottom bar), optional `caption`, `kicker` chip — full-bleed cover-cropped photo; pre-treat with `tools/imgkit.py` (duotone/tint/shade to the theme) |
 
 ## What's baked in automatically
 
@@ -108,7 +111,7 @@ New themes: one dict entry in `THEMES` + a row in `../reference/02-design-system
 
 `generator/portrait.py` builds vertical decks (9:16 reel, 4:5 carousel)
 with the same themes/Morph/helpers — hook, bigstat, tips, bars, steps,
-quote, compare, cta. `tools/social.py your-spec.json` converts any
+quote, compare, cta, photo (full-bleed + headline panel). `tools/social.py your-spec.json` converts any
 landscape spec into the full pack (both formats + caption + voiceover
 shotlist); reels carry `advTm` so PowerPoint's Export → Video is paced
 correctly out of the box. QA them like any deck (`tools/qa_deck.py`

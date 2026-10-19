@@ -38,6 +38,9 @@ TOOLS = [
     ("diff.py", "Deck A/B changelog"),
     ("db_lint.py", "Data linter — catches rot, drift, stale DB"),
     ("hijri.py", "Gregorian → Hijri converter"),
+    ("decompile.py", "Deck Decompiler — old .pptx → spec → regenerated"),
+    ("merge.py", "Slide-library merge across decks (charts survive)"),
+    ("imgkit.py", "Photo treatment to the theme (duotone/tint/crop/shade)"),
     ("site.py", "This site"),
 ]
 

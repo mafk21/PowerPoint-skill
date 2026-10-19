@@ -262,9 +262,31 @@ def p_cta(slide, t, d, idx, total, brand, W, H, fmt):
                    align=PP_ALIGN.CENTER)
 
 
+def p_photo(slide, t, d, idx, total, brand, W, H, fmt):
+    """Full-bleed portrait photo with a headline panel in the safe band.
+    Treat with imgkit --ratio 9:16/4:5 + --shade first."""
+    if d.get("image"):
+        G.add_picture_cover(slide, d["image"], 0, 0, W, H, name="!!p-photo")
+    py = H * 0.585
+    G.add_shape(slide, MSO_SHAPE.ROUNDED_RECTANGLE, 0.4, py, W - 0.8, H * 0.21,
+                fill=t["card"], adj=0.06, name="!!p-photo-panel")
+    if d.get("kicker"):
+        G.add_text(slide, 0.75, py + 0.25, W - 1.5, 0.4, d["kicker"].upper(),
+                   size=14, bold=True, font=G.HEADING_FONT,
+                   color=t["accent"] if not t["dark"] else t["accent2"])
+    G.add_text(slide, 0.75, py + 0.68, W - 1.5, 1.3,
+               d.get("title") or " ".join(d.get("title_lines", [])),
+               size=30 if W < 9 else 34, bold=True, font=G.HEADING_FONT,
+               color=t["ink"], line_spacing=1.12, name="!!p-photo-title")
+    if d.get("caption"):
+        G.add_text(slide, 0.75, py + H * 0.21 - 0.85, W - 1.5, 0.7,
+                   d["caption"], size=15.5, color=t["muted"],
+                   line_spacing=1.25)
+
+
 BUILDERS = {"hook": p_hook, "bigstat": p_bigstat, "tips": p_tips,
             "bars": p_bars, "steps": p_steps, "quote": p_quote,
-            "compare": p_compare, "cta": p_cta}
+            "compare": p_compare, "cta": p_cta, "photo": p_photo}
 
 
 def build_portrait(spec, out_path):

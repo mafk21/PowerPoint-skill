@@ -212,6 +212,7 @@ def main(argv):
     os.makedirs(a.outdir, exist_ok=True)
 
     shots = []
+    reel_spec = None
     for fmt in fmts:
         pspec, skipped = convert_spec(spec, fmt, pick, a.handle)
         sp = os.path.join(a.outdir, f"{fmt}.spec.json")
@@ -223,6 +224,8 @@ def main(argv):
         if skipped:
             print(f"   skipped (no portrait mapping): {skipped}")
         shots.append(shotlist(fmt, pspec))
+        if fmt == "reel":
+            reel_spec = pspec
 
     # caption: claim from first convertible hook, else spec title
     hook = ""
@@ -242,7 +245,23 @@ def main(argv):
         f.write(caption + "\n")
     with open(os.path.join(a.outdir, "shotlist.md"), "w", encoding="utf-8") as f:
         f.write("\n".join(shots))
-    print(f"posting kit: caption.txt + shotlist.md in {a.outdir}")
+    extra = ""
+    if reel_spec:  # paste-ready voiceover script (record or any TTS)
+        vo = ["VOICEOVER SCRIPT — one block per slide; bracket = on-screen seconds", ""]
+        for i, s2 in enumerate(reel_spec["slides"], 1):
+            secs = s2.get("seconds")
+            if not secs:
+                w = len(str(s2.get("notes", "")).split())
+                secs = round(max(6.0, min(45.0, w / 130 * 60)), 1) if w else 4.0
+            line = str(s2.get("notes", "")).strip() or \
+                str(s2.get("title") or " ".join(s2.get("title_lines", [])))
+            vo.append(f"[{i:02d} · {secs}s] {line}")
+            vo.append("")
+        with open(os.path.join(a.outdir, "voiceover.txt"), "w",
+                  encoding="utf-8") as f:
+            f.write("\n".join(vo))
+        extra = " + voiceover.txt"
+    print(f"posting kit: caption.txt + shotlist.md{extra} in {a.outdir}")
     print("QA them: python tools/qa_deck.py " +
           " ".join(os.path.join(a.outdir, f"{f}.pptx") for f in fmts))
     return 0

@@ -117,6 +117,7 @@ Beyond the generator and the QA gate, the repo ships a small toolchain in
 | `hijri.py` | Gregorian → tabular Hijri converter (same math as the generator's `{hijri}` token) |
 | `decompile.py` | Deck Decompiler: any .pptx → spec.json (chrome-furniture filtering, brand recovery, geometry-paired stat strips, chart data, picture extraction, anatomy-guessed theme) → regenerate + diff to measure fidelity |
 | `merge.py` | Slide-library merge: cherry-pick slides across decks with full OPC relationship surgery (native charts + embedded workbooks survive), optional Morph re-stamp |
+| `imgkit.py` | Photo treatment to the theme: duotone (ink→accent), accent tint, ratio crops (16:9/9:16/4:5/1:1), bottom shade for text — feeds the `image_full` / portrait `photo` builders |
 
 **Hardening:** `tests/test_all.py` (18 stdlib-unittest tests: Morph/timing
 XML, RTL, bilingual guards, Hijri epoch-exactness, contrast floors, DB

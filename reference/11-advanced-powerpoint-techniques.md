@@ -133,3 +133,17 @@ card → triggered preview pops before committing to click. Menu UX from B1+B2.
   license allows, or ship Calibri-safe.
 - Morph + heavy media = slideshow jank on weak hardware: compress pictures
   (Picture Format ▸ Compress, 150–220 ppi for projection), trim video.
+
+
+## Implemented: clickable decks in the generator
+
+Set `"links": true` in a spec and agenda items become real slide-jump
+hyperlinks (`ppaction://hlinksldjump` + slide relationships), auto-matched
+to sections by title/kicker vocabulary or pinned with `targets: [...]` on
+the agenda slide. `link_url`/`link_text` put external links on any slide;
+closing emails become `mailto:`. `"loop": true` stamps presProps
+loop+useTimings for kiosk playback with the auto-timings. Section-Zoom
+thumbnails still need native PowerPoint, but hyperlink navigation — the
+working core of menu decks — is now generated, QA-able, and covered by
+tests. Photos join the system too: `tools/imgkit.py` (duotone/tint/crop/
+shade to the theme) + the `image_full` and portrait `photo` builders.
