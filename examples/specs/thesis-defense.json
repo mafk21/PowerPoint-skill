@@ -1,0 +1,153 @@
+{
+  "title": "Thesis Defense — Microplastic Filtration",
+  "author": "Generator example (academic arc)",
+  "theme": "royal-blue",
+  "brand": "DEPT. OF ENVIRONMENTAL ENGINEERING",
+  "morph_ms": 800,
+  "slides": [
+    {
+      "type": "title",
+      "title": "Removing Microplastics\nwith Sand-Biofilm Filters",
+      "subtitle": "A low-cost filtration design for small coastal treatment plants — thesis defense, Noura Al-Harbi.",
+      "meta": "MSc DEFENSE  ·  2026",
+      "notes": "Introduce yourself, program, supervisors. One sentence on why this matters locally."
+    },
+    {
+      "type": "agenda",
+      "kicker": "Outline",
+      "title": "Defense roadmap",
+      "items": [
+        "Background & research gap",
+        "Research questions",
+        "Methodology",
+        "Results & discussion",
+        "Conclusions"
+      ],
+      "notes": "Roadmap reduces panel cognitive load. Mention backup slides exist for detail questions."
+    },
+    {
+      "type": "content",
+      "kicker": "Background",
+      "title": "Coastal plants discharge microplastics untreated",
+      "bullets": [
+        {
+          "head": "Secondary treatment misses small particles",
+          "body": "Particles under 300 micrometers pass conventional clarifiers largely intact."
+        },
+        {
+          "head": "Membrane upgrades are unaffordable locally",
+          "body": "Capex and energy costs exceed small-plant budgets by 4-6x."
+        },
+        {
+          "head": "Biofilm-sand hybrids are understudied",
+          "body": "No published data for Red Sea salinity and temperature ranges."
+        }
+      ],
+      "visual_big": "300µm",
+      "visual_caption": "Particle size below which conventional treatment stops working.",
+      "notes": "Establish the gap: effective + affordable + local conditions. Cite sources verbally."
+    },
+    {
+      "type": "icon_grid",
+      "kicker": "Research Questions",
+      "title": "Three questions this thesis answers",
+      "items": [
+        {
+          "glyph": "1",
+          "head": "Removal efficiency?",
+          "body": "Can sand-biofilm reach 90% removal below 300µm?"
+        },
+        {
+          "glyph": "2",
+          "head": "Salinity effect?",
+          "body": "Does Red Sea salinity degrade biofilm performance?"
+        },
+        {
+          "glyph": "3",
+          "head": "Operating cost?",
+          "body": "Can OPEX stay under $0.05 per cubic meter?"
+        }
+      ],
+      "notes": "Panels grade conclusions against these exact questions. Pause here."
+    },
+    {
+      "type": "process",
+      "kicker": "Methodology",
+      "title": "Pilot rig ran 112 days across three salinities",
+      "steps": [
+        {
+          "head": "Build",
+          "body": "Three 200L columns: sand, biofilm-sand, membrane control."
+        },
+        {
+          "head": "Seed",
+          "body": "Biofilm cultured 21 days on local seawater inoculum."
+        },
+        {
+          "head": "Run",
+          "body": "112 days at 35 / 40 / 45 ppt, weekly particle counts."
+        },
+        {
+          "head": "Measure",
+          "body": "FTIR-verified counts in 4 size bands, triplicate samples."
+        }
+      ],
+      "notes": "Flowchart beats bullets for methods. Mention triplication and FTIR verification unprompted."
+    },
+    {
+      "type": "chart",
+      "kicker": "Results",
+      "title": "Biofilm-sand removed 93% — near membrane performance",
+      "categories": [
+        "Sand only",
+        "Biofilm-sand",
+        "Membrane"
+      ],
+      "values": [
+        41,
+        93,
+        97
+      ],
+      "highlight": 1,
+      "series_name": "Removal % (<300µm)",
+      "insight": "Biofilm-sand reaches 93% removal vs 97% for membrane — at roughly one-fifth of the operating cost. The 4-point gap is the price of affordability.",
+      "notes": "Answer RQ1 explicitly: yes, above the 90% threshold at all salinities tested."
+    },
+    {
+      "type": "hero_stat",
+      "stat": "$0.04/m³",
+      "label": "Operating cost of the biofilm-sand design",
+      "context": "vs $0.21/m³ membrane benchmark — inside the RQ3 target",
+      "notes": "STAR moment. Let it breathe 3 seconds, then answer RQ3."
+    },
+    {
+      "type": "content",
+      "kicker": "Discussion",
+      "title": "Salinity slowed start-up, not steady performance",
+      "bullets": [
+        {
+          "head": "45 ppt delayed biofilm maturity 9 days",
+          "body": "Steady-state removal equalized after day 40 at all salinities."
+        },
+        {
+          "head": "Backwash cycle is the main OPEX driver",
+          "body": "Optimizing backwash timing is the clearest cost lever."
+        },
+        {
+          "head": "Limitation: single polymer mix tested",
+          "body": "Polyester fibers dominated; tire-wear particles untested."
+        }
+      ],
+      "visual_big": "40d",
+      "visual_caption": "Days to steady state at the highest salinity.",
+      "notes": "Name limitations before the panel does — credibility. Backup slide has salinity curves."
+    },
+    {
+      "type": "closing",
+      "title": "Affordable removal is achievable",
+      "ask": "Recommendation: pilot at plant scale (10 m³/day) with backwash optimization as phase two.",
+      "contact": "References and full datasets in appendix  ·  Thank you — I welcome your questions",
+      "notes": "End on the so-what. Keep this slide up during Q&A; backup data slides follow."
+    }
+  ]
+}

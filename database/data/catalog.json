@@ -1,0 +1,834 @@
+{
+ "_meta": {
+  "source": "Researched Oct 2026 from instagram/tiktok/youtube indexes + placeplate.com; see reference/08,09. Counts are snapshots."
+ },
+ "creators": [
+  {
+   "name": "Jacob — The PowerPoint Guy",
+   "handle": "jacob_ppt / jacobppt",
+   "platforms": "instagram,tiktok",
+   "url": "https://www.instagram.com/jacob_ppt/",
+   "followers": "5M IG",
+   "archetype": "morph-tutorialist",
+   "specialty": "Student-friendly Morph transformations, aesthetic decks",
+   "steal": "3-tip hook reels; comment-reply tutorials; before/after transformations"
+  },
+  {
+   "name": "Luis Urrutia",
+   "handle": "lourrutiappt / lourrutia.ppt",
+   "platforms": "instagram,tiktok,web",
+   "url": "https://www.instagram.com/lourrutiappt/",
+   "followers": "4M IG",
+   "archetype": "morph-tutorialist+shop",
+   "specialty": "Playful themed templates (Instagram-UI deck), Morph+Slide Zoom",
+   "steal": "'Comment PART 2' series hooks; tutorial slides inside products; personality branding"
+  },
+  {
+   "name": "FastPPT",
+   "handle": "fastppt_",
+   "platforms": "instagram",
+   "url": "https://www.instagram.com/fastppt_/",
+   "followers": "3M IG",
+   "archetype": "morph-tutorialist",
+   "specialty": "Step-by-step tutorial reels at volume",
+   "steal": "One technique per reel; free-download lead magnets"
+  },
+  {
+   "name": "One Skill PPT (Kasparas Tolkusinas)",
+   "handle": "oneskill_ppt",
+   "platforms": "youtube,instagram,web",
+   "url": "https://www.youtube.com/@oneskill_ppt",
+   "followers": "825K YT",
+   "archetype": "youtube-master",
+   "specialty": "Interactive decks: Morph+Slide Zoom+kiosk, 3D, parallax, masked anims",
+   "steal": "Zoom hub menus; 3D-model morph; parallax layers; book-flip"
+  },
+  {
+   "name": "PowerPoint School",
+   "handle": "powerpointschool",
+   "platforms": "youtube",
+   "url": "https://www.youtube.com/@PowerPointSchool",
+   "followers": "972K YT (dormant ~1y)",
+   "archetype": "youtube-master",
+   "specialty": "Clean corporate slide builds",
+   "steal": "Native-shape infographic construction"
+  },
+  {
+   "name": "PowerPoint University",
+   "handle": "powerpointuniversity",
+   "platforms": "youtube",
+   "url": "https://www.youtube.com/@powerpointuniversity",
+   "followers": "321K YT",
+   "archetype": "youtube-master",
+   "specialty": "Template-style tutorials",
+   "steal": "Reusable layout systems"
+  },
+  {
+   "name": "Hamdi — SlideCased",
+   "handle": "slidecased",
+   "platforms": "instagram,tiktok",
+   "url": "https://www.instagram.com/slidecased/",
+   "followers": "213K IG",
+   "archetype": "morph-tutorialist",
+   "specialty": "Design tips + course/templates; animation without Morph too",
+   "steal": "Non-Morph animation variety; critique formats"
+  },
+  {
+   "name": "PlacePlate",
+   "handle": "placeplate12345 / placeplate",
+   "platforms": "instagram,tiktok,youtube,web",
+   "url": "https://www.instagram.com/placeplate12345/",
+   "followers": "111K IG",
+   "archetype": "template-shop",
+   "specialty": "Morph template catalog (47 SKUs) + custom service; THIS REPO'S ANCHOR",
+   "steal": "1 motif + 1 color story SKUs; free 5-slide samplers; bundle ladder"
+  },
+  {
+   "name": "PowerPoint Tutorials",
+   "handle": "powerpoint_tutorials",
+   "platforms": "instagram",
+   "url": "https://www.instagram.com/powerpoint_tutorials/",
+   "followers": "102K IG",
+   "archetype": "morph-tutorialist",
+   "specialty": "All-levels tips ('PowerPoint Wizard')",
+   "steal": "Beginner on-ramps"
+  },
+  {
+   "name": "yerra.dzn",
+   "handle": "yerra.dzn",
+   "platforms": "tiktok",
+   "url": "https://www.tiktok.com/@yerra.dzn",
+   "followers": "~800K views top video",
+   "archetype": "morph-tutorialist",
+   "specialty": "Morph with 3D objects, text+shapes in one flow",
+   "steal": "3D hero object as morph anchor"
+  },
+  {
+   "name": "Dr. Saeed Faal",
+   "handle": "saeedfaal",
+   "platforms": "tiktok,youtube",
+   "url": "https://www.tiktok.com/@saeedfaal",
+   "followers": "186K likes top video",
+   "archetype": "morph-tutorialist",
+   "specialty": "Crops, shapes, gradient fills; free YT templates",
+   "steal": "Image-crop artistry; TikTok->YouTube funnel"
+  },
+  {
+   "name": "The PowerPoint Chap",
+   "handle": "thepowerpointchap",
+   "platforms": "tiktok",
+   "url": "https://www.tiktok.com/@thepowerpointchap",
+   "followers": "100K likes top video",
+   "archetype": "morph-tutorialist",
+   "specialty": "Quick morph method",
+   "steal": "Speed-teach format"
+  },
+  {
+   "name": "l_presentation",
+   "handle": "l_presentation",
+   "platforms": "tiktok",
+   "url": "https://www.tiktok.com/@l_presentation",
+   "followers": "1.7M views top video",
+   "archetype": "morph-tutorialist",
+   "specialty": "Viral aesthetic layouts (pink layout)",
+   "steal": "'Don't delete objects, move out of frame' mantra"
+  },
+  {
+   "name": "Dream Liu — DeskZenZone",
+   "handle": "deskzenzone",
+   "platforms": "tiktok",
+   "url": "https://www.tiktok.com/@deskzenzone",
+   "followers": "4.1M views top video",
+   "archetype": "morph-tutorialist",
+   "specialty": "Rotation morph transitions",
+   "steal": "Spinning wheel motifs via per-slide rotation"
+  },
+  {
+   "name": "Mister Slide",
+   "handle": "misterslide",
+   "platforms": "tiktok",
+   "url": "https://www.tiktok.com/@misterslide",
+   "followers": "173K profile likes",
+   "archetype": "morph-tutorialist+shop",
+   "specialty": "Exclusive Morph tutorials + template reels",
+   "steal": "Template showcase cadence"
+  },
+  {
+   "name": "Buck PPT",
+   "handle": "buckppt",
+   "platforms": "tiktok",
+   "url": "https://www.tiktok.com/@buckppt",
+   "followers": "920K views top video",
+   "archetype": "morph-tutorialist",
+   "specialty": "Creative Morph showcases",
+   "steal": "Showpiece flip-throughs"
+  },
+  {
+   "name": "SuperSlidePPT",
+   "handle": "superslideppt",
+   "platforms": "tiktok",
+   "url": "https://www.tiktok.com/@superslideppt",
+   "followers": "niche",
+   "archetype": "morph-tutorialist",
+   "specialty": "Morph logo reveals; blur/brightness morph combos in <60s",
+   "steal": "Logo-reveal recipe (mask+SVG cutout+scale+morph)"
+  },
+  {
+   "name": "SlideNest",
+   "handle": "slidenest",
+   "platforms": "tiktok",
+   "url": "https://www.tiktok.com/@slidenest",
+   "followers": "25K",
+   "archetype": "morph-tutorialist",
+   "specialty": "Student/class Morph intros",
+   "steal": "Education hooks"
+  },
+  {
+   "name": "slide.sage",
+   "handle": "slide.sage",
+   "platforms": "tiktok",
+   "url": "https://www.tiktok.com/@slide.sage",
+   "followers": "niche",
+   "archetype": "morph-tutorialist",
+   "specialty": "Dynamic arrow/progress layouts",
+   "steal": "Duplicate-and-advance color/number walks"
+  },
+  {
+   "name": "Alex PowerMove",
+   "handle": "alex.powermove",
+   "platforms": "tiktok",
+   "url": "https://www.tiktok.com/@alex.powermove",
+   "followers": "48K likes top",
+   "archetype": "morph-tutorialist",
+   "specialty": "Engaging morphing effects walkthroughs",
+   "steal": "Step clarity"
+  },
+  {
+   "name": "Connor Ripple",
+   "handle": "connorripple",
+   "platforms": "tiktok",
+   "url": "https://www.tiktok.com/@connorripple",
+   "followers": "55K likes top",
+   "archetype": "morph-tutorialist",
+   "specialty": "Design trick shorts",
+   "steal": "Duplicate-slide transition hacks"
+  },
+  {
+   "name": "GoSlideId",
+   "handle": "goslideid",
+   "platforms": "tiktok",
+   "url": "https://www.tiktok.com/@goslideid",
+   "followers": "Indonesia",
+   "archetype": "template-shop",
+   "specialty": "PlacePlate's home-market twin: morph tutorials + done-for-you 'joki PPT'",
+   "steal": "Proof the shop model regionalizes"
+  },
+  {
+   "name": "Joseph PPT",
+   "handle": "ppt.joseph",
+   "platforms": "tiktok",
+   "url": "https://www.tiktok.com/@ppt.joseph",
+   "followers": "niche",
+   "archetype": "morph-tutorialist",
+   "specialty": "Morph troubleshooting",
+   "steal": "Selection Pane renaming fixes"
+  },
+  {
+   "name": "PRTN Slides",
+   "handle": "prtn_slides",
+   "platforms": "tiktok",
+   "url": "https://www.tiktok.com/@prtn_slides",
+   "followers": "niche",
+   "archetype": "template-shop",
+   "specialty": "Themed Morph decks (anime)",
+   "steal": "Fandom skins + free-drop teasing"
+  },
+  {
+   "name": "Leila Gharani",
+   "handle": "leilagharani",
+   "platforms": "youtube",
+   "url": "https://www.youtube.com/@LeilaGharani",
+   "followers": "2M+ YT (Excel-led)",
+   "archetype": "youtube-master",
+   "specialty": "Smart shapes, advanced/enhanced Morph for Office pros",
+   "steal": "Precision shape workflows"
+  },
+  {
+   "name": "Presentation Process (Ramgopal)",
+   "handle": "presentationprocess",
+   "platforms": "youtube",
+   "url": "https://www.youtube.com/@PresentationProcess",
+   "followers": "est. channel",
+   "archetype": "youtube-master",
+   "specialty": "Business diagrams + Morph playlists",
+   "steal": "Diagram-first design"
+  },
+  {
+   "name": "Luis Urrutia M.",
+   "handle": "LM Portland",
+   "platforms": "youtube",
+   "url": "https://www.youtube.com/@PresentationDesignTips",
+   "followers": "niche",
+   "archetype": "youtube-master",
+   "specialty": "22-min deep Morph course; motion titles",
+   "steal": "Motion-title morphs"
+  },
+  {
+   "name": "Mike Tholfsen",
+   "handle": "mtholfsen",
+   "platforms": "tiktok,youtube",
+   "url": "https://www.tiktok.com/@mtholfsen",
+   "followers": "ex-Microsoft PM",
+   "archetype": "educator",
+   "specialty": "Official M365 feature tips",
+   "steal": "What's shipping in PowerPoint"
+  },
+  {
+   "name": "Slidor",
+   "handle": "slidor_agency",
+   "platforms": "instagram,web",
+   "url": "https://www.instagram.com/slidor_agency/",
+   "followers": "Paris agency",
+   "archetype": "agency",
+   "specialty": "Big-brand decks: contrast + basic shapes",
+   "steal": "Corporate-grade restraint"
+  },
+  {
+   "name": "Siwen Li",
+   "handle": "siwenlidesign",
+   "platforms": "instagram",
+   "url": "https://www.instagram.com/siwenlidesign/",
+   "followers": "designer",
+   "archetype": "agency",
+   "specialty": "Infographic & data-viz design",
+   "steal": "Structured data storytelling visuals"
+  },
+  {
+   "name": "Katya Kovalenko",
+   "handle": "katyakovalenkodesign",
+   "platforms": "instagram",
+   "url": "https://www.instagram.com/katyakovalenkodesign/",
+   "followers": "Barcelona",
+   "archetype": "agency",
+   "specialty": "Less-is-more presentation/data design",
+   "steal": "Minimalist data slides"
+  },
+  {
+   "name": "Zlides",
+   "handle": "zlidesco",
+   "platforms": "instagram,web",
+   "url": "https://www.instagram.com/zlidesco/",
+   "followers": "studio",
+   "archetype": "agency",
+   "specialty": "Startup presentation studio; curated the 9-designers list",
+   "steal": "Visual narrative for startups"
+  },
+  {
+   "name": "The Good Deck",
+   "handle": "thegooddeck",
+   "platforms": "instagram",
+   "url": "https://www.instagram.com/thegooddeck/",
+   "followers": "curation",
+   "archetype": "agency",
+   "specialty": "Curated slide inspiration feed",
+   "steal": "Taste training / swipe file"
+  },
+  {
+   "name": "BrightCarbon",
+   "handle": "brightcarbon",
+   "platforms": "web,youtube",
+   "url": "https://www.brightcarbon.com/",
+   "followers": "agency",
+   "archetype": "agency",
+   "specialty": "Enterprise presentation agency; free BrightSlide add-in",
+   "steal": "Professional polish workflows"
+  },
+  {
+   "name": "Nancy Duarte / Duarte Inc.",
+   "handle": "nancyduarte",
+   "platforms": "web,x,books",
+   "url": "https://www.duarte.com/",
+   "followers": "authority",
+   "archetype": "educator",
+   "specialty": "Resonate/Slide:ology/DataStory; sparkline + STAR moments",
+   "steal": "What-is/what-could-be contrast structure"
+  },
+  {
+   "name": "Cole Nussbaumer Knaflic",
+   "handle": "storytellingwithdata",
+   "platforms": "web,books",
+   "url": "https://www.storytellingwithdata.com/",
+   "followers": "authority",
+   "archetype": "educator",
+   "specialty": "Storytelling with Data (6 lessons)",
+   "steal": "Declutter + focus attention + data story QA"
+  }
+ ],
+ "templates": [
+  {
+   "code": "PP-1",
+   "name": "Pro Pitch Deck Morph",
+   "price_usd": 7.0,
+   "category": "pro",
+   "layouts": 20,
+   "url": "https://placeplate.com/templates/pp-1-pro-pitch-deck-morph-ppt-template/",
+   "style_family": "flagship pitch",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-11",
+   "name": "Inferno Prism",
+   "price_usd": 3.5,
+   "category": "business",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-11-inferno-prism-morph-ppt-template/",
+   "style_family": "bright",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-12",
+   "name": "Neon Green",
+   "price_usd": 3.5,
+   "category": "business",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-12-neon-green-morph-powerpoint-template/",
+   "style_family": "fresh",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-13",
+   "name": "Orchid Bloom",
+   "price_usd": 3.5,
+   "category": "creative",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-13-orchid-bloom-morph-powerpoint-template/",
+   "style_family": "bloom",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-14",
+   "name": "Sunflower Bright",
+   "price_usd": 3.5,
+   "category": "creative",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-14-sunflower-bright-morph-powerpoint-template/",
+   "style_family": "bright",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-15",
+   "name": "Marigold Deco",
+   "price_usd": 3.5,
+   "category": "creative",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-15-marigold-deco-morph-powerpoint-template/",
+   "style_family": "bright",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-16",
+   "name": "Brawijaya Navy",
+   "price_usd": 3.5,
+   "category": "academic",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-16-brawijaya-navy-morph-powerpoint-template/",
+   "style_family": "academic navy",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-17",
+   "name": "Sapphire Bloom",
+   "price_usd": 3.5,
+   "category": "creative",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-17-sapphire-bloom-morph-powerpoint-template/",
+   "style_family": "bloom",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-18",
+   "name": "Jade Tropic",
+   "price_usd": 3.5,
+   "category": "creative",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-18-jade-tropic-morph-powerpoint-template/",
+   "style_family": "fresh",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-19",
+   "name": "Tangerine Swirl",
+   "price_usd": 3.5,
+   "category": "creative",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-19-tangerine-swirl-morph-powerpoint-template/",
+   "style_family": "bright",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-20",
+   "name": "Thesis Defense — Aqua Neumorphic",
+   "price_usd": 5.0,
+   "category": "academic",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-20-aqua-neumorphic-morph-powerpoint-template/",
+   "style_family": "academic soft (POPULAR)",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-21",
+   "name": "Gunmetal Focus",
+   "price_usd": 3.5,
+   "category": "business",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-21-gunmetal-focus-morph-powerpoint-template/",
+   "style_family": "dark metal",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-22",
+   "name": "Golden Lotus",
+   "price_usd": 3.5,
+   "category": "creative",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-22-golden-lotus-morph-powerpoint-template/",
+   "style_family": "mandala",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-23",
+   "name": "Startup Pitch Deck — Teal Orbit",
+   "price_usd": 5.0,
+   "category": "business",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-23-teal-orbit-morph-powerpoint-template/",
+   "style_family": "startup teal (POPULAR)",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-24",
+   "name": "Cambridge Crest",
+   "price_usd": 3.5,
+   "category": "academic",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-24-cambridge-crest-morph-powerpoint-template/",
+   "style_family": "academic crest",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-25",
+   "name": "Oxford Royal (Thesis & Research)",
+   "price_usd": 3.5,
+   "category": "academic",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-25-oxford-royal-morph-powerpoint-template/",
+   "style_family": "academic crest",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-26",
+   "name": "Obsidian Dark",
+   "price_usd": 3.5,
+   "category": "business",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-26-obsidian-dark-morph-powerpoint-template/",
+   "style_family": "dark premium",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-27",
+   "name": "Amber Radial",
+   "price_usd": 3.5,
+   "category": "creative",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-27-amber-radial-morph-powerpoint-template/",
+   "style_family": "radial",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-28",
+   "name": "Silver Blade",
+   "price_usd": 3.5,
+   "category": "business",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-28-silver-blade-morph-powerpoint-template/",
+   "style_family": "dark metal",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-29",
+   "name": "Violet Prism",
+   "price_usd": 3.5,
+   "category": "creative",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-29-violet-prism-morph-powerpoint-template/",
+   "style_family": "prism",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-30",
+   "name": "Mint Fresh",
+   "price_usd": 3.5,
+   "category": "creative",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-30-mint-fresh-morph-powerpoint-template/",
+   "style_family": "fresh",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-31",
+   "name": "Breeze Compro (Company Profile)",
+   "price_usd": 3.5,
+   "category": "business",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-31-breeze-compro-morph-powerpoint-template/",
+   "style_family": "company profile",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-32",
+   "name": "Cobalt Plan",
+   "price_usd": 3.5,
+   "category": "business",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-32-cobalt-plan-morph-powerpoint-template/",
+   "style_family": "blue business",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-33",
+   "name": "Dark Gold",
+   "price_usd": 3.5,
+   "category": "business",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-33-dark-gold-morph-powerpoint-template/",
+   "style_family": "dark gold",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-34",
+   "name": "Silver Chrome",
+   "price_usd": 3.5,
+   "category": "business",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-34-silver-chrome-morph-powerpoint-template/",
+   "style_family": "dark metal",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-35",
+   "name": "Onyx Gold",
+   "price_usd": 3.5,
+   "category": "business",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-35-onyx-gold-morph-powerpoint-template/",
+   "style_family": "dark gold",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-36",
+   "name": "Academic — Azure Bloom",
+   "price_usd": 5.0,
+   "category": "academic",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-36-azure-bloom-morph-powerpoint-template/",
+   "style_family": "academic bloom (POPULAR)",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-37",
+   "name": "Sky Edge",
+   "price_usd": 3.5,
+   "category": "business",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-37-sky-edge-morph-powerpoint-template/",
+   "style_family": "blue business",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-38",
+   "name": "Emerald Ring",
+   "price_usd": 3.5,
+   "category": "business",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-38-emerald-ring-morph-powerpoint-template/",
+   "style_family": "fresh ring",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-39",
+   "name": "Business — Crimson Diamond",
+   "price_usd": 3.5,
+   "category": "business",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-39-crimson-diamond-morph-powerpoint-template/",
+   "style_family": "bold diamond",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-40",
+   "name": "Ember Charcoal",
+   "price_usd": 3.5,
+   "category": "business",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-40-ember-charcoal-morph-powerpoint-template/",
+   "style_family": "dark premium",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-41",
+   "name": "Gold Coin",
+   "price_usd": 3.5,
+   "category": "business",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-41-gold-coin-morph-powerpoint-template/",
+   "style_family": "dark gold",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-42",
+   "name": "Slate Clarity",
+   "price_usd": 3.5,
+   "category": "business",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-42-slate-clarity-morph-powerpoint-template/",
+   "style_family": "neutral",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-43",
+   "name": "Royal Blue",
+   "price_usd": 3.5,
+   "category": "academic",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-43-royal-blue-morph-powerpoint-template/",
+   "style_family": "academic navy (guide-cited)",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-44",
+   "name": "Lilac Soft",
+   "price_usd": 3.5,
+   "category": "creative",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-44-lilac-soft-morph-powerpoint-template/",
+   "style_family": "soft",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-45",
+   "name": "Navy Depth",
+   "price_usd": 3.5,
+   "category": "academic",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-45-navy-depth-morph-powerpoint-template/",
+   "style_family": "academic navy",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-46",
+   "name": "Steel Blue",
+   "price_usd": 0.0,
+   "category": "free",
+   "layouts": 5,
+   "url": "https://placeplate.com/templates/pp-46-steel-blue-morph-powerpoint-template/",
+   "style_family": "free SaaS/investor",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-47",
+   "name": "Red Forge",
+   "price_usd": 0.0,
+   "category": "free",
+   "layouts": 5,
+   "url": "https://placeplate.com/templates/pp-47-red-forge-morph-ppt-template/",
+   "style_family": "free bold",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-48",
+   "name": "Green Signal",
+   "price_usd": 0.0,
+   "category": "free",
+   "layouts": 5,
+   "url": "https://placeplate.com/templates/pp-48-green-signal-morph-ppt-template/",
+   "style_family": "free fresh",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  },
+  {
+   "code": "PP-49",
+   "name": "Business Pitch — Obsidian Star",
+   "price_usd": 3.5,
+   "category": "business",
+   "layouts": 12,
+   "url": "https://placeplate.com/templates/pp-49-obsidian-star-morph-powerpoint-template/",
+   "style_family": "dark premium star",
+   "spec": "16:9 PPTX, Morph pre-built, editable, PPT 2019+, personal+commercial license, editing-tips video"
+  }
+ ],
+ "bundles": [
+  {
+   "name": "All in One Pack",
+   "price_usd": 79.0,
+   "was_usd": 180.0,
+   "url": "https://placeplate.com/templates/all-pack-template-powerpoint-morph/",
+   "pitch": "Complete library, lifetime access (most popular)"
+  },
+  {
+   "name": "Modern Style Pack",
+   "price_usd": 45.0,
+   "was_usd": 130.0,
+   "url": "https://placeplate.com/templates/modern-style-ppt-template-bundle/",
+   "pitch": "Modern & minimal"
+  },
+  {
+   "name": "Best For Business Pack",
+   "price_usd": 30.0,
+   "was_usd": 85.0,
+   "url": "https://placeplate.com/templates/best-for-business-pack-ppt-template-bundle/",
+   "pitch": "Business & professional use"
+  },
+  {
+   "name": "Best For Academic Pack",
+   "price_usd": 25.0,
+   "was_usd": 60.0,
+   "url": "https://placeplate.com/templates/best-for-academic-pack-ppt-template-bundle/",
+   "pitch": "Thesis/research lineup"
+  },
+  {
+   "name": "Mandala Style Pack",
+   "price_usd": 20.0,
+   "was_usd": 40.0,
+   "url": "https://placeplate.com/templates/mandala-style-ppt-template-bundle/",
+   "pitch": "Mandala motif line"
+  },
+  {
+   "name": "Starter Pack",
+   "price_usd": 15.0,
+   "was_usd": 25.0,
+   "url": "https://placeplate.com/templates/starter-pack-ppt-template-bundle/",
+   "pitch": "Entry bundle"
+  },
+  {
+   "name": "Mini Pack",
+   "price_usd": 9.0,
+   "was_usd": 15.0,
+   "url": "https://placeplate.com/templates/mini-pack-ppt-template-bundle/",
+   "pitch": "3 clean templates"
+  }
+ ],
+ "services": [
+  {
+   "name": "Custom Basic",
+   "price": "$35 / 10 slides (min 20)",
+   "includes": "Layout, typography, visuals; <=3 revisions; NO transitions/animation",
+   "url": "https://placeplate.com/service/"
+  },
+  {
+   "name": "Custom Professional",
+   "price": "$75 / 10 slides (min 10)",
+   "includes": "Structured storytelling + Morph & smart animation + optional intro logo animation; <=3 revisions",
+   "url": "https://placeplate.com/service/"
+  }
+ ]
+}
