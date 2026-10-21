@@ -1,4 +1,4 @@
-# PowerPoint Skill — PlacePlate Style 🎞️✨
+# PowerPoint Skill 🎞️✨
 
 A complete, reusable **AI skill for generating professional PowerPoint decks**,
 researched from **[PlacePlate](https://www.instagram.com/placeplate12345/)**
